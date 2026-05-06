@@ -309,12 +309,14 @@ function fmtRecordStacked(reg, playoff) {
   return `${regStr}<div style="font-size:10px;color:#888;font-weight:400;line-height:1.2">(${playoff})</div>`;
 }
 
-function fmtRecordSmart(reg, playoff) {
-  // Standings: show playoff split once playoffs have started, otherwise W-L with win pct.
+function fmtRecordSmart(reg, playoff, fallback) {
+  // Standings/Team Summary: show playoff split once playoffs have started,
+  // otherwise W-L with win pct. `fallback` covers the case where the JSON
+  // pre-dates regular_record (e.g., during a CDN cache transition).
   const pm = playoff ? playoff.match(/^(\d+)-(\d+)$/) : null;
   const hasPlayoffs = pm && (parseInt(pm[1]) + parseInt(pm[2]) > 0);
-  if (hasPlayoffs) return fmtRecordStacked(reg, playoff);
-  return fmtRecord(reg);
+  if (hasPlayoffs) return fmtRecordStacked(reg || fallback, playoff);
+  return fmtRecord(reg || fallback);
 }
 
 function finishBadge(finalsStatus) {
@@ -426,7 +428,7 @@ function renderStandings() {
     return `<tr>
       <td class="rank-cell">${t.rank}</td>
       <td class="team-cell">${t.team}</td>
-      <td style="font-variant-numeric:tabular-nums;white-space:nowrap">${fmtRecordSmart(t.regular_record, t.playoff_record)}</td>
+      <td style="font-variant-numeric:tabular-nums;white-space:nowrap">${fmtRecordSmart(t.regular_record, t.playoff_record, t.record)}</td>
       <td>${ratingBar(t.rating)}</td>
       <td class="last-match-cell">
         <span class="${resultClass(t.last_match)}">${t.last_match || '—'}</span>
@@ -527,7 +529,7 @@ function renderTeamTable() {
     <td class="last-match-cell">
       <span class="${resultClass(g.last_match)}">${g.last_match || '—'}</span>
     </td>
-    <td style="font-variant-numeric:tabular-nums;white-space:nowrap">${fmtRecordSmart(g.regular_record, g.playoff_record)}</td>
+    <td style="font-variant-numeric:tabular-nums;white-space:nowrap">${fmtRecordSmart(g.regular_record, g.playoff_record, g.record)}</td>
     <td>${ratingBar(g.rating)}</td>
     <td class="rank-cell">${g.rank}</td>
     <td class="col-hide-mobile" style="font-size:11px">${finishBadge(g.finals_status)}</td>
