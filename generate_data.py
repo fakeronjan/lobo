@@ -325,6 +325,18 @@ for season in sorted(df['season'].unique(), reverse=True):
         },
     })
 
+# Running counts: walk chronologically (oldest first) so each entry
+# records "this is your Nth title / runner-up appearance".
+_champ_count = {}
+_ru_count = {}
+for entry in reversed(champions):
+    ct = entry['champion']['team']
+    rt = entry['runner_up']['team']
+    _champ_count[ct] = _champ_count.get(ct, 0) + 1
+    _ru_count[rt]    = _ru_count.get(rt, 0) + 1
+    entry['champion']['title_count']     = _champ_count[ct]
+    entry['runner_up']['runner_up_count'] = _ru_count[rt]
+
 with open('docs/data/champions.json', 'w') as f:
     json.dump({'WNBA': champions}, f, separators=(',', ':'))
 
