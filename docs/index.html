@@ -309,13 +309,6 @@ function fmtRecordStacked(reg, playoff) {
   return `${regStr}<div style="font-size:10px;color:#888;font-weight:400;line-height:1.2">(${playoff})</div>`;
 }
 
-function ordinal(n) {
-  const v = n % 100;
-  if (v >= 11 && v <= 13) return n + 'th';
-  const s = ['th', 'st', 'nd', 'rd'];
-  return n + (s[n % 10] || 'th');
-}
-
 function fmtRecordSmart(reg, playoff, fallback) {
   // Standings/Team Summary: show playoff split once playoffs have started,
   // otherwise W-L with win pct. `fallback` covers the case where the JSON
@@ -642,9 +635,10 @@ function renderChampions() {
     if (!t) return `<td class="${bg}" colspan="3">—</td>`;
     const rating = t.rating != null ? t.rating.toFixed(2) : '—';
     const rank   = t.rank   != null ? `#${t.rank}` : '—';
-    const count  = t.title_count || t.runner_up_count;
-    const countStr = count
-      ? ` <span style="color:#888;font-size:0.85em;font-weight:400">(${ordinal(count)})</span>`
+    const countStr = t.title_count
+      ? ` <span style="color:#888;font-size:0.85em;font-weight:400">(${t.title_count} 🏆)</span>`
+      : t.runner_up_count
+      ? ` <span style="color:#888;font-size:0.85em;font-weight:400">(${t.runner_up_count} 🥈)</span>`
       : '';
     return `
       <td class="${bg} team-cell" style="white-space:nowrap">${t.team}${countStr}</td>
