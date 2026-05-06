@@ -135,13 +135,10 @@ with open('docs/data/current_standings.json', 'w') as f:
     json.dump(standings_data, f, separators=(',', ':'))
 
 # ── 2. GOAT table (top 50 single-season ratings at end of season) ────────────
+# Only include fully-complete seasons (flag=2 = Finals ended). Excludes
+# in-progress seasons whose regular season is done but Finals haven't started/finished.
 print("Writing goat_teams.json...")
-# End of season per (team, season): take season_flag==2 if exists, else season_flag==1
-eos_all = df[df['season_flag'].isin([1, 2])].copy()
-eos_all = (
-    eos_all.sort_values(['name', 'season', 'season_flag'])
-    .groupby(['name', 'season']).last().reset_index()
-)
+eos_all = df[df['season_flag'] == 2].copy()
 eos_top = eos_all.sort_values('rating', ascending=False).head(50).reset_index(drop=True)
 
 goat_data = []

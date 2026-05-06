@@ -345,12 +345,37 @@ def assemble_final(master_df, ratings_df, standings_df):
     # -------------------------------------------------------------------------
     final_df['season_flag'] = 0
 
-    # Last day of postseason = last ranking_id per season (vectorized)
-    season_max_id = final_df.groupby('season')['ranking_id'].transform('max')
-    final_df['season_flag'] = np.where(final_df['ranking_id'] == season_max_id, 2, 0)
+    # WNBA Finals end by mid-October; season YYYY is fully complete after Nov 30 of YYYY.
+    today = datetime.now().date()
+    def season_is_fully_complete(season):
+        return today > datetime(int(season), 11, 30).date()
 
-    # Last day of regular season (Option B — game count proxy)
+    # Regular season is "done" once any team has played the threshold count
+    regular_season_complete = set()
     for season in final_df['season'].unique():
+        sg = master_df[master_df['season'] == season]
+        if sg.empty:
+            continue
+        home = sg[['home_team_name']].rename(columns={'home_team_name': 'team'})
+        away = sg[['visitor_team_name']].rename(columns={'visitor_team_name': 'team'})
+        all_g = pd.concat([home, away])
+        threshold = REGULAR_SEASON_GAMES.get(season, 34)
+        if all_g.groupby('team').size().max() >= threshold:
+            regular_season_complete.add(season)
+
+    # Last day of postseason — only for fully complete seasons
+    season_max_id = final_df.groupby('season')['ranking_id'].transform('max')
+    is_completed = final_df['season'].apply(season_is_fully_complete)
+    final_df['season_flag'] = np.where(
+        (final_df['ranking_id'] == season_max_id) & is_completed,
+        2,
+        0
+    )
+
+    # Last day of regular season — only for seasons where regular season has actually ended
+    for season in final_df['season'].unique():
+        if season not in regular_season_complete:
+            continue
         rs_end_date = _get_regular_season_end_date(master_df, season)
         if rs_end_date is None:
             continue
@@ -359,7 +384,6 @@ def assemble_final(master_df, ratings_df, standings_df):
         if match.empty:
             continue
         rs_end_ranking_id = match['ranking_id'].max()
-        # Only set to 1 if not already flagged as 2 (postseason end)
         final_df['season_flag'] = np.where(
             (final_df['season'] == season) &
             (final_df['ranking_id'] == rs_end_ranking_id) &
