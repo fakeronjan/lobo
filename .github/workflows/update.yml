@@ -1,0 +1,43 @@
+name: Update LOBO Ratings
+
+on:
+  schedule:
+    - cron: '19 12 * * *'   # 12:19 UTC daily (8:19 AM ET — after overnight WNBA box scores post)
+  workflow_dispatch:        # allow manual trigger from GitHub UI
+
+permissions:
+  contents: write           # needed for git push
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run ratings engine
+        run: python wnba.py
+
+      - name: Generate web data
+        run: python generate_data.py
+
+      - name: Commit and push updated data
+        run: |
+          git config user.name  "LOBO Bot"
+          git config user.email "lobo-bot@users.noreply.github.com"
+          git add loaded_wnba_games.csv all_wnba_games.csv wnba_ratings.csv daily_standings.csv wnba_ratings_with_standings.csv docs/data/
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update ratings $(date -u '+%Y-%m-%d')"
+            git push
+          fi

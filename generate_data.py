@@ -1,0 +1,250 @@
+"""
+generate_data.py — reads wnba_ratings_with_standings.csv and writes JSON for the LOBO web frontend.
+Run after wnba.py. Outputs to docs/data/.
+
+Mirrors the ZIDANE site architecture, simplified for a single league.
+"""
+
+import pandas as pd
+import json
+import os
+import re
+from bisect import bisect_right
+
+os.makedirs('docs/data/teams', exist_ok=True)
+os.makedirs('docs/data/seasons', exist_ok=True)
+
+print("Reading ratings...")
+df = pd.read_csv('wnba_ratings_with_standings.csv')
+df['date'] = pd.to_datetime(df['date']).dt.date
+
+games = pd.read_csv('all_wnba_games.csv')
+games['date_game'] = pd.to_datetime(games['date_game']).dt.date
+
+
+def clean(val):
+    if pd.isna(val):
+        return ''
+    return str(val)
+
+
+def slug(name):
+    return re.sub(r'[^\w]', '_', name).strip('_')
+
+
+# is_game_day: any row where the team actually played that snapshot date
+df['is_game_day'] = (df['last_game_result'] != 'No Game').astype(int)
+# is_end_of_season: collapse season_flag (1=last regular, 2=last postseason) to one boolean
+df['is_end_of_season'] = df['season_flag'].isin([1, 2]).astype(int)
+
+# Per-team forward-filled last game (so EOS rows that aren't game days still show prior game)
+_last_game_history = {}
+for team, tdf in df[df['is_game_day'] == 1].sort_values('date').groupby('name'):
+    _last_game_history[team] = (
+        [str(d) for d in tdf['date'].tolist()],
+        tdf['last_game_result'].tolist(),
+    )
+
+
+def last_game_as_of(team, snap_date_str):
+    """Most recent game result for team as of snap_date_str (forward-filled)."""
+    entry = _last_game_history.get(team)
+    if not entry:
+        return ''
+    dates, games_list = entry
+    idx = bisect_right(dates, snap_date_str) - 1
+    return games_list[idx] if idx >= 0 else ''
+
+
+# Per-season last regular-season date — used to flag playoff vs regular-season entries
+_rs_end_dates = (
+    df[df['season_flag'] == 1]
+    .groupby('season')['date']
+    .max()
+    .to_dict()
+)
+
+
+def is_playoff(season, date_val):
+    rs_end = _rs_end_dates.get(season)
+    if rs_end is None:
+        return False
+    return date_val > rs_end
+
+
+# ── 1. Current standings (latest snapshot) ───────────────────────────────────
+print("Writing current_standings.json...")
+latest_id = int(df['ranking_id'].max())
+latest = df[df['ranking_id'] == latest_id].sort_values('rank').copy()
+latest_date = str(latest['date'].iloc[0])
+
+standings_data = {
+    'updated': latest_date,
+    'teams': [
+        {
+            'rank':            int(r['rank']),
+            'team':            r['name'],
+            'rating':          round(float(r['rating']), 3),
+            'record':          clean(r['record']),
+            'last_match':      clean(r['last_game_result']) if r['last_game_result'] != 'No Game' else last_game_as_of(r['name'], str(r['date'])),
+            'finals_status':   int(r['finals_status']) if not pd.isna(r['finals_status']) else 0,
+        }
+        for _, r in latest.iterrows()
+    ],
+}
+with open('docs/data/current_standings.json', 'w') as f:
+    json.dump(standings_data, f, separators=(',', ':'))
+
+# ── 2. GOAT table (top 50 single-season ratings at end of season) ────────────
+print("Writing goat_teams.json...")
+# End of season per (team, season): take season_flag==2 if exists, else season_flag==1
+eos_all = df[df['season_flag'].isin([1, 2])].copy()
+eos_all = (
+    eos_all.sort_values(['name', 'season', 'season_flag'])
+    .groupby(['name', 'season']).last().reset_index()
+)
+eos_top = eos_all.sort_values('rating', ascending=False).head(50).reset_index(drop=True)
+
+goat_data = [
+    {
+        'rank':           i + 1,
+        'team':           r['name'],
+        'season':         int(r['season']),
+        'rating':         round(float(r['rating']), 3),
+        'record':         clean(r['record']),
+        'finals_status':  int(r['finals_status']) if not pd.isna(r['finals_status']) else 0,
+    }
+    for i, (_, r) in enumerate(eos_top.iterrows())
+]
+with open('docs/data/goat_teams.json', 'w') as f:
+    json.dump(goat_data, f, separators=(',', ':'))
+
+# ── 3. Per-team JSON files ───────────────────────────────────────────────────
+print("Writing per-team JSON files...")
+team_data = df[(df['is_game_day'] == 1) | (df['is_end_of_season'] == 1)].copy()
+team_data = team_data.sort_values(['name', 'season', 'date'])
+
+all_teams = sorted(df['name'].unique())
+teams_index = []
+
+for team in all_teams:
+    tdf = team_data[team_data['name'] == team]
+    if len(tdf) == 0:
+        continue
+
+    team_slug = slug(team)
+    teams_index.append({'name': team, 'slug': team_slug})
+
+    seasons = {}
+    for season, sdf in tdf.groupby('season'):
+        seasons[int(season)] = [
+            {
+                'date':              str(r['date']),
+                'rating':            round(float(r['rating']), 3),
+                'rank':              int(r['rank']),
+                'record':            clean(r['record']),
+                'last_match':        clean(r['last_game_result']) if r['last_game_result'] != 'No Game' else last_game_as_of(team, str(r['date'])),
+                'is_end_of_season':  int(r['is_end_of_season']),
+                'season_flag':       int(r['season_flag']),
+                'is_playoff':        int(is_playoff(season, r['date'])),
+                'finals_status':     int(r['finals_status']) if not pd.isna(r['finals_status']) else 0,
+            }
+            for _, r in sdf.sort_values('date').iterrows()
+        ]
+
+    with open(f'docs/data/teams/{team_slug}.json', 'w') as f:
+        json.dump({'team': team, 'seasons': seasons}, f, separators=(',', ':'))
+
+teams_index.sort(key=lambda x: x['name'])
+with open('docs/data/teams_index.json', 'w') as f:
+    json.dump(teams_index, f, separators=(',', ':'))
+
+# ── 4. Season standings files ─────────────────────────────────────────────────
+print("Writing season standings files...")
+all_seasons = sorted(df['season'].unique())
+
+for season in all_seasons:
+    sdf = df[df['season'] == season]
+    snapshots = []
+    for ranking_id, rdf in sdf.groupby('ranking_id'):
+        rdf = rdf.sort_values('rank')
+        snap_date = str(rdf['date'].iloc[0])
+        flag = int(rdf['season_flag'].iloc[0])
+        label = None
+        if flag == 1:
+            label = 'End of regular season'
+        elif flag == 2:
+            label = 'End of season (Finals)'
+
+        teams_snap = [
+            {
+                'rank':         int(r['rank']),
+                'team':         r['name'],
+                'rating':       round(float(r['rating']), 3),
+                'record':       clean(r['record']),
+                'last_match':   clean(r['last_game_result']) if r['last_game_result'] != 'No Game' else last_game_as_of(r['name'], snap_date),
+            }
+            for _, r in rdf.iterrows()
+        ]
+        snapshots.append({'date': snap_date, 'label': label, 'teams': teams_snap})
+
+    snapshots.sort(key=lambda x: x['date'])
+    with open(f'docs/data/seasons/{int(season)}.json', 'w') as f:
+        json.dump({'season': int(season), 'snapshots': snapshots}, f, separators=(',', ':'))
+
+seasons_meta = {
+    'seasons':    [int(s) for s in reversed(all_seasons)],
+    'first_date': str(df['date'].min()),
+    'last_date':  str(df['date'].max()),
+}
+with open('docs/data/seasons_index.json', 'w') as f:
+    json.dump(seasons_meta, f, separators=(',', ':'))
+
+# ── 5. Champions table ────────────────────────────────────────────────────────
+print("Writing champions.json...")
+
+champions = []
+for season in sorted(df['season'].unique(), reverse=True):
+    sdf = df[(df['season'] == season) & (df['season_flag'] == 2)]
+    if sdf.empty:
+        continue
+    champ_row = sdf[sdf['champ'] == 1]
+    ru_row = sdf[sdf['runnerup'] == 1]
+    if champ_row.empty or ru_row.empty:
+        continue
+
+    cr = champ_row.iloc[0]
+    rr = ru_row.iloc[0]
+
+    # Final score from games CSV (last game of the season)
+    season_games = games[games['season'] == season]
+    final_score = ''
+    if not season_games.empty:
+        last_game = season_games.sort_values('date_game').iloc[-1]
+        if last_game['home_team_name'] == cr['name']:
+            final_score = f"{int(last_game['home_pts'])}-{int(last_game['visitor_pts'])}"
+        elif last_game['visitor_team_name'] == cr['name']:
+            final_score = f"{int(last_game['visitor_pts'])}-{int(last_game['home_pts'])}"
+
+    champions.append({
+        'season':      int(season),
+        'final_score': final_score,
+        'champion': {
+            'team':   cr['name'],
+            'rating': round(float(cr['rating']), 3),
+            'rank':   int(cr['rank']),
+            'record': clean(cr['record']),
+        },
+        'runner_up': {
+            'team':   rr['name'],
+            'rating': round(float(rr['rating']), 3),
+            'rank':   int(rr['rank']),
+            'record': clean(rr['record']),
+        },
+    })
+
+with open('docs/data/champions.json', 'w') as f:
+    json.dump({'WNBA': champions}, f, separators=(',', ':'))
+
+print(f"Done. {len(teams_index)} teams, {len(standings_data['teams'])} in current standings.")
+print(f"Wrote {len(all_seasons)} season files. Standings date: {latest_date}")

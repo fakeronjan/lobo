@@ -1,0 +1,5 @@
+.DS_Store
+__pycache__/
+*.pyc
+Backup*/
+logan_ratings_with_standings.csv
