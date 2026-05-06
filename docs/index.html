@@ -527,7 +527,7 @@ function renderTeamTable() {
     <td class="last-match-cell">
       <span class="${resultClass(g.last_match)}">${g.last_match || '—'}</span>
     </td>
-    <td style="font-variant-numeric:tabular-nums;white-space:nowrap">${fmtRecord(g.record)}</td>
+    <td style="font-variant-numeric:tabular-nums;white-space:nowrap">${fmtRecordSmart(g.regular_record, g.playoff_record)}</td>
     <td>${ratingBar(g.rating)}</td>
     <td class="rank-cell">${g.rank}</td>
     <td class="col-hide-mobile" style="font-size:11px">${finishBadge(g.finals_status)}</td>

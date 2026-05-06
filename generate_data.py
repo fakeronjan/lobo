@@ -168,20 +168,31 @@ for team in all_teams:
 
     seasons = {}
     for season, sdf in tdf.groupby('season'):
-        seasons[int(season)] = [
-            {
+        rs_end = _rs_end_dates.get(season)
+        final_reg = _reg_record_lookup.get((team, int(season)))
+        entries = []
+        for _, r in sdf.sort_values('date').iterrows():
+            in_postseason = (rs_end is not None) and (r['date'] > rs_end) and (final_reg is not None)
+            if in_postseason:
+                reg = final_reg
+                po  = playoff_record(r['record'], final_reg)
+            else:
+                reg = clean(r['record'])
+                po  = ''
+            entries.append({
                 'date':              str(r['date']),
                 'rating':            round(float(r['rating']), 3),
                 'rank':              int(r['rank']),
                 'record':            clean(r['record']),
+                'regular_record':    reg,
+                'playoff_record':    po,
                 'last_match':        clean(r['last_game_result']) if r['last_game_result'] != 'No Game' else last_game_as_of(team, str(r['date'])),
                 'is_end_of_season':  int(r['is_end_of_season']),
                 'season_flag':       int(r['season_flag']),
                 'is_playoff':        int(is_playoff(season, r['date'])),
                 'finals_status':     int(r['finals_status']) if not pd.isna(r['finals_status']) else 0,
-            }
-            for _, r in sdf.sort_values('date').iterrows()
-        ]
+            })
+        seasons[int(season)] = entries
 
     with open(f'docs/data/teams/{team_slug}.json', 'w') as f:
         json.dump({'team': team, 'seasons': seasons}, f, separators=(',', ':'))
