@@ -1,5 +1,5 @@
 pandas
 numpy
 requests
-rankit
+rankit==0.2
 lxml
