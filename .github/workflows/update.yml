@@ -22,7 +22,9 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install cython numpy
+          pip install --no-build-isolation -r requirements.txt
 
       - name: Run ratings engine
         run: python wnba.py
