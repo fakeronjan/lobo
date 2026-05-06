@@ -298,6 +298,17 @@ function fmtRecord(rec) {
   return `${w}-${l} <span style="color:#888;font-size:0.85em">(${pct})</span>`;
 }
 
+function fmtRecordStacked(reg, playoff) {
+  // Champions/GOAT: regular-season W-L on top, playoff W-L in dimmed parens below.
+  if (!reg) return '—';
+  const m = reg.match(/^(\d+)\s*-\s*(\d+)$/);
+  const regStr = m ? `${m[1]}-${m[2]}` : reg;
+  const pm = playoff ? playoff.match(/^(\d+)-(\d+)$/) : null;
+  const hasPlayoffs = pm && (parseInt(pm[1]) + parseInt(pm[2]) > 0);
+  if (!hasPlayoffs) return regStr;
+  return `${regStr}<div style="font-size:10px;color:#888;font-weight:400;line-height:1.2">(${playoff})</div>`;
+}
+
 function finishBadge(finalsStatus) {
   if (finalsStatus === 2) return `<span class="finish-badge finish-champion">Champion ★</span>`;
   if (finalsStatus === 1) return `<span class="finish-badge finish-runner">Runner-Up</span>`;
@@ -618,7 +629,7 @@ function renderChampions() {
       <td class="${bg} team-cell" style="white-space:nowrap">${t.team}</td>
       <td class="${bg} col-hide-mobile" style="font-variant-numeric:tabular-nums;white-space:nowrap;color:#888;font-size:0.85em">${rank}</td>
       <td class="${bg} rating-cell" style="font-variant-numeric:tabular-nums">${rating}</td>
-      <td class="${bg} col-hide-mobile" style="font-variant-numeric:tabular-nums;white-space:nowrap">${fmtRecord(t.record)}</td>`;
+      <td class="${bg} col-hide-mobile" style="font-variant-numeric:tabular-nums;white-space:nowrap">${fmtRecordStacked(t.regular_record, t.playoff_record)}</td>`;
   }
 
   const rows = entries.map(e => `<tr>
@@ -667,7 +678,7 @@ function renderGoat() {
     <td class="team-cell">${t.team}</td>
     <td>${t.season}</td>
     <td>${ratingBar(t.rating)}</td>
-    <td style="font-variant-numeric:tabular-nums;white-space:nowrap" class="col-hide-mobile">${fmtRecord(t.record)}</td>
+    <td style="font-variant-numeric:tabular-nums;white-space:nowrap" class="col-hide-mobile">${fmtRecordStacked(t.regular_record, t.playoff_record)}</td>
     <td class="col-hide-mobile" style="font-size:11px">${finishBadge(t.finals_status)}</td>
   </tr>`).join('');
 

@@ -72,6 +72,35 @@ def is_playoff(season, date_val):
     return date_val > rs_end
 
 
+# Regular-season-end record per (team, season): from season_flag == 1 snapshot
+_reg_record_lookup = {
+    (row['name'], int(row['season'])): row['record']
+    for _, row in df[df['season_flag'] == 1].iterrows()
+}
+
+
+def _parse_record(rec):
+    """Parse a 'W - L' string into (wins, losses). Returns None if unparseable."""
+    if not rec or pd.isna(rec):
+        return None
+    m = re.match(r'(\d+)\s*-\s*(\d+)', str(rec))
+    if not m:
+        return None
+    return int(m.group(1)), int(m.group(2))
+
+
+def playoff_record(full_record, regular_record):
+    """Compute playoff record as (full - regular). Both inputs are 'W - L' strings."""
+    f = _parse_record(full_record)
+    r = _parse_record(regular_record)
+    if not f or not r:
+        return ''
+    pw, pl = f[0] - r[0], f[1] - r[1]
+    if pw < 0 or pl < 0:
+        return ''
+    return f"{pw}-{pl}"
+
+
 # ── 1. Current standings (latest snapshot) ───────────────────────────────────
 print("Writing current_standings.json...")
 latest_id = int(df['ranking_id'].max())
@@ -105,17 +134,19 @@ eos_all = (
 )
 eos_top = eos_all.sort_values('rating', ascending=False).head(50).reset_index(drop=True)
 
-goat_data = [
-    {
+goat_data = []
+for i, (_, r) in enumerate(eos_top.iterrows()):
+    reg = _reg_record_lookup.get((r['name'], int(r['season'])), '')
+    goat_data.append({
         'rank':           i + 1,
         'team':           r['name'],
         'season':         int(r['season']),
         'rating':         round(float(r['rating']), 3),
         'record':         clean(r['record']),
+        'regular_record': reg,
+        'playoff_record': playoff_record(r['record'], reg),
         'finals_status':  int(r['finals_status']) if not pd.isna(r['finals_status']) else 0,
-    }
-    for i, (_, r) in enumerate(eos_top.iterrows())
-]
+    })
 with open('docs/data/goat_teams.json', 'w') as f:
     json.dump(goat_data, f, separators=(',', ':'))
 
@@ -247,21 +278,28 @@ for season in sorted(df['season'].unique(), reverse=True):
         if cw + rw > 0:
             series_score = f"{cw}-{rw}"
 
+    champ_reg = _reg_record_lookup.get((cr['name'], int(season)), '')
+    ru_reg    = _reg_record_lookup.get((rr['name'], int(season)), '')
+
     champions.append({
         'season':       int(season),
         'final_score':  final_score,
         'series_score': series_score,
         'champion': {
-            'team':   cr['name'],
-            'rating': round(float(cr['rating']), 3),
-            'rank':   int(cr['rank']),
-            'record': clean(cr['record']),
+            'team':           cr['name'],
+            'rating':         round(float(cr['rating']), 3),
+            'rank':           int(cr['rank']),
+            'record':         clean(cr['record']),
+            'regular_record': champ_reg,
+            'playoff_record': playoff_record(cr['record'], champ_reg),
         },
         'runner_up': {
-            'team':   rr['name'],
-            'rating': round(float(rr['rating']), 3),
-            'rank':   int(rr['rank']),
-            'record': clean(rr['record']),
+            'team':           rr['name'],
+            'rating':         round(float(rr['rating']), 3),
+            'rank':           int(rr['rank']),
+            'record':         clean(rr['record']),
+            'regular_record': ru_reg,
+            'playoff_record': playoff_record(rr['record'], ru_reg),
         },
     })
 
