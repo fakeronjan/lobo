@@ -309,6 +309,14 @@ function fmtRecordStacked(reg, playoff) {
   return `${regStr}<div style="font-size:10px;color:#888;font-weight:400;line-height:1.2">(${playoff})</div>`;
 }
 
+function fmtRecordSmart(reg, playoff) {
+  // Standings: show playoff split once playoffs have started, otherwise W-L with win pct.
+  const pm = playoff ? playoff.match(/^(\d+)-(\d+)$/) : null;
+  const hasPlayoffs = pm && (parseInt(pm[1]) + parseInt(pm[2]) > 0);
+  if (hasPlayoffs) return fmtRecordStacked(reg, playoff);
+  return fmtRecord(reg);
+}
+
 function finishBadge(finalsStatus) {
   if (finalsStatus === 2) return `<span class="finish-badge finish-champion">Champion ★</span>`;
   if (finalsStatus === 1) return `<span class="finish-badge finish-runner">Runner-Up</span>`;
@@ -418,7 +426,7 @@ function renderStandings() {
     return `<tr>
       <td class="rank-cell">${t.rank}</td>
       <td class="team-cell">${t.team}</td>
-      <td style="font-variant-numeric:tabular-nums;white-space:nowrap">${fmtRecord(t.record)}</td>
+      <td style="font-variant-numeric:tabular-nums;white-space:nowrap">${fmtRecordSmart(t.regular_record, t.playoff_record)}</td>
       <td>${ratingBar(t.rating)}</td>
       <td class="last-match-cell">
         <span class="${resultClass(t.last_match)}">${t.last_match || '—'}</span>

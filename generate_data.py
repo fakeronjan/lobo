@@ -207,16 +207,27 @@ for season in all_seasons:
         elif flag == 2:
             label = 'End of season (Finals)'
 
-        teams_snap = [
-            {
-                'rank':         int(r['rank']),
-                'team':         r['name'],
-                'rating':       round(float(r['rating']), 3),
-                'record':       clean(r['record']),
-                'last_match':   clean(r['last_game_result']) if r['last_game_result'] != 'No Game' else last_game_as_of(r['name'], snap_date),
-            }
-            for _, r in rdf.iterrows()
-        ]
+        snap_date_obj = rdf['date'].iloc[0]
+        rs_end = _rs_end_dates.get(season)
+        in_postseason = (rs_end is not None) and (snap_date_obj > rs_end)
+
+        teams_snap = []
+        for _, r in rdf.iterrows():
+            if in_postseason:
+                reg = _reg_record_lookup.get((r['name'], int(season)), r['record'])
+                po  = playoff_record(r['record'], reg)
+            else:
+                reg = clean(r['record'])
+                po  = ''
+            teams_snap.append({
+                'rank':           int(r['rank']),
+                'team':           r['name'],
+                'rating':         round(float(r['rating']), 3),
+                'record':         clean(r['record']),
+                'regular_record': reg,
+                'playoff_record': po,
+                'last_match':     clean(r['last_game_result']) if r['last_game_result'] != 'No Game' else last_game_as_of(r['name'], snap_date),
+            })
         snapshots.append({'date': snap_date, 'label': label, 'teams': teams_snap})
 
     snapshots.sort(key=lambda x: x['date'])
