@@ -11,8 +11,12 @@ import rankit  # pip install rankit
 from rankit.Table import Table
 from rankit.Ranker import MasseyRanker
 
-# Suppress SettingWithCopyWarning from rankit library internals
-warnings.filterwarnings('ignore', category=pd.errors.SettingWithCopyWarning)
+# Suppress SettingWithCopyWarning from rankit library internals.
+# pandas 3.x removed this class, so guard the lookup.
+try:
+    warnings.filterwarnings('ignore', category=pd.errors.SettingWithCopyWarning)
+except AttributeError:
+    pass
 
 # =========================================================
 # CONFIGURATION
