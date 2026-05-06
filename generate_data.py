@@ -56,6 +56,16 @@ def last_game_as_of(team, snap_date_str):
     return games_list[idx] if idx >= 0 else ''
 
 
+def last_game_date_as_of(team, snap_date_str):
+    """Date string of the team's most recent game as of snap_date_str."""
+    entry = _last_game_history.get(team)
+    if not entry:
+        return ''
+    dates, _ = entry
+    idx = bisect_right(dates, snap_date_str) - 1
+    return dates[idx] if idx >= 0 else ''
+
+
 # Per-season last regular-season date — used to flag playoff vs regular-season entries
 _rs_end_dates = (
     df[df['season_flag'] == 1]
@@ -230,14 +240,17 @@ for season in all_seasons:
             else:
                 reg = clean(r['record'])
                 po  = ''
+            played_today = r['last_game_result'] != 'No Game'
             teams_snap.append({
-                'rank':           int(r['rank']),
-                'team':           r['name'],
-                'rating':         round(float(r['rating']), 3),
-                'record':         clean(r['record']),
-                'regular_record': reg,
-                'playoff_record': po,
-                'last_match':     clean(r['last_game_result']) if r['last_game_result'] != 'No Game' else last_game_as_of(r['name'], snap_date),
+                'rank':            int(r['rank']),
+                'team':            r['name'],
+                'rating':          round(float(r['rating']), 3),
+                'record':          clean(r['record']),
+                'regular_record':  reg,
+                'playoff_record':  po,
+                'last_match':      clean(r['last_game_result']) if played_today else last_game_as_of(r['name'], snap_date),
+                'last_match_date': snap_date if played_today else last_game_date_as_of(r['name'], snap_date),
+                'finals_status':   int(r['finals_status']) if not pd.isna(r['finals_status']) else 0,
             })
         snapshots.append({'date': snap_date, 'label': label, 'teams': teams_snap})
 

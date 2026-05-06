@@ -320,8 +320,8 @@ function fmtRecordSmart(reg, playoff, fallback) {
 }
 
 function finishBadge(finalsStatus) {
-  if (finalsStatus === 2) return `<span class="finish-badge finish-champion">Champion ★</span>`;
-  if (finalsStatus === 1) return `<span class="finish-badge finish-runner">Runner-Up</span>`;
+  if (finalsStatus === 2) return `<span title="Champion" style="font-size:14px">🏆</span>`;
+  if (finalsStatus === 1) return `<span title="Runner-Up" style="font-size:14px">🥈</span>`;
   return '';
 }
 
@@ -423,18 +423,17 @@ function renderStandings() {
   if (!currentSnapshot) return;
   const teams = currentSnapshot.teams;
 
-  const rows = teams.map(t => {
-    const finals = (currentSeasonData.season && t.finals_status != null) ? t.finals_status : 0;
-    return `<tr>
-      <td class="rank-cell">${t.rank}</td>
-      <td class="team-cell">${t.team}</td>
-      <td style="font-variant-numeric:tabular-nums;white-space:nowrap">${fmtRecordSmart(t.regular_record, t.playoff_record, t.record)}</td>
-      <td>${ratingBar(t.rating)}</td>
-      <td class="last-match-cell">
-        <span class="${resultClass(t.last_match)}">${t.last_match || '—'}</span>
-      </td>
-    </tr>`;
-  }).join('');
+  const rows = teams.map(t => `<tr>
+    <td class="rank-cell">${t.rank}</td>
+    <td class="team-cell">${t.team}</td>
+    <td style="font-variant-numeric:tabular-nums;white-space:nowrap">${fmtRecordSmart(t.regular_record, t.playoff_record, t.record)}</td>
+    <td>${ratingBar(t.rating)}</td>
+    <td class="last-match-cell">
+      <span class="${resultClass(t.last_match)}">${t.last_match || '—'}</span>
+    </td>
+    <td class="col-hide-mobile" style="font-size:11px;color:#888;white-space:nowrap">${t.last_match_date || ''}</td>
+    <td class="col-hide-mobile" style="text-align:center">${finishBadge(t.finals_status)}</td>
+  </tr>`).join('');
 
   document.getElementById('standings-count').textContent =
     `${teams.length} team${teams.length !== 1 ? 's' : ''}`;
@@ -444,6 +443,8 @@ function renderStandings() {
       <thead><tr>
         <th>#</th><th>Team</th><th>W-L (Pct)</th><th>Rating</th>
         <th>Last Game</th>
+        <th class="col-hide-mobile">Date</th>
+        <th class="col-hide-mobile">Honors</th>
       </tr></thead>
       <tbody>${rows}</tbody>
     </table>`;

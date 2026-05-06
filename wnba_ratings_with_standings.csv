@@ -3985,22 +3985,22 @@ ranking_id,date,season,name,rating,rank,record,current_date,season_flag,name_sea
 351.0,2001-08-13,2001,Seattle Storm,-1.7298997016984088,15,10 - 21,0,0,Seattle Storm - 2001,0,0,0,No Game,
 351.0,2001-08-13,2001,Utah Starzz,1.0291348925806365,6,19 - 13,0,0,Utah Starzz - 2001,0,0,0,W vs. Los Angeles Sparks 80-78,Los Angeles Sparks
 351.0,2001-08-13,2001,Washington Mystics,-0.799225163927682,11,10 - 21,0,0,Washington Mystics - 2001,0,0,0,No Game,
-352.0,2001-08-14,2001,Charlotte Sting,1.463074633112866,3,18 - 14,0,0,Charlotte Sting - 2001,0,1,1,W @ Miami Sol 48-41,Miami Sol
-352.0,2001-08-14,2001,Cleveland Rockers,0.7498061742809696,6,22 - 10,0,0,Cleveland Rockers - 2001,0,0,0,L @ Detroit Shock 65-76,Detroit Shock
-352.0,2001-08-14,2001,Detroit Shock,-0.9521190594769716,12,10 - 22,0,0,Detroit Shock - 2001,0,0,0,W vs. Cleveland Rockers 76-65,Cleveland Rockers
-352.0,2001-08-14,2001,Houston Comets,-0.5974446731768486,10,19 - 13,0,0,Houston Comets - 2001,0,0,0,L @ Phoenix Mercury 38-56,Phoenix Mercury
-352.0,2001-08-14,2001,Indiana Fever,-0.9791865245248124,13,10 - 22,0,0,Indiana Fever - 2001,0,0,0,L @ Orlando Miracle 72-78,Orlando Miracle
-352.0,2001-08-14,2001,Los Angeles Sparks,2.716113148431435,1,28 - 4,0,0,Los Angeles Sparks - 2001,1,0,2,W @ Portland Fire 67-58,Portland Fire
-352.0,2001-08-14,2001,Miami Sol,1.428117336907465,4,20 - 12,0,0,Miami Sol - 2001,0,0,0,L vs. Charlotte Sting 41-48,Charlotte Sting
-352.0,2001-08-14,2001,Minnesota Lynx,-0.5897203414951018,9,12 - 20,0,0,Minnesota Lynx - 2001,0,0,0,No Game,
-352.0,2001-08-14,2001,New York Liberty,0.3188714529603439,7,21 - 11,0,0,New York Liberty - 2001,0,0,0,W vs. Washington Mystics 71-56,Washington Mystics
-352.0,2001-08-14,2001,Orlando Miracle,-0.4664432221354313,8,13 - 19,0,0,Orlando Miracle - 2001,0,0,0,W vs. Indiana Fever 78-72,Indiana Fever
-352.0,2001-08-14,2001,Phoenix Mercury,-0.7524645632070563,11,13 - 19,0,0,Phoenix Mercury - 2001,0,0,0,W vs. Houston Comets 56-38,Houston Comets
-352.0,2001-08-14,2001,Portland Fire,-2.0227585936750487,16,11 - 21,0,0,Portland Fire - 2001,0,0,0,L vs. Los Angeles Sparks 58-67,Los Angeles Sparks
-352.0,2001-08-14,2001,Sacramento Monarchs,1.634344541449713,2,20 - 12,0,0,Sacramento Monarchs - 2001,0,0,0,W @ Seattle Storm 72-62,Seattle Storm
-352.0,2001-08-14,2001,Seattle Storm,-1.843172802260664,15,10 - 22,0,0,Seattle Storm - 2001,0,0,0,L vs. Sacramento Monarchs 62-72,Sacramento Monarchs
-352.0,2001-08-14,2001,Utah Starzz,0.991017781145573,5,19 - 13,0,0,Utah Starzz - 2001,0,0,0,No Game,
-352.0,2001-08-14,2001,Washington Mystics,-1.0980352883364275,14,10 - 22,0,0,Washington Mystics - 2001,0,0,0,L @ New York Liberty 56-71,New York Liberty
+352.0,2001-08-14,2001,Charlotte Sting,1.463074633112866,3,18 - 14,0,1,Charlotte Sting - 2001,0,1,1,W @ Miami Sol 48-41,Miami Sol
+352.0,2001-08-14,2001,Cleveland Rockers,0.7498061742809696,6,22 - 10,0,1,Cleveland Rockers - 2001,0,0,0,L @ Detroit Shock 65-76,Detroit Shock
+352.0,2001-08-14,2001,Detroit Shock,-0.9521190594769716,12,10 - 22,0,1,Detroit Shock - 2001,0,0,0,W vs. Cleveland Rockers 76-65,Cleveland Rockers
+352.0,2001-08-14,2001,Houston Comets,-0.5974446731768486,10,19 - 13,0,1,Houston Comets - 2001,0,0,0,L @ Phoenix Mercury 38-56,Phoenix Mercury
+352.0,2001-08-14,2001,Indiana Fever,-0.9791865245248124,13,10 - 22,0,1,Indiana Fever - 2001,0,0,0,L @ Orlando Miracle 72-78,Orlando Miracle
+352.0,2001-08-14,2001,Los Angeles Sparks,2.716113148431435,1,28 - 4,0,1,Los Angeles Sparks - 2001,1,0,2,W @ Portland Fire 67-58,Portland Fire
+352.0,2001-08-14,2001,Miami Sol,1.428117336907465,4,20 - 12,0,1,Miami Sol - 2001,0,0,0,L vs. Charlotte Sting 41-48,Charlotte Sting
+352.0,2001-08-14,2001,Minnesota Lynx,-0.5897203414951018,9,12 - 20,0,1,Minnesota Lynx - 2001,0,0,0,No Game,
+352.0,2001-08-14,2001,New York Liberty,0.3188714529603439,7,21 - 11,0,1,New York Liberty - 2001,0,0,0,W vs. Washington Mystics 71-56,Washington Mystics
+352.0,2001-08-14,2001,Orlando Miracle,-0.4664432221354313,8,13 - 19,0,1,Orlando Miracle - 2001,0,0,0,W vs. Indiana Fever 78-72,Indiana Fever
+352.0,2001-08-14,2001,Phoenix Mercury,-0.7524645632070563,11,13 - 19,0,1,Phoenix Mercury - 2001,0,0,0,W vs. Houston Comets 56-38,Houston Comets
+352.0,2001-08-14,2001,Portland Fire,-2.0227585936750487,16,11 - 21,0,1,Portland Fire - 2001,0,0,0,L vs. Los Angeles Sparks 58-67,Los Angeles Sparks
+352.0,2001-08-14,2001,Sacramento Monarchs,1.634344541449713,2,20 - 12,0,1,Sacramento Monarchs - 2001,0,0,0,W @ Seattle Storm 72-62,Seattle Storm
+352.0,2001-08-14,2001,Seattle Storm,-1.843172802260664,15,10 - 22,0,1,Seattle Storm - 2001,0,0,0,L vs. Sacramento Monarchs 62-72,Sacramento Monarchs
+352.0,2001-08-14,2001,Utah Starzz,0.991017781145573,5,19 - 13,0,1,Utah Starzz - 2001,0,0,0,No Game,
+352.0,2001-08-14,2001,Washington Mystics,-1.0980352883364275,14,10 - 22,0,1,Washington Mystics - 2001,0,0,0,L @ New York Liberty 56-71,New York Liberty
 353.0,2001-08-16,2001,Charlotte Sting,1.716632366544745,2,19 - 14,0,0,Charlotte Sting - 2001,0,1,1,W vs. Cleveland Rockers 53-46,Cleveland Rockers
 353.0,2001-08-16,2001,Cleveland Rockers,0.489220942583384,6,22 - 11,0,0,Cleveland Rockers - 2001,0,0,0,L @ Charlotte Sting 46-53,Charlotte Sting
 353.0,2001-08-16,2001,Detroit Shock,-0.894296563095406,12,10 - 22,0,0,Detroit Shock - 2001,0,0,0,No Game,
@@ -4065,22 +4065,22 @@ ranking_id,date,season,name,rating,rank,record,current_date,season_flag,name_sea
 356.0,2001-08-19,2001,Seattle Storm,-1.7358298988269685,15,10 - 22,0,0,Seattle Storm - 2001,0,0,0,No Game,
 356.0,2001-08-19,2001,Utah Starzz,0.6616140828358399,5,19 - 15,0,0,Utah Starzz - 2001,0,0,0,L @ Sacramento Monarchs 66-71,Sacramento Monarchs
 356.0,2001-08-19,2001,Washington Mystics,-1.0319981808874148,14,10 - 22,0,0,Washington Mystics - 2001,0,0,0,No Game,
-357.0,2001-08-20,2001,Charlotte Sting,1.285971354683345,3,20 - 15,0,1,Charlotte Sting - 2001,0,1,1,W @ Cleveland Rockers 72-64,Cleveland Rockers
-357.0,2001-08-20,2001,Cleveland Rockers,0.4358357732546523,6,23 - 12,0,1,Cleveland Rockers - 2001,0,0,0,L vs. Charlotte Sting 64-72,Charlotte Sting
-357.0,2001-08-20,2001,Detroit Shock,-0.8683234642094079,13,10 - 22,0,1,Detroit Shock - 2001,0,0,0,No Game,
-357.0,2001-08-20,2001,Houston Comets,-0.784095033853868,11,19 - 15,0,1,Houston Comets - 2001,0,0,0,L @ Los Angeles Sparks 58-70,Los Angeles Sparks
-357.0,2001-08-20,2001,Indiana Fever,-0.809014124092765,12,10 - 22,0,1,Indiana Fever - 2001,0,0,0,No Game,
-357.0,2001-08-20,2001,Los Angeles Sparks,2.789780253234347,1,30 - 4,0,1,Los Angeles Sparks - 2001,1,0,2,W vs. Houston Comets 70-58,Houston Comets
-357.0,2001-08-20,2001,Miami Sol,1.112312909133331,4,21 - 13,0,1,Miami Sol - 2001,0,0,0,No Game,
-357.0,2001-08-20,2001,Minnesota Lynx,-0.5089664188381126,9,12 - 20,0,1,Minnesota Lynx - 2001,0,0,0,No Game,
-357.0,2001-08-20,2001,New York Liberty,0.3470670404745251,7,22 - 12,0,1,New York Liberty - 2001,0,0,0,No Game,
-357.0,2001-08-20,2001,Orlando Miracle,-0.4008412296926065,8,13 - 19,0,1,Orlando Miracle - 2001,0,0,0,No Game,
-357.0,2001-08-20,2001,Phoenix Mercury,-0.594203262013605,10,13 - 19,0,1,Phoenix Mercury - 2001,0,0,0,No Game,
-357.0,2001-08-20,2001,Portland Fire,-1.9942783895816725,16,11 - 21,0,1,Portland Fire - 2001,0,0,0,No Game,
-357.0,2001-08-20,2001,Sacramento Monarchs,1.9952427523312104,2,22 - 12,0,1,Sacramento Monarchs - 2001,0,0,0,No Game,
-357.0,2001-08-20,2001,Seattle Storm,-1.665491246313928,15,10 - 22,0,1,Seattle Storm - 2001,0,0,0,No Game,
-357.0,2001-08-20,2001,Utah Starzz,0.6506016633944268,5,19 - 15,0,1,Utah Starzz - 2001,0,0,0,No Game,
-357.0,2001-08-20,2001,Washington Mystics,-0.9915985779098736,14,10 - 22,0,1,Washington Mystics - 2001,0,0,0,No Game,
+357.0,2001-08-20,2001,Charlotte Sting,1.285971354683345,3,20 - 15,0,0,Charlotte Sting - 2001,0,1,1,W @ Cleveland Rockers 72-64,Cleveland Rockers
+357.0,2001-08-20,2001,Cleveland Rockers,0.4358357732546523,6,23 - 12,0,0,Cleveland Rockers - 2001,0,0,0,L vs. Charlotte Sting 64-72,Charlotte Sting
+357.0,2001-08-20,2001,Detroit Shock,-0.8683234642094079,13,10 - 22,0,0,Detroit Shock - 2001,0,0,0,No Game,
+357.0,2001-08-20,2001,Houston Comets,-0.784095033853868,11,19 - 15,0,0,Houston Comets - 2001,0,0,0,L @ Los Angeles Sparks 58-70,Los Angeles Sparks
+357.0,2001-08-20,2001,Indiana Fever,-0.809014124092765,12,10 - 22,0,0,Indiana Fever - 2001,0,0,0,No Game,
+357.0,2001-08-20,2001,Los Angeles Sparks,2.789780253234347,1,30 - 4,0,0,Los Angeles Sparks - 2001,1,0,2,W vs. Houston Comets 70-58,Houston Comets
+357.0,2001-08-20,2001,Miami Sol,1.112312909133331,4,21 - 13,0,0,Miami Sol - 2001,0,0,0,No Game,
+357.0,2001-08-20,2001,Minnesota Lynx,-0.5089664188381126,9,12 - 20,0,0,Minnesota Lynx - 2001,0,0,0,No Game,
+357.0,2001-08-20,2001,New York Liberty,0.3470670404745251,7,22 - 12,0,0,New York Liberty - 2001,0,0,0,No Game,
+357.0,2001-08-20,2001,Orlando Miracle,-0.4008412296926065,8,13 - 19,0,0,Orlando Miracle - 2001,0,0,0,No Game,
+357.0,2001-08-20,2001,Phoenix Mercury,-0.594203262013605,10,13 - 19,0,0,Phoenix Mercury - 2001,0,0,0,No Game,
+357.0,2001-08-20,2001,Portland Fire,-1.9942783895816725,16,11 - 21,0,0,Portland Fire - 2001,0,0,0,No Game,
+357.0,2001-08-20,2001,Sacramento Monarchs,1.9952427523312104,2,22 - 12,0,0,Sacramento Monarchs - 2001,0,0,0,No Game,
+357.0,2001-08-20,2001,Seattle Storm,-1.665491246313928,15,10 - 22,0,0,Seattle Storm - 2001,0,0,0,No Game,
+357.0,2001-08-20,2001,Utah Starzz,0.6506016633944268,5,19 - 15,0,0,Utah Starzz - 2001,0,0,0,No Game,
+357.0,2001-08-20,2001,Washington Mystics,-0.9915985779098736,14,10 - 22,0,0,Washington Mystics - 2001,0,0,0,No Game,
 358.0,2001-08-21,2001,Charlotte Sting,1.330535378020249,3,20 - 15,0,0,Charlotte Sting - 2001,0,1,1,No Game,
 358.0,2001-08-21,2001,Cleveland Rockers,0.4620612180850702,7,23 - 12,0,0,Cleveland Rockers - 2001,0,0,0,No Game,
 358.0,2001-08-21,2001,Detroit Shock,-0.9029971805211738,13,10 - 22,0,0,Detroit Shock - 2001,0,0,0,No Game,
@@ -5281,22 +5281,22 @@ ranking_id,date,season,name,rating,rank,record,current_date,season_flag,name_sea
 432.0,2002-08-12,2002,Seattle Storm,1.2879837990718268,3,17 - 14,0,0,Seattle Storm - 2002,0,0,0,No Game,
 432.0,2002-08-12,2002,Utah Starzz,0.4881371216336511,4,20 - 12,0,0,Utah Starzz - 2002,0,0,0,W vs. Sacramento Monarchs 81-79,Sacramento Monarchs
 432.0,2002-08-12,2002,Washington Mystics,-0.9343899502843164,13,17 - 14,0,0,Washington Mystics - 2002,0,0,0,No Game,
-433.0,2002-08-13,2002,Charlotte Sting,0.2487526865753827,7,18 - 14,0,0,Charlotte Sting - 2002,0,0,0,W vs. Washington Mystics 67-57,Washington Mystics
-433.0,2002-08-13,2002,Cleveland Rockers,-1.393422217460668,15,10 - 22,0,0,Cleveland Rockers - 2002,0,0,0,L vs. Indiana Fever 56-60,Indiana Fever
-433.0,2002-08-13,2002,Detroit Shock,-0.6420166516790529,12,9 - 23,0,0,Detroit Shock - 2002,0,0,0,L @ Miami Sol 56-61,Miami Sol
-433.0,2002-08-13,2002,Houston Comets,1.7376425335827963,1,24 - 8,0,0,Houston Comets - 2002,0,0,0,W vs. Minnesota Lynx 63-51,Minnesota Lynx
-433.0,2002-08-13,2002,Indiana Fever,0.4469344742661063,6,16 - 16,0,0,Indiana Fever - 2002,0,0,0,W @ Cleveland Rockers 60-56,Cleveland Rockers
-433.0,2002-08-13,2002,Los Angeles Sparks,1.5912049014739122,2,25 - 7,0,0,Los Angeles Sparks - 2002,1,0,2,W @ Phoenix Mercury 63-56,Phoenix Mercury
-433.0,2002-08-13,2002,Miami Sol,-0.0528174922160642,9,15 - 17,0,0,Miami Sol - 2002,0,0,0,W vs. Detroit Shock 61-56,Detroit Shock
-433.0,2002-08-13,2002,Minnesota Lynx,-1.1852834679495217,14,10 - 22,0,0,Minnesota Lynx - 2002,0,0,0,L @ Houston Comets 51-63,Houston Comets
-433.0,2002-08-13,2002,New York Liberty,0.1799787143176693,8,18 - 14,0,0,New York Liberty - 2002,0,1,1,L @ Orlando Miracle 63-70,Orlando Miracle
-433.0,2002-08-13,2002,Orlando Miracle,-0.1870512244232342,11,16 - 16,0,0,Orlando Miracle - 2002,0,0,0,W vs. New York Liberty 70-63,New York Liberty
-433.0,2002-08-13,2002,Phoenix Mercury,-1.730688885880059,16,11 - 21,0,0,Phoenix Mercury - 2002,0,0,0,L vs. Los Angeles Sparks 56-63,Los Angeles Sparks
-433.0,2002-08-13,2002,Portland Fire,-0.1549229966483697,10,16 - 16,0,0,Portland Fire - 2002,0,0,0,No Game,
-433.0,2002-08-13,2002,Sacramento Monarchs,0.7434926509692342,4,14 - 18,0,0,Sacramento Monarchs - 2002,0,0,0,W vs. Seattle Storm 59-51,Seattle Storm
-433.0,2002-08-13,2002,Seattle Storm,1.0291590279896567,3,17 - 15,0,0,Seattle Storm - 2002,0,0,0,L @ Sacramento Monarchs 51-59,Sacramento Monarchs
-433.0,2002-08-13,2002,Utah Starzz,0.5007020575288113,5,20 - 12,0,0,Utah Starzz - 2002,0,0,0,No Game,
-433.0,2002-08-13,2002,Washington Mystics,-1.1316641104466023,13,17 - 15,0,0,Washington Mystics - 2002,0,0,0,L @ Charlotte Sting 57-67,Charlotte Sting
+433.0,2002-08-13,2002,Charlotte Sting,0.2487526865753827,7,18 - 14,0,1,Charlotte Sting - 2002,0,0,0,W vs. Washington Mystics 67-57,Washington Mystics
+433.0,2002-08-13,2002,Cleveland Rockers,-1.393422217460668,15,10 - 22,0,1,Cleveland Rockers - 2002,0,0,0,L vs. Indiana Fever 56-60,Indiana Fever
+433.0,2002-08-13,2002,Detroit Shock,-0.6420166516790529,12,9 - 23,0,1,Detroit Shock - 2002,0,0,0,L @ Miami Sol 56-61,Miami Sol
+433.0,2002-08-13,2002,Houston Comets,1.7376425335827963,1,24 - 8,0,1,Houston Comets - 2002,0,0,0,W vs. Minnesota Lynx 63-51,Minnesota Lynx
+433.0,2002-08-13,2002,Indiana Fever,0.4469344742661063,6,16 - 16,0,1,Indiana Fever - 2002,0,0,0,W @ Cleveland Rockers 60-56,Cleveland Rockers
+433.0,2002-08-13,2002,Los Angeles Sparks,1.5912049014739122,2,25 - 7,0,1,Los Angeles Sparks - 2002,1,0,2,W @ Phoenix Mercury 63-56,Phoenix Mercury
+433.0,2002-08-13,2002,Miami Sol,-0.0528174922160642,9,15 - 17,0,1,Miami Sol - 2002,0,0,0,W vs. Detroit Shock 61-56,Detroit Shock
+433.0,2002-08-13,2002,Minnesota Lynx,-1.1852834679495217,14,10 - 22,0,1,Minnesota Lynx - 2002,0,0,0,L @ Houston Comets 51-63,Houston Comets
+433.0,2002-08-13,2002,New York Liberty,0.1799787143176693,8,18 - 14,0,1,New York Liberty - 2002,0,1,1,L @ Orlando Miracle 63-70,Orlando Miracle
+433.0,2002-08-13,2002,Orlando Miracle,-0.1870512244232342,11,16 - 16,0,1,Orlando Miracle - 2002,0,0,0,W vs. New York Liberty 70-63,New York Liberty
+433.0,2002-08-13,2002,Phoenix Mercury,-1.730688885880059,16,11 - 21,0,1,Phoenix Mercury - 2002,0,0,0,L vs. Los Angeles Sparks 56-63,Los Angeles Sparks
+433.0,2002-08-13,2002,Portland Fire,-0.1549229966483697,10,16 - 16,0,1,Portland Fire - 2002,0,0,0,No Game,
+433.0,2002-08-13,2002,Sacramento Monarchs,0.7434926509692342,4,14 - 18,0,1,Sacramento Monarchs - 2002,0,0,0,W vs. Seattle Storm 59-51,Seattle Storm
+433.0,2002-08-13,2002,Seattle Storm,1.0291590279896567,3,17 - 15,0,1,Seattle Storm - 2002,0,0,0,L @ Sacramento Monarchs 51-59,Sacramento Monarchs
+433.0,2002-08-13,2002,Utah Starzz,0.5007020575288113,5,20 - 12,0,1,Utah Starzz - 2002,0,0,0,No Game,
+433.0,2002-08-13,2002,Washington Mystics,-1.1316641104466023,13,17 - 15,0,1,Washington Mystics - 2002,0,0,0,L @ Charlotte Sting 57-67,Charlotte Sting
 434.0,2002-08-15,2002,Charlotte Sting,-0.0203399205238759,8,18 - 15,0,0,Charlotte Sting - 2002,0,0,0,L @ Washington Mystics 62-74,Washington Mystics
 434.0,2002-08-15,2002,Cleveland Rockers,-1.422238618189476,15,10 - 22,0,0,Cleveland Rockers - 2002,0,0,0,No Game,
 434.0,2002-08-15,2002,Detroit Shock,-0.6362209372634797,12,9 - 23,0,0,Detroit Shock - 2002,0,0,0,No Game,
@@ -5345,22 +5345,22 @@ ranking_id,date,season,name,rating,rank,record,current_date,season_flag,name_sea
 436.0,2002-08-17,2002,Seattle Storm,0.461162912112267,6,17 - 17,0,0,Seattle Storm - 2002,0,0,0,L @ Los Angeles Sparks 59-69,Los Angeles Sparks
 436.0,2002-08-17,2002,Utah Starzz,0.6907308531297004,5,21 - 12,0,0,Utah Starzz - 2002,0,0,0,No Game,
 436.0,2002-08-17,2002,Washington Mystics,-0.7054301708670118,13,19 - 15,0,0,Washington Mystics - 2002,0,0,0,W @ Charlotte Sting 62-59,Charlotte Sting
-437.0,2002-08-18,2002,Charlotte Sting,-0.2445239545823218,11,18 - 16,0,1,Charlotte Sting - 2002,0,0,0,No Game,
-437.0,2002-08-18,2002,Cleveland Rockers,-1.3757102356871944,15,10 - 22,0,1,Cleveland Rockers - 2002,0,0,0,No Game,
-437.0,2002-08-18,2002,Detroit Shock,-0.5849279790749897,12,9 - 23,0,1,Detroit Shock - 2002,0,0,0,No Game,
-437.0,2002-08-18,2002,Houston Comets,1.4639481795786946,2,25 - 9,0,1,Houston Comets - 2002,0,0,0,W vs. Utah Starzz 83-77,Utah Starzz
-437.0,2002-08-18,2002,Indiana Fever,0.4856396508928028,5,17 - 17,0,1,Indiana Fever - 2002,0,0,0,L @ New York Liberty 65-84,New York Liberty
-437.0,2002-08-18,2002,Los Angeles Sparks,1.9248380475062017,1,27 - 7,0,1,Los Angeles Sparks - 2002,1,0,2,No Game,
-437.0,2002-08-18,2002,Miami Sol,-0.0274630296920526,8,15 - 17,0,1,Miami Sol - 2002,0,0,0,No Game,
-437.0,2002-08-18,2002,Minnesota Lynx,-1.131238190689008,14,10 - 22,0,1,Minnesota Lynx - 2002,0,0,0,No Game,
-437.0,2002-08-18,2002,New York Liberty,0.2619315245756923,7,19 - 15,0,1,New York Liberty - 2002,0,1,1,W vs. Indiana Fever 84-65,Indiana Fever
-437.0,2002-08-18,2002,Orlando Miracle,-0.1205049287818646,9,16 - 16,0,1,Orlando Miracle - 2002,0,0,0,No Game,
-437.0,2002-08-18,2002,Phoenix Mercury,-1.548706225167761,16,11 - 21,0,1,Phoenix Mercury - 2002,0,0,0,No Game,
-437.0,2002-08-18,2002,Portland Fire,-0.1891690647783323,10,16 - 16,0,1,Portland Fire - 2002,0,0,0,No Game,
-437.0,2002-08-18,2002,Sacramento Monarchs,0.800569412781015,3,14 - 18,0,1,Sacramento Monarchs - 2002,0,0,0,No Game,
-437.0,2002-08-18,2002,Seattle Storm,0.4608056412694952,6,17 - 17,0,1,Seattle Storm - 2002,0,0,0,No Game,
-437.0,2002-08-18,2002,Utah Starzz,0.5038546051233491,4,21 - 13,0,1,Utah Starzz - 2002,0,0,0,L @ Houston Comets 77-83,Houston Comets
-437.0,2002-08-18,2002,Washington Mystics,-0.6793434532737219,13,19 - 15,0,1,Washington Mystics - 2002,0,0,0,No Game,
+437.0,2002-08-18,2002,Charlotte Sting,-0.2445239545823218,11,18 - 16,0,0,Charlotte Sting - 2002,0,0,0,No Game,
+437.0,2002-08-18,2002,Cleveland Rockers,-1.3757102356871944,15,10 - 22,0,0,Cleveland Rockers - 2002,0,0,0,No Game,
+437.0,2002-08-18,2002,Detroit Shock,-0.5849279790749897,12,9 - 23,0,0,Detroit Shock - 2002,0,0,0,No Game,
+437.0,2002-08-18,2002,Houston Comets,1.4639481795786946,2,25 - 9,0,0,Houston Comets - 2002,0,0,0,W vs. Utah Starzz 83-77,Utah Starzz
+437.0,2002-08-18,2002,Indiana Fever,0.4856396508928028,5,17 - 17,0,0,Indiana Fever - 2002,0,0,0,L @ New York Liberty 65-84,New York Liberty
+437.0,2002-08-18,2002,Los Angeles Sparks,1.9248380475062017,1,27 - 7,0,0,Los Angeles Sparks - 2002,1,0,2,No Game,
+437.0,2002-08-18,2002,Miami Sol,-0.0274630296920526,8,15 - 17,0,0,Miami Sol - 2002,0,0,0,No Game,
+437.0,2002-08-18,2002,Minnesota Lynx,-1.131238190689008,14,10 - 22,0,0,Minnesota Lynx - 2002,0,0,0,No Game,
+437.0,2002-08-18,2002,New York Liberty,0.2619315245756923,7,19 - 15,0,0,New York Liberty - 2002,0,1,1,W vs. Indiana Fever 84-65,Indiana Fever
+437.0,2002-08-18,2002,Orlando Miracle,-0.1205049287818646,9,16 - 16,0,0,Orlando Miracle - 2002,0,0,0,No Game,
+437.0,2002-08-18,2002,Phoenix Mercury,-1.548706225167761,16,11 - 21,0,0,Phoenix Mercury - 2002,0,0,0,No Game,
+437.0,2002-08-18,2002,Portland Fire,-0.1891690647783323,10,16 - 16,0,0,Portland Fire - 2002,0,0,0,No Game,
+437.0,2002-08-18,2002,Sacramento Monarchs,0.800569412781015,3,14 - 18,0,0,Sacramento Monarchs - 2002,0,0,0,No Game,
+437.0,2002-08-18,2002,Seattle Storm,0.4608056412694952,6,17 - 17,0,0,Seattle Storm - 2002,0,0,0,No Game,
+437.0,2002-08-18,2002,Utah Starzz,0.5038546051233491,4,21 - 13,0,0,Utah Starzz - 2002,0,0,0,L @ Houston Comets 77-83,Houston Comets
+437.0,2002-08-18,2002,Washington Mystics,-0.6793434532737219,13,19 - 15,0,0,Washington Mystics - 2002,0,0,0,No Game,
 438.0,2002-08-20,2002,Charlotte Sting,-0.2441817667279413,10,18 - 16,0,0,Charlotte Sting - 2002,0,0,0,No Game,
 438.0,2002-08-20,2002,Cleveland Rockers,-1.3585382114020803,15,10 - 22,0,0,Cleveland Rockers - 2002,0,0,0,No Game,
 438.0,2002-08-20,2002,Detroit Shock,-0.5456373475451982,12,9 - 23,0,0,Detroit Shock - 2002,0,0,0,No Game,
@@ -26508,18 +26508,18 @@ ranking_id,date,season,name,rating,rank,record,current_date,season_flag,name_sea
 2088.0,2021-09-17,2021,Phoenix Mercury,1.2255976298342588,4,19 - 12,0,0,Phoenix Mercury - 2021,0,1,1,L @ Seattle Storm 85-94,Seattle Storm
 2088.0,2021-09-17,2021,Seattle Storm,-0.1024065807472064,5,21 - 11,0,0,Seattle Storm - 2021,0,0,0,W vs. Phoenix Mercury 94-85,Phoenix Mercury
 2088.0,2021-09-17,2021,Washington Mystics,-1.2608217285970422,9,12 - 19,0,0,Washington Mystics - 2021,0,0,0,L @ New York Liberty 80-91,New York Liberty
-2089.0,2021-09-19,2021,Atlanta Dream,-1.859655002728782,11,8 - 24,0,0,Atlanta Dream - 2021,0,0,0,L @ Connecticut Sun 64-84,Connecticut Sun
-2089.0,2021-09-19,2021,Chicago Sky,-0.1826885158487455,6,16 - 16,0,0,Chicago Sky - 2021,1,0,2,W vs. Indiana Fever 98-87,Indiana Fever
-2089.0,2021-09-19,2021,Connecticut Sun,3.1628610075369767,1,26 - 6,0,0,Connecticut Sun - 2021,0,0,0,W vs. Atlanta Dream 84-64,Atlanta Dream
-2089.0,2021-09-19,2021,Dallas Wings,-0.7211133517486715,8,14 - 18,0,0,Dallas Wings - 2021,0,0,0,W vs. Los Angeles Sparks 87-84,Los Angeles Sparks
-2089.0,2021-09-19,2021,Indiana Fever,-1.965149612057829,12,6 - 26,0,0,Indiana Fever - 2021,0,0,0,L @ Chicago Sky 87-98,Chicago Sky
-2089.0,2021-09-19,2021,Las Vegas Aces,2.1018757499343432,3,24 - 8,0,0,Las Vegas Aces - 2021,0,0,0,W @ Phoenix Mercury 84-83,Phoenix Mercury
-2089.0,2021-09-19,2021,Los Angeles Sparks,-0.6459474004954495,7,12 - 20,0,0,Los Angeles Sparks - 2021,0,0,0,L @ Dallas Wings 84-87,Dallas Wings
-2089.0,2021-09-19,2021,Minnesota Lynx,2.141146129987615,2,22 - 10,0,0,Minnesota Lynx - 2021,0,0,0,W @ Washington Mystics 83-77,Washington Mystics
-2089.0,2021-09-19,2021,New York Liberty,-1.7537504874940522,10,12 - 20,0,0,New York Liberty - 2021,0,0,0,No Game,
-2089.0,2021-09-19,2021,Phoenix Mercury,1.0482124653151033,4,19 - 13,0,0,Phoenix Mercury - 2021,0,1,1,L vs. Las Vegas Aces 83-84,Las Vegas Aces
-2089.0,2021-09-19,2021,Seattle Storm,-0.0620230691388836,5,21 - 11,0,0,Seattle Storm - 2021,0,0,0,No Game,
-2089.0,2021-09-19,2021,Washington Mystics,-1.2637679132616202,9,12 - 20,0,0,Washington Mystics - 2021,0,0,0,L vs. Minnesota Lynx 77-83,Minnesota Lynx
+2089.0,2021-09-19,2021,Atlanta Dream,-1.859655002728782,11,8 - 24,0,1,Atlanta Dream - 2021,0,0,0,L @ Connecticut Sun 64-84,Connecticut Sun
+2089.0,2021-09-19,2021,Chicago Sky,-0.1826885158487455,6,16 - 16,0,1,Chicago Sky - 2021,1,0,2,W vs. Indiana Fever 98-87,Indiana Fever
+2089.0,2021-09-19,2021,Connecticut Sun,3.1628610075369767,1,26 - 6,0,1,Connecticut Sun - 2021,0,0,0,W vs. Atlanta Dream 84-64,Atlanta Dream
+2089.0,2021-09-19,2021,Dallas Wings,-0.7211133517486715,8,14 - 18,0,1,Dallas Wings - 2021,0,0,0,W vs. Los Angeles Sparks 87-84,Los Angeles Sparks
+2089.0,2021-09-19,2021,Indiana Fever,-1.965149612057829,12,6 - 26,0,1,Indiana Fever - 2021,0,0,0,L @ Chicago Sky 87-98,Chicago Sky
+2089.0,2021-09-19,2021,Las Vegas Aces,2.1018757499343432,3,24 - 8,0,1,Las Vegas Aces - 2021,0,0,0,W @ Phoenix Mercury 84-83,Phoenix Mercury
+2089.0,2021-09-19,2021,Los Angeles Sparks,-0.6459474004954495,7,12 - 20,0,1,Los Angeles Sparks - 2021,0,0,0,L @ Dallas Wings 84-87,Dallas Wings
+2089.0,2021-09-19,2021,Minnesota Lynx,2.141146129987615,2,22 - 10,0,1,Minnesota Lynx - 2021,0,0,0,W @ Washington Mystics 83-77,Washington Mystics
+2089.0,2021-09-19,2021,New York Liberty,-1.7537504874940522,10,12 - 20,0,1,New York Liberty - 2021,0,0,0,No Game,
+2089.0,2021-09-19,2021,Phoenix Mercury,1.0482124653151033,4,19 - 13,0,1,Phoenix Mercury - 2021,0,1,1,L vs. Las Vegas Aces 83-84,Las Vegas Aces
+2089.0,2021-09-19,2021,Seattle Storm,-0.0620230691388836,5,21 - 11,0,1,Seattle Storm - 2021,0,0,0,No Game,
+2089.0,2021-09-19,2021,Washington Mystics,-1.2637679132616202,9,12 - 20,0,1,Washington Mystics - 2021,0,0,0,L vs. Minnesota Lynx 77-83,Minnesota Lynx
 2090.0,2021-09-23,2021,Atlanta Dream,-1.7996876084570683,11,8 - 24,0,0,Atlanta Dream - 2021,0,0,0,No Game,
 2090.0,2021-09-23,2021,Chicago Sky,0.1142858623295117,5,17 - 16,0,0,Chicago Sky - 2021,1,0,2,W vs. Dallas Wings 81-64,Dallas Wings
 2090.0,2021-09-23,2021,Connecticut Sun,3.033090379014698,1,26 - 6,0,0,Connecticut Sun - 2021,0,0,0,No Game,
@@ -26556,18 +26556,18 @@ ranking_id,date,season,name,rating,rank,record,current_date,season_flag,name_sea
 2092.0,2021-09-28,2021,Phoenix Mercury,0.9638877584731512,4,21 - 14,0,0,Phoenix Mercury - 2021,0,1,1,L @ Las Vegas Aces 90-96,Las Vegas Aces
 2092.0,2021-09-28,2021,Seattle Storm,-0.115802282765447,6,21 - 12,0,0,Seattle Storm - 2021,0,0,0,No Game,
 2092.0,2021-09-28,2021,Washington Mystics,-1.107168405088147,9,12 - 20,0,0,Washington Mystics - 2021,0,0,0,No Game,
-2093.0,2021-09-30,2021,Atlanta Dream,-1.5526137522163297,11,8 - 24,0,1,Atlanta Dream - 2021,0,0,0,No Game,
-2093.0,2021-09-30,2021,Chicago Sky,0.5544260631366698,5,19 - 17,0,1,Chicago Sky - 2021,1,0,2,L @ Connecticut Sun 68-79,Connecticut Sun
-2093.0,2021-09-30,2021,Connecticut Sun,2.805911667200645,1,27 - 7,0,1,Connecticut Sun - 2021,0,0,0,W vs. Chicago Sky 79-68,Chicago Sky
-2093.0,2021-09-30,2021,Dallas Wings,-1.2191258019146791,9,14 - 19,0,1,Dallas Wings - 2021,0,0,0,No Game,
-2093.0,2021-09-30,2021,Indiana Fever,-1.8074196477160889,12,6 - 26,0,1,Indiana Fever - 2021,0,0,0,No Game,
-2093.0,2021-09-30,2021,Las Vegas Aces,1.526636956691633,3,25 - 9,0,1,Las Vegas Aces - 2021,0,0,0,L vs. Phoenix Mercury 91-117,Phoenix Mercury
-2093.0,2021-09-30,2021,Los Angeles Sparks,-0.5552424317889816,7,12 - 20,0,1,Los Angeles Sparks - 2021,0,0,0,No Game,
-2093.0,2021-09-30,2021,Minnesota Lynx,1.549770554240889,2,22 - 11,0,1,Minnesota Lynx - 2021,0,0,0,No Game,
-2093.0,2021-09-30,2021,New York Liberty,-1.521414961595123,10,12 - 21,0,1,New York Liberty - 2021,0,0,0,No Game,
-2093.0,2021-09-30,2021,Phoenix Mercury,1.3799702389095854,4,22 - 14,0,1,Phoenix Mercury - 2021,0,1,1,W @ Las Vegas Aces 117-91,Las Vegas Aces
-2093.0,2021-09-30,2021,Seattle Storm,-0.0166611211062879,6,21 - 12,0,1,Seattle Storm - 2021,0,0,0,No Game,
-2093.0,2021-09-30,2021,Washington Mystics,-1.144237763841929,8,12 - 20,0,1,Washington Mystics - 2021,0,0,0,No Game,
+2093.0,2021-09-30,2021,Atlanta Dream,-1.5526137522163297,11,8 - 24,0,0,Atlanta Dream - 2021,0,0,0,No Game,
+2093.0,2021-09-30,2021,Chicago Sky,0.5544260631366698,5,19 - 17,0,0,Chicago Sky - 2021,1,0,2,L @ Connecticut Sun 68-79,Connecticut Sun
+2093.0,2021-09-30,2021,Connecticut Sun,2.805911667200645,1,27 - 7,0,0,Connecticut Sun - 2021,0,0,0,W vs. Chicago Sky 79-68,Chicago Sky
+2093.0,2021-09-30,2021,Dallas Wings,-1.2191258019146791,9,14 - 19,0,0,Dallas Wings - 2021,0,0,0,No Game,
+2093.0,2021-09-30,2021,Indiana Fever,-1.8074196477160889,12,6 - 26,0,0,Indiana Fever - 2021,0,0,0,No Game,
+2093.0,2021-09-30,2021,Las Vegas Aces,1.526636956691633,3,25 - 9,0,0,Las Vegas Aces - 2021,0,0,0,L vs. Phoenix Mercury 91-117,Phoenix Mercury
+2093.0,2021-09-30,2021,Los Angeles Sparks,-0.5552424317889816,7,12 - 20,0,0,Los Angeles Sparks - 2021,0,0,0,No Game,
+2093.0,2021-09-30,2021,Minnesota Lynx,1.549770554240889,2,22 - 11,0,0,Minnesota Lynx - 2021,0,0,0,No Game,
+2093.0,2021-09-30,2021,New York Liberty,-1.521414961595123,10,12 - 21,0,0,New York Liberty - 2021,0,0,0,No Game,
+2093.0,2021-09-30,2021,Phoenix Mercury,1.3799702389095854,4,22 - 14,0,0,Phoenix Mercury - 2021,0,1,1,W @ Las Vegas Aces 117-91,Las Vegas Aces
+2093.0,2021-09-30,2021,Seattle Storm,-0.0166611211062879,6,21 - 12,0,0,Seattle Storm - 2021,0,0,0,No Game,
+2093.0,2021-09-30,2021,Washington Mystics,-1.144237763841929,8,12 - 20,0,0,Washington Mystics - 2021,0,0,0,No Game,
 2094.0,2021-10-03,2021,Atlanta Dream,-1.6256846873078008,11,8 - 24,0,0,Atlanta Dream - 2021,0,0,0,No Game,
 2094.0,2021-10-03,2021,Chicago Sky,0.7066588739490213,5,20 - 17,0,0,Chicago Sky - 2021,1,0,2,W vs. Connecticut Sun 86-83,Connecticut Sun
 2094.0,2021-10-03,2021,Connecticut Sun,2.4810005216136912,1,27 - 8,0,0,Connecticut Sun - 2021,0,0,0,L @ Chicago Sky 83-86,Chicago Sky
