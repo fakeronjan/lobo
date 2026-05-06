@@ -257,8 +257,8 @@ for season in all_seasons:
 
 seasons_meta = {
     'seasons':    [int(s) for s in reversed(all_seasons)],
-    'first_date': str(df['date'].min()),
-    'last_date':  str(df['date'].max()),
+    'first_date': str(games['date_game'].min()),  # actual first game (not first rated date)
+    'last_date':  str(games['date_game'].max()),
 }
 with open('docs/data/seasons_index.json', 'w') as f:
     json.dump(seasons_meta, f, separators=(',', ':'))
