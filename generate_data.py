@@ -216,9 +216,10 @@ for season in sorted(df['season'].unique(), reverse=True):
     cr = champ_row.iloc[0]
     rr = ru_row.iloc[0]
 
-    # Final score from games CSV (last game of the season)
+    # Final score and Finals series score from games CSV
     season_games = games[games['season'] == season]
     final_score = ''
+    series_score = ''
     if not season_games.empty:
         last_game = season_games.sort_values('date_game').iloc[-1]
         if last_game['home_team_name'] == cr['name']:
@@ -226,9 +227,30 @@ for season in sorted(df['season'].unique(), reverse=True):
         elif last_game['visitor_team_name'] == cr['name']:
             final_score = f"{int(last_game['visitor_pts'])}-{int(last_game['home_pts'])}"
 
+        # Series score: count champion vs runner-up wins in the postseason.
+        # In WNBA they only meet in the Finals (different bracket sides), so all
+        # head-to-head postseason games ARE the Finals.
+        rs_end = _rs_end_dates.get(season)
+        playoff_games = season_games[season_games['date_game'] > rs_end] if rs_end is not None else season_games
+        finals = playoff_games[
+            ((playoff_games['home_team_name'] == cr['name']) & (playoff_games['visitor_team_name'] == rr['name'])) |
+            ((playoff_games['home_team_name'] == rr['name']) & (playoff_games['visitor_team_name'] == cr['name']))
+        ]
+        cw, rw = 0, 0
+        for _, g in finals.iterrows():
+            home_won = g['home_pts'] > g['visitor_pts']
+            champ_was_home = g['home_team_name'] == cr['name']
+            if home_won == champ_was_home:
+                cw += 1
+            else:
+                rw += 1
+        if cw + rw > 0:
+            series_score = f"{cw}-{rw}"
+
     champions.append({
-        'season':      int(season),
-        'final_score': final_score,
+        'season':       int(season),
+        'final_score':  final_score,
+        'series_score': series_score,
         'champion': {
             'team':   cr['name'],
             'rating': round(float(cr['rating']), 3),
