@@ -322,10 +322,13 @@ function fmtRecordSmart(reg, playoff, fallback) {
   return `${top}<div style="font-size:10px;color:#888;font-weight:400;line-height:1.2">${playoff}</div>`;
 }
 
-function finishBadge(finalsStatus) {
-  if (finalsStatus === 2) return `<span title="Champion" style="font-size:14px">🏆</span>`;
-  if (finalsStatus === 1) return `<span title="Runner-Up" style="font-size:14px">🥈</span>`;
-  return '';
+function finishBadge(finalsStatus, cupStatus) {
+  const bits = [];
+  if (finalsStatus === 2) bits.push(`<span title="WNBA Champion" style="font-size:14px">🏆</span>`);
+  else if (finalsStatus === 1) bits.push(`<span title="WNBA Runner-Up" style="font-size:14px">🥈</span>`);
+  if (cupStatus === 2) bits.push(`<span class="finish-badge finish-champion" title="Commissioner's Cup Champion">Cup 🏆</span>`);
+  else if (cupStatus === 1) bits.push(`<span class="finish-badge finish-runner" title="Commissioner's Cup Runner-Up">Cup 🥈</span>`);
+  return bits.join(' ');
 }
 
 function resultClass(match) {
@@ -435,7 +438,7 @@ function renderStandings() {
       <span class="${resultClass(t.last_match)}">${t.last_match || '—'}</span>
     </td>
     <td class="col-hide-mobile" style="font-size:11px;color:#888;white-space:nowrap">${t.last_match_date || ''}</td>
-    <td class="col-hide-mobile" style="text-align:center">${finishBadge(t.finals_status)}</td>
+    <td class="col-hide-mobile" style="text-align:center">${finishBadge(t.finals_status, t.cup_status)}</td>
   </tr>`).join('');
 
   document.getElementById('standings-count').textContent =
@@ -536,7 +539,7 @@ function renderTeamTable() {
     <td style="font-variant-numeric:tabular-nums;white-space:nowrap">${fmtRecordSmart(g.regular_record, g.playoff_record, g.record)}</td>
     <td>${ratingBar(g.rating)}</td>
     <td class="rank-cell">${g.rank}</td>
-    <td class="col-hide-mobile" style="font-size:11px">${finishBadge(g.finals_status)}</td>
+    <td class="col-hide-mobile" style="font-size:11px">${finishBadge(g.finals_status, g.cup_status)}</td>
   </tr>`).join('');
 
   document.getElementById('team-table-wrap').innerHTML = `
@@ -698,7 +701,7 @@ function renderGoat() {
     <td class="team-cell">${t.team}</td>
     <td>${ratingBar(t.rating)}</td>
     <td style="font-variant-numeric:tabular-nums;white-space:nowrap" class="col-hide-mobile">${fmtRecordStacked(t.regular_record, t.playoff_record)}</td>
-    <td class="col-hide-mobile" style="font-size:11px">${finishBadge(t.finals_status)}</td>
+    <td class="col-hide-mobile" style="font-size:11px">${finishBadge(t.finals_status, t.cup_status)}</td>
   </tr>`).join('');
 
   document.getElementById('goat-table-wrap').innerHTML = `

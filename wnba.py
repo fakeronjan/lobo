@@ -66,6 +66,18 @@ REGULAR_SEASON_GAMES = {
     2026: 44,
 }
 
+# WNBA Commissioner's Cup champion / runner-up by season.
+# basketball-reference does NOT include the Cup final game in our scraped
+# data (it's treated as exhibition), so honors come from this hardcoded
+# lookup. Add a new entry each year — cup final happens mid-summer.
+WNBA_CUP_RESULTS = {
+    2021: ('Seattle Storm',     'Connecticut Sun'),
+    2022: ('Las Vegas Aces',    'Chicago Sky'),
+    2023: ('New York Liberty',  'Las Vegas Aces'),
+    2024: ('Minnesota Lynx',    'New York Liberty'),
+    2025: ('Indiana Fever',     'Minnesota Lynx'),
+}
+
 # =========================================================
 # SCRAPING
 # =========================================================
@@ -433,6 +445,20 @@ def assemble_final(master_df, ratings_df, standings_df):
     final_df['finals_status'] = final_df['runnerup'] + 2 * final_df['champ']
 
     # -------------------------------------------------------------------------
+    # WNBA Commissioner's Cup champion & runner-up (since 2021)
+    # -------------------------------------------------------------------------
+    final_df['cup_champ']    = 0
+    final_df['cup_runnerup'] = 0
+    for season, (champion, runner_up) in WNBA_CUP_RESULTS.items():
+        champ_ns    = f"{champion} - {season}"
+        runnerup_ns = f"{runner_up} - {season}"
+        final_df['cup_champ']    = np.where(final_df['name_season'] == champ_ns,    1, final_df['cup_champ'])
+        final_df['cup_runnerup'] = np.where(final_df['name_season'] == runnerup_ns, 1, final_df['cup_runnerup'])
+
+    # 0 = neither, 1 = cup runner-up, 2 = cup champion
+    final_df['cup_status'] = final_df['cup_runnerup'] + 2 * final_df['cup_champ']
+
+    # -------------------------------------------------------------------------
     # Last game result
     # -------------------------------------------------------------------------
     final_df['date_str'] = final_df['date'].astype(str)
@@ -461,6 +487,7 @@ def assemble_final(master_df, ratings_df, standings_df):
         'ranking_id', 'date', 'season', 'name', 'rating', 'rank',
         'record', 'current_date', 'season_flag', 'name_season',
         'champ', 'runnerup', 'finals_status',
+        'cup_champ', 'cup_runnerup', 'cup_status',
         'last_game_result', 'opponent'
     ]]
 
