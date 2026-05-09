@@ -10,6 +10,7 @@ import json
 import os
 import re
 from bisect import bisect_right
+from datetime import datetime, timezone
 
 
 # ── WNBA conference mapping (covers all team names since 1997) ───────────────
@@ -307,6 +308,7 @@ seasons_meta = {
     'seasons':    [int(s) for s in reversed(all_seasons)],
     'first_date': str(games['date_game'].min()),  # actual first game (not first rated date)
     'last_date':  str(games['date_game'].max()),
+    'generated_at': datetime.now(timezone.utc).isoformat(),
 }
 with open('docs/data/seasons_index.json', 'w') as f:
     json.dump(seasons_meta, f, separators=(',', ':'))
