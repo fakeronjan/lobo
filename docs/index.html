@@ -381,10 +381,14 @@ function fmtRecordSmart(reg, playoff, fallback) {
   return `${top}<div style="font-size:10px;color:#888;font-weight:400;line-height:1.2">${playoff}</div>`;
 }
 
-function confBadge(conf, finalsStatus) {
+function confBadge(conf, finalsStatus, season) {
   if (!conf) return '';
-  // finals_status >= 1 means the team made the Finals = won the conference championship round
-  if (finalsStatus >= 1) {
+  // The WNBA used conference-bracketed playoffs only through the 2015 season.
+  // From 2016 onward the league reseeded by record, so making the Finals no
+  // longer implies winning your conference (e.g. 2025 Finals = LV Aces (West)
+  // vs Phoenix Mercury (West) — same-conference matchup). Only flag pre-2016
+  // finalists with the gold conference-champion pill.
+  if (finalsStatus >= 1 && season != null && season < 2016) {
     return `<span class="finish-badge finish-champion" title="${conf} Champion">${conf} 🏆</span>`;
   }
   return `<span class="finish-badge conf-pill">${conf}</span>`;
@@ -510,7 +514,7 @@ function renderStandings() {
     return `<tr>
     <td class="rank-cell">${t.rank}</td>
     <td class="team-cell">${t.team}</td>
-    <td class="col-hide-mobile">${confBadge(t.conference, t.finals_status)}</td>
+    <td class="col-hide-mobile">${confBadge(t.conference, t.finals_status, currentSeasonData && currentSeasonData.season)}</td>
     <td style="font-variant-numeric:tabular-nums;white-space:nowrap">${fmtRecordSmart(t.regular_record, t.playoff_record, t.record)}</td>
     <td>${ratingBar(t.rating)}</td>
     <td class="last-match-cell">
@@ -630,7 +634,7 @@ function renderTeamTable() {
     <td style="font-variant-numeric:tabular-nums;white-space:nowrap">${fmtRecordSmart(g.regular_record, g.playoff_record, g.record)}</td>
     <td class="rank-cell">${g.rank}</td>
     <td>${ratingBar(g.rating)}</td>
-    <td class="col-hide-mobile" style="font-size:11px">${confBadge(data.conference, g.finals_status)}</td>
+    <td class="col-hide-mobile" style="font-size:11px">${confBadge(data.conference, g.finals_status, parseInt(g.season))}</td>
     <td class="col-hide-mobile" style="font-size:11px">${finishBadge(g.finals_status, g.cup_status)}</td>
   </tr>`).join('');
 
@@ -800,7 +804,7 @@ function renderGoat() {
     <td class="rank-cell">${t.rank}</td>
     <td style="text-align:center">${t.season}</td>
     <td class="team-cell">${t.team}</td>
-    <td class="col-hide-mobile">${confBadge(t.conference, t.finals_status)}</td>
+    <td class="col-hide-mobile">${confBadge(t.conference, t.finals_status, t.season)}</td>
     <td>${ratingBar(t.rating)}</td>
     <td style="font-variant-numeric:tabular-nums;white-space:nowrap" class="col-hide-mobile">${fmtRecordStacked(t.regular_record, t.playoff_record)}</td>
     <td class="col-hide-mobile" style="font-size:11px">${finishBadge(t.finals_status, t.cup_status)}</td>
