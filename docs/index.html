@@ -246,6 +246,11 @@
   <div class="controls">
     <select id="season-filter"></select>
     <select id="date-filter" style="min-width:240px"></select>
+    <select id="conference-filter">
+      <option value="all">Both Conferences</option>
+      <option value="East">East</option>
+      <option value="West">West</option>
+    </select>
     <span class="count-label" id="standings-count"></span>
   </div>
   <p class="data-note" id="warmup-note" style="display:none">
@@ -435,11 +440,18 @@ function selectSnapshot(date) {
 
 function renderStandings() {
   if (!currentSnapshot) return;
-  const teams = currentSnapshot.teams;
+  const conf = document.getElementById('conference-filter').value;
+  let teams = currentSnapshot.teams;
+  if (conf !== 'all') teams = teams.filter(t => t.conference === conf);
 
-  const rows = teams.map(t => `<tr>
-    <td class="rank-cell">${t.rank}</td>
+  // When filtered by conference, show conference rank; otherwise overall rank
+  let displayRank = 1;
+  const rows = teams.map(t => {
+    const rk = (conf === 'all') ? t.rank : displayRank++;
+    return `<tr>
+    <td class="rank-cell">${rk}</td>
     <td class="team-cell">${t.team}</td>
+    <td class="col-hide-mobile" style="font-size:11px;color:#888">${t.conference}</td>
     <td style="font-variant-numeric:tabular-nums;white-space:nowrap">${fmtRecordSmart(t.regular_record, t.playoff_record, t.record)}</td>
     <td>${ratingBar(t.rating)}</td>
     <td class="last-match-cell">
@@ -447,7 +459,8 @@ function renderStandings() {
     </td>
     <td class="col-hide-mobile" style="font-size:11px;color:#888;white-space:nowrap">${t.last_match_date || ''}</td>
     <td class="col-hide-mobile" style="text-align:center">${finishBadge(t.finals_status, t.cup_status)}</td>
-  </tr>`).join('');
+  </tr>`;
+  }).join('');
 
   document.getElementById('standings-count').textContent =
     `${teams.length} team${teams.length !== 1 ? 's' : ''}`;
@@ -455,7 +468,9 @@ function renderStandings() {
   document.getElementById('standings-table-wrap').innerHTML = `
     <table>
       <thead><tr>
-        <th>#</th><th>Team</th><th>W-L (Pct)</th><th>Rating</th>
+        <th>Rank</th><th>Team</th>
+        <th class="col-hide-mobile">Conf</th>
+        <th>W-L (Pct)</th><th>Rating</th>
         <th>Last Game</th>
         <th class="col-hide-mobile">Date</th>
         <th class="col-hide-mobile">Honors</th>
@@ -466,6 +481,7 @@ function renderStandings() {
 
 document.getElementById('season-filter').addEventListener('change', e => loadSeason(e.target.value));
 document.getElementById('date-filter').addEventListener('change', e => selectSnapshot(e.target.value));
+document.getElementById('conference-filter').addEventListener('change', renderStandings);
 
 // ── Team Summary ─────────────────────────────────────────────────────────────
 async function loadTeamsIndex() {

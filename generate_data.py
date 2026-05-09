@@ -11,6 +11,46 @@ import os
 import re
 from bisect import bisect_right
 
+
+# ── WNBA conference mapping (covers all team names since 1997) ───────────────
+# Per-team-name (not per-franchise lineage): Detroit Shock was Eastern when
+# they existed; the Tulsa Shock / Dallas Wings successor is Western. Each
+# distinct team name gets its conference for the years it existed.
+TEAM_CONFERENCE = {
+    # Eastern Conference
+    'Atlanta Dream':            'East',
+    'Charlotte Sting':          'East',  # 1997-2006
+    'Chicago Sky':              'East',
+    'Cleveland Rockers':        'East',  # 1997-2003
+    'Connecticut Sun':          'East',  # 2003+ (was Orlando Miracle)
+    'Detroit Shock':            'East',  # 1998-2009 (became Tulsa, then Dallas)
+    'Indiana Fever':            'East',
+    'Miami Sol':                'East',  # 2000-2002
+    'New York Liberty':         'East',
+    'Orlando Miracle':          'East',  # 1999-2002 (became Connecticut Sun)
+    'Washington Mystics':       'East',
+
+    # Western Conference
+    'Dallas Wings':             'West',  # 2016+ (was Tulsa Shock)
+    'Golden State Valkyries':   'West',  # 2025 expansion
+    'Houston Comets':           'West',  # 1997-2008
+    'Las Vegas Aces':           'West',  # 2018+ (was San Antonio Silver Stars)
+    'Los Angeles Sparks':       'West',
+    'Minnesota Lynx':           'West',
+    'Phoenix Mercury':          'West',
+    'Portland Fire':            'West',  # 2000-2002
+    'Sacramento Monarchs':      'West',  # 1997-2009
+    'San Antonio Silver Stars': 'West',  # 2003-2013 (was Utah Starzz)
+    'Seattle Storm':            'West',
+    'Tulsa Shock':              'West',  # 2010-2015 (was Detroit Shock, became Dallas Wings)
+    'Utah Starzz':              'West',  # 1997-2002 (became San Antonio)
+}
+
+
+def conf(team):
+    return TEAM_CONFERENCE.get(team, 'Other')
+
+
 os.makedirs('docs/data/teams', exist_ok=True)
 os.makedirs('docs/data/seasons', exist_ok=True)
 
@@ -123,6 +163,7 @@ standings_data = {
         {
             'rank':            int(r['rank']),
             'team':            r['name'],
+            'conference':      conf(r['name']),
             'rating':          round(float(r['rating']), 3),
             'record':          clean(r['record']),
             'last_match':      clean(r['last_game_result']) if r['last_game_result'] != 'No Game' else last_game_as_of(r['name'], str(r['date'])),
@@ -148,6 +189,7 @@ for i, (_, r) in enumerate(eos_top.iterrows()):
     goat_data.append({
         'rank':           i + 1,
         'team':           r['name'],
+        'conference':     conf(r['name']),
         'season':         int(r['season']),
         'rating':         round(float(r['rating']), 3),
         'record':         clean(r['record']),
@@ -173,7 +215,7 @@ for team in all_teams:
         continue
 
     team_slug = slug(team)
-    teams_index.append({'name': team, 'slug': team_slug})
+    teams_index.append({'name': team, 'conference': conf(team), 'slug': team_slug})
 
     seasons = {}
     for season, sdf in tdf.groupby('season'):
@@ -244,6 +286,7 @@ for season in all_seasons:
             teams_snap.append({
                 'rank':            int(r['rank']),
                 'team':            r['name'],
+                'conference':      conf(r['name']),
                 'rating':          round(float(r['rating']), 3),
                 'record':          clean(r['record']),
                 'regular_record':  reg,
