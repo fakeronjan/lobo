@@ -79,18 +79,22 @@ df['is_game_day'] = (df['last_game_result'] != 'No Game').astype(int)
 # is_end_of_season: collapse season_flag (1=last regular, 2=last postseason) to one boolean
 df['is_end_of_season'] = df['season_flag'].isin([1, 2]).astype(int)
 
-# Per-team forward-filled last game (so EOS rows that aren't game days still show prior game)
+# Per-(team, season) forward-filled last game. Keying by season prevents
+# cross-season carry-forward — at the start of a new season, teams that
+# haven't played yet correctly show empty rather than their previous-season
+# Finals result.
 _last_game_history = {}
-for team, tdf in df[df['is_game_day'] == 1].sort_values('date').groupby('name'):
-    _last_game_history[team] = (
+for (team, season), tdf in df[df['is_game_day'] == 1].sort_values('date').groupby(['name', 'season']):
+    _last_game_history[(team, int(season))] = (
         [str(d) for d in tdf['date'].tolist()],
         tdf['last_game_result'].tolist(),
     )
 
 
-def last_game_as_of(team, snap_date_str):
-    """Most recent game result for team as of snap_date_str (forward-filled)."""
-    entry = _last_game_history.get(team)
+def last_game_as_of(team, snap_date_str, season):
+    """Most recent game result for team as of snap_date_str within `season`.
+    Returns '' if the team hasn't played any games yet that season."""
+    entry = _last_game_history.get((team, int(season)))
     if not entry:
         return ''
     dates, games_list = entry
@@ -98,9 +102,9 @@ def last_game_as_of(team, snap_date_str):
     return games_list[idx] if idx >= 0 else ''
 
 
-def last_game_date_as_of(team, snap_date_str):
-    """Date string of the team's most recent game as of snap_date_str."""
-    entry = _last_game_history.get(team)
+def last_game_date_as_of(team, snap_date_str, season):
+    """Date string of the team's most recent game in `season` as of snap_date_str."""
+    entry = _last_game_history.get((team, int(season)))
     if not entry:
         return ''
     dates, _ = entry
@@ -168,7 +172,7 @@ standings_data = {
             'conference':      conf(r['name']),
             'rating':          round(float(r['rating']), 3),
             'record':          clean(r['record']),
-            'last_match':      clean(r['last_game_result']) if r['last_game_result'] != 'No Game' else last_game_as_of(r['name'], str(r['date'])),
+            'last_match':      clean(r['last_game_result']) if r['last_game_result'] != 'No Game' else last_game_as_of(r['name'], str(r['date']), r['season']),
             'finals_status':   int(r['finals_status']) if not pd.isna(r['finals_status']) else 0,
             'cup_status':      int(r['cup_status']) if 'cup_status' in r and not pd.isna(r['cup_status']) else 0,
         }
@@ -239,7 +243,7 @@ for team in all_teams:
                 'record':            clean(r['record']),
                 'regular_record':    reg,
                 'playoff_record':    po,
-                'last_match':        clean(r['last_game_result']) if r['last_game_result'] != 'No Game' else last_game_as_of(team, str(r['date'])),
+                'last_match':        clean(r['last_game_result']) if r['last_game_result'] != 'No Game' else last_game_as_of(team, str(r['date']), season),
                 'is_end_of_season':  int(r['is_end_of_season']),
                 'season_flag':       int(r['season_flag']),
                 'is_playoff':        int(is_playoff(season, r['date'])),
@@ -293,8 +297,8 @@ for season in all_seasons:
                 'record':          clean(r['record']),
                 'regular_record':  reg,
                 'playoff_record':  po,
-                'last_match':      clean(r['last_game_result']) if played_today else last_game_as_of(r['name'], snap_date),
-                'last_match_date': snap_date if played_today else last_game_date_as_of(r['name'], snap_date),
+                'last_match':      clean(r['last_game_result']) if played_today else last_game_as_of(r['name'], snap_date, season),
+                'last_match_date': snap_date if played_today else last_game_date_as_of(r['name'], snap_date, season),
                 'finals_status':   int(r['finals_status']) if not pd.isna(r['finals_status']) else 0,
                 'cup_status':      int(r['cup_status']) if 'cup_status' in r and not pd.isna(r['cup_status']) else 0,
             })
