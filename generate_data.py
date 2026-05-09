@@ -247,7 +247,7 @@ for team in all_teams:
         seasons[int(season)] = entries
 
     with open(f'docs/data/teams/{team_slug}.json', 'w') as f:
-        json.dump({'team': team, 'seasons': seasons}, f, separators=(',', ':'))
+        json.dump({'team': team, 'conference': conf(team), 'seasons': seasons}, f, separators=(',', ':'))
 
 teams_index.sort(key=lambda x: x['name'])
 with open('docs/data/teams_index.json', 'w') as f:
