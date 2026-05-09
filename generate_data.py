@@ -28,6 +28,7 @@ TEAM_CONFERENCE = {
     'Miami Sol':                'East',  # 2000-2002
     'New York Liberty':         'East',
     'Orlando Miracle':          'East',  # 1999-2002 (became Connecticut Sun)
+    'Toronto Tempo':            'East',  # 2026 expansion
     'Washington Mystics':       'East',
 
     # Western Conference
@@ -401,3 +402,15 @@ with open('docs/data/champions.json', 'w') as f:
 
 print(f"Done. {len(teams_index)} teams, {len(standings_data['teams'])} in current standings.")
 print(f"Wrote {len(all_seasons)} season files. Standings date: {latest_date}")
+
+# Hygiene: flag any rated team missing from TEAM_CONFERENCE. Without this,
+# expansion teams (or future renames) silently fall through to 'Other' and
+# disappear from the conference filter pillbox.
+_unknown = sorted({t for t in df['name'].unique() if t not in TEAM_CONFERENCE})
+if _unknown:
+    print()
+    print('⚠️  WARNING: teams in rated data missing from TEAM_CONFERENCE:')
+    for t in _unknown:
+        print(f'    - {t!r}')
+    print('    These teams will display as "Other" until added.')
+    print()
