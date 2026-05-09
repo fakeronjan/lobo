@@ -31699,31 +31699,31 @@ ranking_id,date,season,name,rating,rank,record,current_date,season_flag,name_sea
 2511.0,2025-10-10,2025,Phoenix Mercury,0.4352839699854084,5,32 - 23,0,2,Phoenix Mercury - 2025,0,1,1,0,0,0,L vs. Las Vegas Aces 86-97,Las Vegas Aces
 2511.0,2025-10-10,2025,Seattle Storm,0.3081033971769949,6,24 - 23,0,2,Seattle Storm - 2025,0,0,0,0,0,0,No Game,
 2511.0,2025-10-10,2025,Washington Mystics,-1.995905564589751,13,16 - 28,0,2,Washington Mystics - 2025,0,0,0,0,0,0,No Game,
-2512.0,2026-05-08,2026,Atlanta Dream,2.0166769005225356,2,0 - 0,0,0,Atlanta Dream - 2026,0,0,0,0,0,0,No Game,
+2512.0,2026-05-08,2026,Atlanta Dream,2.016676900522536,2,0 - 0,0,0,Atlanta Dream - 2026,0,0,0,0,0,0,No Game,
 2512.0,2026-05-08,2026,Chicago Sky,-0.8797202679260833,10,0 - 0,0,0,Chicago Sky - 2026,0,0,0,0,0,0,No Game,
 2512.0,2026-05-08,2026,Connecticut Sun,-1.2913171154574152,12,0 - 1,0,0,Connecticut Sun - 2026,0,0,0,0,0,0,L @ New York Liberty 75-106,New York Liberty
-2512.0,2026-05-08,2026,Dallas Wings,-0.9338790309450744,11,0 - 0,0,0,Dallas Wings - 2026,1,0,2,0,0,0,No Game,
+2512.0,2026-05-08,2026,Dallas Wings,-0.9338790309450744,11,0 - 0,0,0,Dallas Wings - 2026,0,0,0,0,0,0,No Game,
 2512.0,2026-05-08,2026,Golden State Valkyries,0.5471308216273926,7,1 - 0,0,0,Golden State Valkyries - 2026,0,0,0,0,0,0,W @ Seattle Storm 91-80,Seattle Storm
-2512.0,2026-05-08,2026,Indiana Fever,1.2903306735824307,4,0 - 0,0,0,Indiana Fever - 2026,0,1,1,0,0,0,No Game,
+2512.0,2026-05-08,2026,Indiana Fever,1.2903306735824307,4,0 - 0,0,0,Indiana Fever - 2026,0,0,0,0,0,0,No Game,
 2512.0,2026-05-08,2026,Las Vegas Aces,3.032990815847051,1,0 - 0,0,0,Las Vegas Aces - 2026,0,0,0,0,0,0,No Game,
-2512.0,2026-05-08,2026,Los Angeles Sparks,-0.22745888276218415,9,0 - 0,0,0,Los Angeles Sparks - 2026,0,0,0,0,0,0,No Game,
+2512.0,2026-05-08,2026,Los Angeles Sparks,-0.2274588827621841,9,0 - 0,0,0,Los Angeles Sparks - 2026,0,0,0,0,0,0,No Game,
 2512.0,2026-05-08,2026,Minnesota Lynx,1.3759858381993313,3,0 - 0,0,0,Minnesota Lynx - 2026,0,0,0,0,0,0,No Game,
 2512.0,2026-05-08,2026,New York Liberty,0.7546495299049185,6,1 - 0,0,0,New York Liberty - 2026,0,0,0,0,0,0,W vs. Connecticut Sun 106-75,Connecticut Sun
 2512.0,2026-05-08,2026,Phoenix Mercury,0.961597517204049,5,0 - 0,0,0,Phoenix Mercury - 2026,0,0,0,0,0,0,No Game,
 2512.0,2026-05-08,2026,Seattle Storm,0.3243983362100315,8,0 - 1,0,0,Seattle Storm - 2026,0,0,0,0,0,0,L vs. Golden State Valkyries 80-91,Golden State Valkyries
 2512.0,2026-05-08,2026,Toronto Tempo,-5.467741710984413,14,0 - 1,0,0,Toronto Tempo - 2026,0,0,0,0,0,0,L vs. Washington Mystics 65-68,Washington Mystics
-2512.0,2026-05-08,2026,Washington Mystics,-1.5036434250225421,13,1 - 0,0,0,Washington Mystics - 2026,0,0,0,0,0,0,W @ Toronto Tempo 68-65,Toronto Tempo
-2513.0,2026-05-09,2026,Atlanta Dream,1.9030073401021106,2,0 - 0,1,0,Atlanta Dream - 2026,0,0,0,0,0,0,No Game,
+2512.0,2026-05-08,2026,Washington Mystics,-1.503643425022542,13,1 - 0,0,0,Washington Mystics - 2026,0,0,0,0,0,0,W @ Toronto Tempo 68-65,Toronto Tempo
+2513.0,2026-05-09,2026,Atlanta Dream,1.9030073401021104,2,0 - 0,1,0,Atlanta Dream - 2026,0,0,0,0,0,0,No Game,
 2513.0,2026-05-09,2026,Chicago Sky,-0.838704677565196,11,0 - 0,1,0,Chicago Sky - 2026,0,0,0,0,0,0,No Game,
-2513.0,2026-05-09,2026,Connecticut Sun,-1.2483755561974061,12,0 - 1,1,0,Connecticut Sun - 2026,0,0,0,0,0,0,No Game,
-2513.0,2026-05-09,2026,Dallas Wings,-0.4901848605075623,10,1 - 0,1,0,Dallas Wings - 2026,1,0,2,0,0,0,W @ Indiana Fever 107-104,Indiana Fever
-2513.0,2026-05-09,2026,Golden State Valkyries,0.39947386639466664,7,1 - 0,1,0,Golden State Valkyries - 2026,0,0,0,0,0,0,No Game,
-2513.0,2026-05-09,2026,Indiana Fever,1.014832480489998,4,0 - 1,1,0,Indiana Fever - 2026,0,1,1,0,0,0,L vs. Dallas Wings 104-107,Dallas Wings
-2513.0,2026-05-09,2026,Las Vegas Aces,2.9760111763310455,1,0 - 0,1,0,Las Vegas Aces - 2026,0,0,0,0,0,0,No Game,
-2513.0,2026-05-09,2026,Los Angeles Sparks,-0.16444690970532844,9,0 - 0,1,0,Los Angeles Sparks - 2026,0,0,0,0,0,0,No Game,
-2513.0,2026-05-09,2026,Minnesota Lynx,1.2733650055742867,3,0 - 0,1,0,Minnesota Lynx - 2026,0,0,0,0,0,0,No Game,
+2513.0,2026-05-09,2026,Connecticut Sun,-1.248375556197406,12,0 - 1,1,0,Connecticut Sun - 2026,0,0,0,0,0,0,No Game,
+2513.0,2026-05-09,2026,Dallas Wings,-0.4901848605075623,10,1 - 0,1,0,Dallas Wings - 2026,0,0,0,0,0,0,W @ Indiana Fever 107-104,Indiana Fever
+2513.0,2026-05-09,2026,Golden State Valkyries,0.3994738663946666,7,1 - 0,1,0,Golden State Valkyries - 2026,0,0,0,0,0,0,No Game,
+2513.0,2026-05-09,2026,Indiana Fever,1.014832480489998,4,0 - 1,1,0,Indiana Fever - 2026,0,0,0,0,0,0,L vs. Dallas Wings 104-107,Dallas Wings
+2513.0,2026-05-09,2026,Las Vegas Aces,2.976011176331045,1,0 - 0,1,0,Las Vegas Aces - 2026,0,0,0,0,0,0,No Game,
+2513.0,2026-05-09,2026,Los Angeles Sparks,-0.1644469097053284,9,0 - 0,1,0,Los Angeles Sparks - 2026,0,0,0,0,0,0,No Game,
+2513.0,2026-05-09,2026,Minnesota Lynx,1.273365005574287,3,0 - 0,1,0,Minnesota Lynx - 2026,0,0,0,0,0,0,No Game,
 2513.0,2026-05-09,2026,New York Liberty,0.7434305021306862,6,1 - 0,1,0,New York Liberty - 2026,0,0,0,0,0,0,No Game,
-2513.0,2026-05-09,2026,Phoenix Mercury,0.9089690762003669,5,0 - 0,1,0,Phoenix Mercury - 2026,0,0,0,0,0,0,No Game,
+2513.0,2026-05-09,2026,Phoenix Mercury,0.9089690762003668,5,0 - 0,1,0,Phoenix Mercury - 2026,0,0,0,0,0,0,No Game,
 2513.0,2026-05-09,2026,Seattle Storm,0.3113702688310544,8,0 - 1,1,0,Seattle Storm - 2026,0,0,0,0,0,0,No Game,
 2513.0,2026-05-09,2026,Toronto Tempo,-5.336782696197459,14,0 - 1,1,0,Toronto Tempo - 2026,0,0,0,0,0,0,No Game,
 2513.0,2026-05-09,2026,Washington Mystics,-1.451965015881287,13,1 - 0,1,0,Washington Mystics - 2026,0,0,0,0,0,0,No Game,
