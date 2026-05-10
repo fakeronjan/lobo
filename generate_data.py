@@ -285,7 +285,7 @@ for season in all_seasons:
         if flag == 1:
             label = 'End of regular season'
         elif flag == 2:
-            label = 'End of WNBA Finals'
+            label = 'End of playoffs'
 
         snap_date_obj = rdf['date'].iloc[0]
         rs_end = _rs_end_dates.get(season)
