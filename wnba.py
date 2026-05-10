@@ -31,6 +31,12 @@ MIN_SEASON = 1997             # first WNBA season — DO NOT CHANGE
 ROLLING_WINDOW = 50           # number of game-days used in Massey rating window
 HOME_COURT_ADJUSTMENT = 0.25  # added to visitor margin, subtracted from home margin
 
+# Re-process the most recent N ranking_ids (game-days) on every run so late-
+# arriving WNBA data is absorbed. Without this a mid-day cron caches that
+# day's snapshot and never re-ranks it even when more games for the same
+# day finish hours later.
+RECOMPUTE_TAIL_DAYS = 7
+
 # Regular season game count per season (Option B proxy for playoff start).
 # WNBA schedule has changed frequently — full lookup is cleaner than a default + overrides.
 REGULAR_SEASON_GAMES = {
@@ -201,12 +207,20 @@ def prepare_game_data(raw_df):
 def compute_ratings(master_df, existing_ratings_df):
     """
     Compute daily Massey power ratings using a rolling ROLLING_WINDOW-day window.
-    Skips dates already present in existing_ratings_df.
+    Skips dates already present in existing_ratings_df. Re-processes the most
+    recent RECOMPUTE_TAIL_DAYS ranking_ids each run to absorb late-arriving data.
     """
     max_date_id = max(master_df['grouped_date_id'])
     min_date_id = ROLLING_WINDOW
-    max_ranked = max(existing_ratings_df['ranking_id'])
-    min_ranked = min(existing_ratings_df['ranking_id'])
+    all_ids = sorted(existing_ratings_df['ranking_id'].unique())
+    if len(all_ids) > RECOMPUTE_TAIL_DAYS:
+        tail_threshold = all_ids[-RECOMPUTE_TAIL_DAYS]
+        n_dropped = int((existing_ratings_df['ranking_id'] >= tail_threshold).sum())
+        existing_ratings_df = existing_ratings_df[existing_ratings_df['ranking_id'] < tail_threshold].copy()
+        print(f"  Re-processing tail {RECOMPUTE_TAIL_DAYS} game-days "
+              f"({n_dropped:,} rows dropped from ratings cache for late-arriving-data refresh)")
+    max_ranked = int(max(existing_ratings_df['ranking_id'])) if len(existing_ratings_df) else -1
+    min_ranked = int(min(existing_ratings_df['ranking_id'])) if len(existing_ratings_df) else -1
 
     print("Running WNBA ratings for new data...")
     new_frames = []
@@ -267,8 +281,15 @@ def compute_standings(master_df, existing_standings_df):
     game_df = master_df[['season', 'date_game', 'grouped_date_id', 'visitor_team_name', 'visitor_win', 'home_team_name', 'home_win']]
     max_date_id = max(master_df['grouped_date_id'])
     min_date_id = ROLLING_WINDOW
-    max_ranked = max(existing_standings_df['ranking_id'])
-    min_ranked = min(existing_standings_df['ranking_id'])
+    all_ids = sorted(existing_standings_df['ranking_id'].unique())
+    if len(all_ids) > RECOMPUTE_TAIL_DAYS:
+        tail_threshold = all_ids[-RECOMPUTE_TAIL_DAYS]
+        n_dropped = int((existing_standings_df['ranking_id'] >= tail_threshold).sum())
+        existing_standings_df = existing_standings_df[existing_standings_df['ranking_id'] < tail_threshold].copy()
+        print(f"  Re-processing tail {RECOMPUTE_TAIL_DAYS} game-days "
+              f"({n_dropped:,} rows dropped from standings cache for late-arriving-data refresh)")
+    max_ranked = int(max(existing_standings_df['ranking_id'])) if len(existing_standings_df) else -1
+    min_ranked = int(min(existing_standings_df['ranking_id'])) if len(existing_standings_df) else -1
 
     print("Producing standings...")
     new_frames = []
