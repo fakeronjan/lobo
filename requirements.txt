@@ -1,5 +1,4 @@
 pandas
-numpy<2
+numpy
 requests
-rankit==0.2
 lxml

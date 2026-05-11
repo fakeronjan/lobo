@@ -5,23 +5,7 @@
 import requests
 import pandas as pd
 import numpy as np
-# rankit==0.2 uses deprecated numpy aliases (np.int, np.float, np.bool) removed in numpy 1.24+.
-# Restore them before rankit import so the Massey solver works.
-if not hasattr(np, 'int'):   np.int = int
-if not hasattr(np, 'float'): np.float = float
-if not hasattr(np, 'bool'):  np.bool = bool
 from datetime import datetime, date
-import warnings
-import rankit  # pip install rankit
-from rankit.Table import Table
-from rankit.Ranker import MasseyRanker
-
-# Suppress SettingWithCopyWarning from rankit library internals.
-# pandas 3.x removed this class, so guard the lookup.
-try:
-    warnings.filterwarnings('ignore', category=pd.errors.SettingWithCopyWarning)
-except AttributeError:
-    pass
 
 # =========================================================
 # CONFIGURATION
@@ -29,7 +13,18 @@ except AttributeError:
 
 MIN_SEASON = 1997             # first WNBA season — DO NOT CHANGE
 ROLLING_WINDOW = 50           # number of game-days used in Massey rating window
-HOME_COURT_ADJUSTMENT = 0.25  # added to visitor margin, subtracted from home margin
+HOME_COURT_ADJUSTMENT = 2.0   # raw-point home advantage, subtracted from home margin pre-transform
+
+# Margin transform: raw | sqrt | cap | log | tanh. sqrt matches the
+# pre-WLS convention; the others are available for future investigations.
+MARGIN_TRANSFORM = "sqrt"
+MARGIN_CAP = 25  # only used by cap / tanh
+
+# Weighting mode: "wls" applies recency weights to observation influence
+# via proper weighted least squares. The legacy "margin_scale" mode is
+# preserved for historical reproduction only — it inflates margins by
+# weight, which produces extreme ratings for thin-data (expansion) teams.
+WEIGHTING_MODE = "wls"
 
 # Re-process the most recent N ranking_ids (game-days) on every run so late-
 # arriving WNBA data is absorbed. Without this a mid-day cron caches that
@@ -149,25 +144,15 @@ def prepare_game_data(raw_df):
     df['visitor_pts'] = pd.to_numeric(df['visitor_pts'])
     df['home_pts'] = pd.to_numeric(df['home_pts'])
 
-    # Margin of victory
+    # Margin of victory (raw points). HCA and the margin transform are
+    # applied inside the solver, not here, so downstream consumers see
+    # the unmodified game record.
     df['visitor_margin'] = df['visitor_pts'] - df['home_pts']
     df['home_margin'] = -df['visitor_margin']
 
     # Win flags
     df['visitor_win'] = np.where(df['visitor_margin'] > 0, 1, 0)
     df['home_win'] = 1 - df['visitor_win']
-
-    # Square-root margin (preserves direction)
-    df['visitor_sqrt_margin'] = np.where(
-        df['visitor_margin'] > 0,
-        df['visitor_margin'] ** 0.5,
-        -(df['home_margin'] ** 0.5)
-    )
-    df['home_sqrt_margin'] = -df['visitor_sqrt_margin']
-
-    # Home court adjustment
-    df['visitor_adjusted_margin'] = df['visitor_sqrt_margin'] + HOME_COURT_ADJUSTMENT
-    df['home_adjusted_margin'] = -df['visitor_adjusted_margin']
 
     # Drop incomplete rows before date parsing
     df = df.dropna()
@@ -201,8 +186,82 @@ def prepare_game_data(raw_df):
 
 
 # =========================================================
-# MASSEY RATINGS
+# MASSEY RATINGS — homebrew weighted least squares solver
 # =========================================================
+
+def _apply_margin_transform(margin, transform, cap):
+    """Sign-preserving transform applied to (raw_margin - hca)."""
+    m = np.asarray(margin, dtype=float)
+    if transform == "raw":
+        return m
+    if transform == "sqrt":
+        return np.sign(m) * np.sqrt(np.abs(m))
+    if transform == "cap":
+        return np.clip(m, -cap, cap)
+    if transform == "log":
+        return np.sign(m) * np.log1p(np.abs(m))
+    if transform == "tanh":
+        return cap * np.tanh(m / cap)
+    raise ValueError(f"Unknown MARGIN_TRANSFORM: {transform}")
+
+
+def _solve_massey(window_df, hca, weighting_mode, margin_transform, margin_cap):
+    """
+    Solve for team Massey ratings on a single rolling window.
+
+    Builds X (n_games × n_teams) with +1 for home, -1 for visitor, y from
+    the transformed HCA-adjusted home margin, and W from the recency
+    weights. Solves min sum_i w_i * (X_i r - y_i)^2 with a zero-sum
+    constraint enforced as an extra high-weight row.
+
+    WLS via row-scaling: multiplying both X and y by sqrt(w_i) turns the
+    weighted problem into an ordinary lstsq.
+    """
+    teams = sorted(set(window_df["home_team_name"]) | set(window_df["visitor_team_name"]))
+    team_idx = {t: i for i, t in enumerate(teams)}
+    n_teams = len(teams)
+    n_games = len(window_df)
+
+    X = np.zeros((n_games + 1, n_teams))
+    y = np.zeros(n_games + 1)
+    w = np.zeros(n_games + 1)
+
+    home_pts = window_df["home_pts"].to_numpy(dtype=float)
+    visitor_pts = window_df["visitor_pts"].to_numpy(dtype=float)
+    weights = window_df["date_weight"].to_numpy(dtype=float)
+    home_names = window_df["home_team_name"].to_numpy()
+    visitor_names = window_df["visitor_team_name"].to_numpy()
+
+    raw_margin = home_pts - visitor_pts - hca
+    transformed = _apply_margin_transform(raw_margin, margin_transform, margin_cap)
+
+    for i in range(n_games):
+        X[i, team_idx[home_names[i]]] = 1.0
+        X[i, team_idx[visitor_names[i]]] = -1.0
+
+    if weighting_mode == "wls":
+        y[:n_games] = transformed
+        w[:n_games] = weights
+    elif weighting_mode == "margin_scale":
+        y[:n_games] = transformed * weights
+        w[:n_games] = 1.0
+    else:
+        raise ValueError(f"Unknown WEIGHTING_MODE: {weighting_mode}")
+
+    # Zero-sum constraint via high-weight extra row.
+    X[-1, :] = 1.0
+    y[-1] = 0.0
+    w[-1] = 1.0e8
+
+    sqrt_w = np.sqrt(w)
+    Xw = X * sqrt_w[:, None]
+    yw = y * sqrt_w
+    r, *_ = np.linalg.lstsq(Xw, yw, rcond=None)
+
+    out = pd.DataFrame({"name": teams, "rating": r})
+    out["rank"] = out["rating"].rank(ascending=False, method="min").astype(int)
+    return out
+
 
 def compute_ratings(master_df, existing_ratings_df):
     """
@@ -235,15 +294,18 @@ def compute_ratings(master_df, existing_ratings_df):
         ].copy()
 
         window['date_weight'] = (window['grouped_date_id'] - i + ROLLING_WINDOW) / ROLLING_WINDOW
-        window['visitor_weighted_margin'] = window['visitor_adjusted_margin'] * window['date_weight']
-        window['home_weighted_margin'] = -window['visitor_weighted_margin']
 
         current_date = window['date_game'].max()
         season = window['season'].max()
         print(current_date)
 
-        wnba_table = Table(window, ['visitor_team_name', 'home_team_name', 'visitor_weighted_margin', 'home_weighted_margin'])
-        ranked = MasseyRanker(wnba_table).rank()
+        ranked = _solve_massey(
+            window,
+            hca=HOME_COURT_ADJUSTMENT,
+            weighting_mode=WEIGHTING_MODE,
+            margin_transform=MARGIN_TRANSFORM,
+            margin_cap=MARGIN_CAP,
+        )
         ranked['ranking_date'] = current_date
         ranked['ranking_id'] = i
         ranked['season'] = season
