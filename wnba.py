@@ -15,9 +15,11 @@ MIN_SEASON = 1997             # first WNBA season — DO NOT CHANGE
 ROLLING_WINDOW = 50           # number of game-days used in Massey rating window
 HOME_COURT_ADJUSTMENT = 2.0   # raw-point home advantage, subtracted from home margin pre-transform
 
-# Margin transform: raw | sqrt | cap | log | tanh. sqrt matches the
-# pre-WLS convention; the others are available for future investigations.
-MARGIN_TRANSFORM = "sqrt"
+# Margin transform: raw | sqrt | cap | log | tanh. cap=25 places the
+# threshold at ~p94 of WNBA margins — typical games count linearly (the
+# rating reads as an expected point spread), the ~6% of garbage-time
+# blowouts get clipped so they don't dominate the solve.
+MARGIN_TRANSFORM = "cap"
 MARGIN_CAP = 25  # only used by cap / tanh
 
 # Weighting mode: "wls" applies recency weights to observation influence
