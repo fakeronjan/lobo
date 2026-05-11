@@ -12,7 +12,12 @@ from datetime import datetime, date
 # =========================================================
 
 MIN_SEASON = 1997             # first WNBA season — DO NOT CHANGE
-ROLLING_WINDOW = 50           # number of game-days used in Massey rating window
+
+# Season-aware rolling window: window (game-days) = WINDOW_MULTIPLIER * games-per-team-per-season.
+# At 1.5, a 44-game modern season gets a 66-day window (~57% of season). Bubble/lockout
+# seasons get proportionally smaller windows automatically via REGULAR_SEASON_GAMES.
+WINDOW_MULTIPLIER = 1.5
+
 HOME_COURT_ADJUSTMENT = 2.0   # raw-point home advantage, subtracted from home margin pre-transform
 
 # Margin transform: raw | sqrt | cap | log | tanh. cap=25 places the
@@ -265,14 +270,26 @@ def _solve_massey(window_df, hca, weighting_mode, margin_transform, margin_cap):
     return out
 
 
+def _window_for_season(season):
+    """Season-aware window size: WINDOW_MULTIPLIER × regular-season games per team."""
+    reg_games = REGULAR_SEASON_GAMES.get(int(season), 34)
+    return int(round(reg_games * WINDOW_MULTIPLIER))
+
+
+# Largest window across any season — used as the floor for the first usable ranking_id
+# so that even the bubble (smallest window) starts when its window can be filled.
+_MAX_WINDOW = max(_window_for_season(s) for s in REGULAR_SEASON_GAMES)
+
+
 def compute_ratings(master_df, existing_ratings_df):
     """
-    Compute daily Massey power ratings using a rolling ROLLING_WINDOW-day window.
-    Skips dates already present in existing_ratings_df. Re-processes the most
-    recent RECOMPUTE_TAIL_DAYS ranking_ids each run to absorb late-arriving data.
+    Compute daily Massey power ratings using a season-aware rolling window
+    (WINDOW_MULTIPLIER × games-per-team-this-season). Skips dates already
+    present in existing_ratings_df. Re-processes the most recent
+    RECOMPUTE_TAIL_DAYS ranking_ids each run to absorb late-arriving data.
     """
     max_date_id = max(master_df['grouped_date_id'])
-    min_date_id = ROLLING_WINDOW
+    min_date_id = _MAX_WINDOW
     all_ids = sorted(existing_ratings_df['ranking_id'].unique())
     if len(all_ids) > RECOMPUTE_TAIL_DAYS:
         tail_threshold = all_ids[-RECOMPUTE_TAIL_DAYS]
@@ -286,16 +303,32 @@ def compute_ratings(master_df, existing_ratings_df):
     print("Running WNBA ratings for new data...")
     new_frames = []
 
+    # Determine each ranking_id's season once up front so window sizing is fast.
+    rid_to_season = (
+        master_df.sort_values('grouped_date_id')
+                 .drop_duplicates('grouped_date_id', keep='last')
+                 .set_index('grouped_date_id')['season']
+                 .to_dict()
+    )
+
     for i in range(min_date_id, max_date_id + 1):
         if min_ranked <= i <= max_ranked:
             continue
 
+        # Season of this ranking_id determines window size. For game-days
+        # without a game (rare), fall back to the most recent earlier season.
+        season_for_window = rid_to_season.get(i)
+        if season_for_window is None:
+            prior_ids = [k for k in rid_to_season if k < i]
+            season_for_window = rid_to_season[max(prior_ids)] if prior_ids else MIN_SEASON
+        window_size = _window_for_season(season_for_window)
+
         window = master_df[
-            (master_df['grouped_date_id'] >= i - (ROLLING_WINDOW - 1)) &
+            (master_df['grouped_date_id'] >= i - (window_size - 1)) &
             (master_df['grouped_date_id'] <= i)
         ].copy()
 
-        window['date_weight'] = (window['grouped_date_id'] - i + ROLLING_WINDOW) / ROLLING_WINDOW
+        window['date_weight'] = (window['grouped_date_id'] - i + window_size) / window_size
 
         current_date = window['date_game'].max()
         season = window['season'].max()
@@ -344,7 +377,7 @@ def compute_standings(master_df, existing_standings_df):
     """
     game_df = master_df[['season', 'date_game', 'grouped_date_id', 'visitor_team_name', 'visitor_win', 'home_team_name', 'home_win']]
     max_date_id = max(master_df['grouped_date_id'])
-    min_date_id = ROLLING_WINDOW
+    min_date_id = _MAX_WINDOW
     all_ids = sorted(existing_standings_df['ranking_id'].unique())
     if len(all_ids) > RECOMPUTE_TAIL_DAYS:
         tail_threshold = all_ids[-RECOMPUTE_TAIL_DAYS]
