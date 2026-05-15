@@ -1,4 +1,201 @@
 ranking_id,date,season,name,rating,rank,record,current_date,season_flag,name_season,champ,runnerup,finals_status,cup_champ,cup_runnerup,cup_status,last_game_result,opponent
+42,1997-08-05,1997,Charlotte Sting,3.782984490235824,3,10-8,0,0,Charlotte Sting - 1997,0,0,0,0,0,0,,
+42,1997-08-05,1997,Cleveland Rockers,3.8178941188405617,2,11-9,0,0,Cleveland Rockers - 1997,0,0,0,0,0,0,L vs. Houston Comets 66-76,Houston Comets
+42,1997-08-05,1997,Houston Comets,5.1044292348793086,1,12-7,0,0,Houston Comets - 1997,1,0,2,0,0,0,W @ Cleveland Rockers 76-66,Cleveland Rockers
+42,1997-08-05,1997,Los Angeles Sparks,1.9408454447185148,5,9-12,0,0,Los Angeles Sparks - 1997,0,0,0,0,0,0,W @ New York Liberty 67-50,New York Liberty
+42,1997-08-05,1997,New York Liberty,2.374535696167825,4,15-5,0,0,New York Liberty - 1997,0,1,1,0,0,0,L vs. Los Angeles Sparks 50-67,Los Angeles Sparks
+42,1997-08-05,1997,Phoenix Mercury,1.0264425531307608,6,9-9,0,0,Phoenix Mercury - 1997,0,0,0,0,0,0,,
+42,1997-08-05,1997,Sacramento Monarchs,-11.429278435228998,8,5-14,0,0,Sacramento Monarchs - 1997,0,0,0,0,0,0,,
+42,1997-08-05,1997,Utah Starzz,-6.617853102743802,7,6-13,0,0,Utah Starzz - 1997,0,0,0,0,0,0,,
+43,1997-08-06,1997,Charlotte Sting,1.537563409369213,6,10-9,0,0,Charlotte Sting - 1997,0,0,0,0,0,0,L @ Sacramento Monarchs 64-77,Sacramento Monarchs
+43,1997-08-06,1997,Cleveland Rockers,4.110891558206917,2,11-9,0,0,Cleveland Rockers - 1997,0,0,0,0,0,0,,
+43,1997-08-06,1997,Houston Comets,5.324863652612828,1,12-7,0,0,Houston Comets - 1997,1,0,2,0,0,0,,
+43,1997-08-06,1997,Los Angeles Sparks,1.8600933892101967,5,9-12,0,0,Los Angeles Sparks - 1997,0,0,0,0,0,0,,
+43,1997-08-06,1997,New York Liberty,1.9630824861930165,4,15-5,0,0,New York Liberty - 1997,0,1,1,0,0,0,,
+43,1997-08-06,1997,Phoenix Mercury,2.65036858123705,3,10-9,0,0,Phoenix Mercury - 1997,0,0,0,0,0,0,W vs. Utah Starzz 78-46,Utah Starzz
+43,1997-08-06,1997,Sacramento Monarchs,-9.20377585144585,8,6-14,0,0,Sacramento Monarchs - 1997,0,0,0,0,0,0,W vs. Charlotte Sting 77-64,Charlotte Sting
+43,1997-08-06,1997,Utah Starzz,-8.243087225383379,7,6-14,0,0,Utah Starzz - 1997,0,0,0,0,0,0,L @ Phoenix Mercury 46-78,Phoenix Mercury
+44,1997-08-07,1997,Charlotte Sting,1.593533260924492,6,10-9,0,0,Charlotte Sting - 1997,0,0,0,0,0,0,,
+44,1997-08-07,1997,Cleveland Rockers,3.662592692691311,2,11-10,0,0,Cleveland Rockers - 1997,0,0,0,0,0,0,L vs. Los Angeles Sparks 84-87,Los Angeles Sparks
+44,1997-08-07,1997,Houston Comets,5.249010259690652,1,13-7,0,0,Houston Comets - 1997,1,0,2,0,0,0,W vs. Phoenix Mercury 74-70,Phoenix Mercury
+44,1997-08-07,1997,Los Angeles Sparks,2.4396203883637977,4,10-12,0,0,Los Angeles Sparks - 1997,0,0,0,0,0,0,W @ Cleveland Rockers 87-84,Cleveland Rockers
+44,1997-08-07,1997,New York Liberty,1.9224757471210765,5,15-5,0,0,New York Liberty - 1997,0,1,1,0,0,0,,
+44,1997-08-07,1997,Phoenix Mercury,2.6378024386953185,3,10-10,0,0,Phoenix Mercury - 1997,0,0,0,0,0,0,L @ Houston Comets 70-74,Houston Comets
+44,1997-08-07,1997,Sacramento Monarchs,-9.251230100156478,8,6-14,0,0,Sacramento Monarchs - 1997,0,0,0,0,0,0,,
+44,1997-08-07,1997,Utah Starzz,-8.253804687330174,7,6-14,0,0,Utah Starzz - 1997,0,0,0,0,0,0,,
+45,1997-08-08,1997,Charlotte Sting,1.6126542759900837,6,10-9,0,0,Charlotte Sting - 1997,0,0,0,0,0,0,,
+45,1997-08-08,1997,Cleveland Rockers,3.796122313176689,2,11-10,0,0,Cleveland Rockers - 1997,0,0,0,0,0,0,,
+45,1997-08-08,1997,Houston Comets,5.280263939358673,1,13-7,0,0,Houston Comets - 1997,1,0,2,0,0,0,,
+45,1997-08-08,1997,Los Angeles Sparks,2.4979272420227407,4,10-12,0,0,Los Angeles Sparks - 1997,0,0,0,0,0,0,,
+45,1997-08-08,1997,New York Liberty,1.7578816760772795,5,15-5,0,0,New York Liberty - 1997,0,1,1,0,0,0,,
+45,1997-08-08,1997,Phoenix Mercury,2.6733150693790573,3,10-10,0,0,Phoenix Mercury - 1997,0,0,0,0,0,0,,
+45,1997-08-08,1997,Sacramento Monarchs,-8.119539614954489,7,7-14,0,0,Sacramento Monarchs - 1997,0,0,0,0,0,0,W vs. Utah Starzz 93-78,Utah Starzz
+45,1997-08-08,1997,Utah Starzz,-9.49862490105004,8,6-15,0,0,Utah Starzz - 1997,0,0,0,0,0,0,L @ Sacramento Monarchs 78-93,Sacramento Monarchs
+46,1997-08-09,1997,Charlotte Sting,3.317302294241341,3,11-9,0,0,Charlotte Sting - 1997,0,0,0,0,0,0,W vs. Phoenix Mercury 79-59,Phoenix Mercury
+46,1997-08-09,1997,Cleveland Rockers,3.827833917875952,2,11-10,0,0,Cleveland Rockers - 1997,0,0,0,0,0,0,,
+46,1997-08-09,1997,Houston Comets,4.715024087679565,1,14-7,0,0,Houston Comets - 1997,1,0,2,0,0,0,W vs. Los Angeles Sparks 72-71,Los Angeles Sparks
+46,1997-08-09,1997,Los Angeles Sparks,2.837081052405777,4,10-13,0,0,Los Angeles Sparks - 1997,0,0,0,0,0,0,L @ Houston Comets 71-72,Houston Comets
+46,1997-08-09,1997,New York Liberty,1.85468817776329,5,15-5,0,0,New York Liberty - 1997,0,1,1,0,0,0,,
+46,1997-08-09,1997,Phoenix Mercury,1.1380289981171177,6,10-11,0,0,Phoenix Mercury - 1997,0,0,0,0,0,0,L @ Charlotte Sting 59-79,Charlotte Sting
+46,1997-08-09,1997,Sacramento Monarchs,-8.17609862528191,7,7-14,0,0,Sacramento Monarchs - 1997,0,0,0,0,0,0,,
+46,1997-08-09,1997,Utah Starzz,-9.51385990280114,8,6-15,0,0,Utah Starzz - 1997,0,0,0,0,0,0,,
+47,1997-08-10,1997,Charlotte Sting,3.2809870286306637,3,11-9,0,0,Charlotte Sting - 1997,0,0,0,0,0,0,,
+47,1997-08-10,1997,Cleveland Rockers,4.031369569320177,2,11-10,0,0,Cleveland Rockers - 1997,0,0,0,0,0,0,,
+47,1997-08-10,1997,Houston Comets,4.898090363418082,1,14-7,0,0,Houston Comets - 1997,1,0,2,0,0,0,,
+47,1997-08-10,1997,Los Angeles Sparks,2.8298740967178486,4,10-13,0,0,Los Angeles Sparks - 1997,0,0,0,0,0,0,,
+47,1997-08-10,1997,New York Liberty,0.2763575998070088,6,15-6,0,0,New York Liberty - 1997,0,1,1,0,0,0,L @ Sacramento Monarchs 69-76,Sacramento Monarchs
+47,1997-08-10,1997,Phoenix Mercury,1.1660638395096816,5,10-11,0,0,Phoenix Mercury - 1997,0,0,0,0,0,0,,
+47,1997-08-10,1997,Sacramento Monarchs,-6.99772727658194,7,8-14,0,0,Sacramento Monarchs - 1997,0,0,0,0,0,0,W vs. New York Liberty 76-69,New York Liberty
+47,1997-08-10,1997,Utah Starzz,-9.48501522082153,8,6-15,0,0,Utah Starzz - 1997,0,0,0,0,0,0,,
+48,1997-08-11,1997,Charlotte Sting,2.3029560635274957,4,11-10,0,0,Charlotte Sting - 1997,0,0,0,0,0,0,L vs. Houston Comets 62-72,Houston Comets
+48,1997-08-11,1997,Cleveland Rockers,4.527138648862475,2,12-10,0,0,Cleveland Rockers - 1997,0,0,0,0,0,0,W @ Utah Starzz 74-59,Utah Starzz
+48,1997-08-11,1997,Houston Comets,5.922095918286587,1,15-7,0,0,Houston Comets - 1997,1,0,2,0,0,0,W @ Charlotte Sting 72-62,Charlotte Sting
+48,1997-08-11,1997,Los Angeles Sparks,2.9588711570517523,3,10-13,0,0,Los Angeles Sparks - 1997,0,0,0,0,0,0,,
+48,1997-08-11,1997,New York Liberty,-0.0347193157706551,6,15-6,0,0,New York Liberty - 1997,0,1,1,0,0,0,,
+48,1997-08-11,1997,Phoenix Mercury,1.1198020260361756,5,10-11,0,0,Phoenix Mercury - 1997,0,0,0,0,0,0,,
+48,1997-08-11,1997,Sacramento Monarchs,-7.038564252994753,7,8-14,0,0,Sacramento Monarchs - 1997,0,0,0,0,0,0,,
+48,1997-08-11,1997,Utah Starzz,-9.757580244999083,8,6-16,0,0,Utah Starzz - 1997,0,0,0,0,0,0,L vs. Cleveland Rockers 59-74,Cleveland Rockers
+49,1997-08-12,1997,Charlotte Sting,2.300863210950002,4,11-10,0,0,Charlotte Sting - 1997,0,0,0,0,0,0,,
+49,1997-08-12,1997,Cleveland Rockers,3.527118425593073,2,12-11,0,0,Cleveland Rockers - 1997,0,0,0,0,0,0,L @ Sacramento Monarchs 76-81,Sacramento Monarchs
+49,1997-08-12,1997,Houston Comets,6.193081754002259,1,16-7,0,0,Houston Comets - 1997,1,0,2,0,0,0,W vs. Utah Starzz 76-56,Utah Starzz
+49,1997-08-12,1997,Los Angeles Sparks,2.927504014099424,3,10-13,0,0,Los Angeles Sparks - 1997,0,0,0,0,0,0,,
+49,1997-08-12,1997,New York Liberty,-0.7229648786719685,6,15-7,0,0,New York Liberty - 1997,0,1,1,0,0,0,L @ Phoenix Mercury 67-77,Phoenix Mercury
+49,1997-08-12,1997,Phoenix Mercury,1.6388664128994903,5,11-11,0,0,Phoenix Mercury - 1997,0,0,0,0,0,0,W vs. New York Liberty 77-67,New York Liberty
+49,1997-08-12,1997,Sacramento Monarchs,-5.8782964376287135,7,9-14,0,0,Sacramento Monarchs - 1997,0,0,0,0,0,0,W vs. Cleveland Rockers 81-76,Cleveland Rockers
+49,1997-08-12,1997,Utah Starzz,-9.986172501243573,8,6-17,0,0,Utah Starzz - 1997,0,0,0,0,0,0,L @ Houston Comets 56-76,Houston Comets
+50,1997-08-14,1997,Charlotte Sting,2.812581741173306,4,12 - 10,0,0,Charlotte Sting - 1997,0,0,0,0,0,0,W vs. Sacramento Monarchs 68-51,Sacramento Monarchs
+50,1997-08-14,1997,Cleveland Rockers,3.127158723726648,2,12 - 12,0,0,Cleveland Rockers - 1997,0,0,0,0,0,0,L @ Phoenix Mercury 55-61,Phoenix Mercury
+50,1997-08-14,1997,Houston Comets,6.231447268324916,1,16 - 7,0,0,Houston Comets - 1997,1,0,2,0,0,0,,
+50,1997-08-14,1997,Los Angeles Sparks,2.953425793817945,3,10 - 13,0,0,Los Angeles Sparks - 1997,0,0,0,0,0,0,,
+50,1997-08-14,1997,New York Liberty,-0.8167479828917693,6,15 - 7,0,0,New York Liberty - 1997,0,1,1,0,0,0,,
+50,1997-08-14,1997,Phoenix Mercury,2.030075928632593,5,12 - 11,0,0,Phoenix Mercury - 1997,0,0,0,0,0,0,W vs. Cleveland Rockers 61-55,Cleveland Rockers
+50,1997-08-14,1997,Sacramento Monarchs,-6.3420363853753,7,9 - 15,0,0,Sacramento Monarchs - 1997,0,0,0,0,0,0,L @ Charlotte Sting 51-68,Charlotte Sting
+50,1997-08-14,1997,Utah Starzz,-9.995905087408344,8,6 - 17,0,0,Utah Starzz - 1997,0,0,0,0,0,0,,
+51,1997-08-15,1997,Charlotte Sting,2.703449959041097,4,12 - 10,0,0,Charlotte Sting - 1997,0,0,0,0,0,0,,
+51,1997-08-15,1997,Cleveland Rockers,3.1427797092412177,2,12 - 12,0,0,Cleveland Rockers - 1997,0,0,0,0,0,0,,
+51,1997-08-15,1997,Houston Comets,6.215129996928339,1,16 - 7,0,0,Houston Comets - 1997,1,0,2,0,0,0,,
+51,1997-08-15,1997,Los Angeles Sparks,3.00714108921893,3,10 - 13,0,0,Los Angeles Sparks - 1997,0,0,0,0,0,0,,
+51,1997-08-15,1997,New York Liberty,-0.1902236080388201,6,16 - 7,0,0,New York Liberty - 1997,0,1,1,0,0,0,W vs. Sacramento Monarchs 79-63,Sacramento Monarchs
+51,1997-08-15,1997,Phoenix Mercury,2.0206401254043715,5,12 - 11,0,0,Phoenix Mercury - 1997,0,0,0,0,0,0,,
+51,1997-08-15,1997,Sacramento Monarchs,-6.90207411620692,7,9 - 16,0,0,Sacramento Monarchs - 1997,0,0,0,0,0,0,L @ New York Liberty 63-79,New York Liberty
+51,1997-08-15,1997,Utah Starzz,-9.996843155588223,8,6 - 17,0,0,Utah Starzz - 1997,0,0,0,0,0,0,,
+52,1997-08-16,1997,Charlotte Sting,3.558954539911967,2,13 - 10,0,0,Charlotte Sting - 1997,0,0,0,0,0,0,W vs. Houston Comets 80-71,Houston Comets
+52,1997-08-16,1997,Cleveland Rockers,3.127661719194119,3,12 - 12,0,0,Cleveland Rockers - 1997,0,0,0,0,0,0,,
+52,1997-08-16,1997,Houston Comets,5.357575513860246,1,16 - 8,0,0,Houston Comets - 1997,1,0,2,0,0,0,L @ Charlotte Sting 71-80,Charlotte Sting
+52,1997-08-16,1997,Los Angeles Sparks,2.896029318144534,4,11 - 13,0,0,Los Angeles Sparks - 1997,0,0,0,0,0,0,W @ Utah Starzz 74-64,Utah Starzz
+52,1997-08-16,1997,New York Liberty,-0.1754184028161483,6,16 - 7,0,0,New York Liberty - 1997,0,1,1,0,0,0,,
+52,1997-08-16,1997,Phoenix Mercury,1.9893093363721024,5,12 - 11,0,0,Phoenix Mercury - 1997,0,0,0,0,0,0,,
+52,1997-08-16,1997,Sacramento Monarchs,-6.780487632455404,7,9 - 16,0,0,Sacramento Monarchs - 1997,0,0,0,0,0,0,,
+52,1997-08-16,1997,Utah Starzz,-9.973624392211422,8,6 - 18,0,0,Utah Starzz - 1997,0,0,0,0,0,0,L vs. Los Angeles Sparks 64-74,Los Angeles Sparks
+53,1997-08-17,1997,Charlotte Sting,1.5081895317844032,5,13 - 11,0,0,Charlotte Sting - 1997,0,0,0,0,0,0,L @ Cleveland Rockers 49-81,Cleveland Rockers
+53,1997-08-17,1997,Cleveland Rockers,5.370449010099158,2,13 - 12,0,0,Cleveland Rockers - 1997,0,0,0,0,0,0,W vs. Charlotte Sting 81-49,Charlotte Sting
+53,1997-08-17,1997,Houston Comets,6.324000375359014,1,17 - 8,0,0,Houston Comets - 1997,1,0,2,0,0,0,W @ New York Liberty 70-55,New York Liberty
+53,1997-08-17,1997,Los Angeles Sparks,3.1233159808512827,3,11 - 13,0,0,Los Angeles Sparks - 1997,0,0,0,0,0,0,,
+53,1997-08-17,1997,New York Liberty,-1.6708260786222473,6,16 - 8,0,0,New York Liberty - 1997,0,1,1,0,0,0,L vs. Houston Comets 55-70,Houston Comets
+53,1997-08-17,1997,Phoenix Mercury,1.5672688977684004,4,13 - 11,0,0,Phoenix Mercury - 1997,0,0,0,0,0,0,W vs. Utah Starzz 71-63,Utah Starzz
+53,1997-08-17,1997,Sacramento Monarchs,-7.013444925386167,7,9 - 16,0,0,Sacramento Monarchs - 1997,0,0,0,0,0,0,,
+53,1997-08-17,1997,Utah Starzz,-9.208952791853845,8,6 - 19,0,0,Utah Starzz - 1997,0,0,0,0,0,0,L @ Phoenix Mercury 63-71,Phoenix Mercury
+54,1997-08-18,1997,Charlotte Sting,1.4561496545499648,4,13 - 11,0,0,Charlotte Sting - 1997,0,0,0,0,0,0,,
+54,1997-08-18,1997,Cleveland Rockers,5.449862458221646,2,13 - 12,0,0,Cleveland Rockers - 1997,0,0,0,0,0,0,,
+54,1997-08-18,1997,Houston Comets,6.375318134034974,1,17 - 8,0,0,Houston Comets - 1997,1,0,2,0,0,0,,
+54,1997-08-18,1997,Los Angeles Sparks,3.669140764468091,3,12 - 13,0,0,Los Angeles Sparks - 1997,0,0,0,0,0,0,W vs. Phoenix Mercury 75-66,Phoenix Mercury
+54,1997-08-18,1997,New York Liberty,-1.847135811434552,6,16 - 8,0,0,New York Liberty - 1997,0,1,1,0,0,0,,
+54,1997-08-18,1997,Phoenix Mercury,1.1018893799261216,5,13 - 12,0,0,Phoenix Mercury - 1997,0,0,0,0,0,0,L @ Los Angeles Sparks 66-75,Los Angeles Sparks
+54,1997-08-18,1997,Sacramento Monarchs,-7.057085531330399,7,9 - 16,0,0,Sacramento Monarchs - 1997,0,0,0,0,0,0,,
+54,1997-08-18,1997,Utah Starzz,-9.148139048435846,8,6 - 19,0,0,Utah Starzz - 1997,0,0,0,0,0,0,,
+55,1997-08-19,1997,Charlotte Sting,1.3271599249519952,4,13 - 12,0,0,Charlotte Sting - 1997,0,0,0,0,0,0,L @ Houston Comets 69-77,Houston Comets
+55,1997-08-19,1997,Cleveland Rockers,5.636599040805296,2,13 - 12,0,0,Cleveland Rockers - 1997,0,0,0,0,0,0,,
+55,1997-08-19,1997,Houston Comets,6.555056188552682,1,18 - 8,0,0,Houston Comets - 1997,1,0,2,0,0,0,W vs. Charlotte Sting 77-69,Charlotte Sting
+55,1997-08-19,1997,Los Angeles Sparks,3.8424364735917846,3,12 - 13,0,0,Los Angeles Sparks - 1997,0,0,0,0,0,0,,
+55,1997-08-19,1997,New York Liberty,-3.0786155519211507,6,16 - 9,0,0,New York Liberty - 1997,0,1,1,0,0,0,L @ Utah Starzz 75-81,Utah Starzz
+55,1997-08-19,1997,Phoenix Mercury,1.0973328121932295,5,13 - 12,0,0,Phoenix Mercury - 1997,0,0,0,0,0,0,,
+55,1997-08-19,1997,Sacramento Monarchs,-7.221254777625703,7,9 - 16,0,0,Sacramento Monarchs - 1997,0,0,0,0,0,0,,
+55,1997-08-19,1997,Utah Starzz,-8.158714110548138,8,7 - 19,0,0,Utah Starzz - 1997,0,0,0,0,0,0,W vs. New York Liberty 81-75,New York Liberty
+56,1997-08-20,1997,Charlotte Sting,1.2329206156723316,5,13 - 12,0,0,Charlotte Sting - 1997,0,0,0,0,0,0,,
+56,1997-08-20,1997,Cleveland Rockers,5.708611971191269,2,13 - 12,0,0,Cleveland Rockers - 1997,0,0,0,0,0,0,,
+56,1997-08-20,1997,Houston Comets,6.530064199825866,1,18 - 8,0,0,Houston Comets - 1997,1,0,2,0,0,0,,
+56,1997-08-20,1997,Los Angeles Sparks,3.369658338364029,3,13 - 13,0,0,Los Angeles Sparks - 1997,0,0,0,0,0,0,W vs. New York Liberty 78-76,New York Liberty
+56,1997-08-20,1997,New York Liberty,-2.6361254491902755,6,16 - 10,0,0,New York Liberty - 1997,0,1,1,0,0,0,L @ Los Angeles Sparks 76-78,Los Angeles Sparks
+56,1997-08-20,1997,Phoenix Mercury,1.7107998670238218,4,14 - 12,0,0,Phoenix Mercury - 1997,0,0,0,0,0,0,W @ Sacramento Monarchs 69-54,Sacramento Monarchs
+56,1997-08-20,1997,Sacramento Monarchs,-7.869556485506704,7,9 - 17,0,0,Sacramento Monarchs - 1997,0,0,0,0,0,0,L vs. Phoenix Mercury 54-69,Phoenix Mercury
+56,1997-08-20,1997,Utah Starzz,-8.046373057380341,8,7 - 19,0,0,Utah Starzz - 1997,0,0,0,0,0,0,,
+57,1997-08-21,1997,Charlotte Sting,1.4003846389043924,5,14 - 12,0,0,Charlotte Sting - 1997,0,0,0,0,0,0,W @ Utah Starzz 66-56,Utah Starzz
+57,1997-08-21,1997,Cleveland Rockers,6.130585279100113,2,14 - 12,0,0,Cleveland Rockers - 1997,0,0,0,0,0,0,W @ Houston Comets 76-75,Houston Comets
+57,1997-08-21,1997,Houston Comets,6.249887425237743,1,18 - 9,0,0,Houston Comets - 1997,1,0,2,0,0,0,L vs. Cleveland Rockers 75-76,Cleveland Rockers
+57,1997-08-21,1997,Los Angeles Sparks,3.393098492991875,3,13 - 13,0,0,Los Angeles Sparks - 1997,0,0,0,0,0,0,,
+57,1997-08-21,1997,New York Liberty,-2.772280276980586,6,16 - 10,0,0,New York Liberty - 1997,0,1,1,0,0,0,,
+57,1997-08-21,1997,Phoenix Mercury,1.7030557360455385,4,14 - 12,0,0,Phoenix Mercury - 1997,0,0,0,0,0,0,,
+57,1997-08-21,1997,Sacramento Monarchs,-7.860206550339966,7,9 - 17,0,0,Sacramento Monarchs - 1997,0,0,0,0,0,0,,
+57,1997-08-21,1997,Utah Starzz,-8.24452474495911,8,7 - 20,0,0,Utah Starzz - 1997,0,0,0,0,0,0,L vs. Charlotte Sting 56-66,Charlotte Sting
+58,1997-08-22,1997,Charlotte Sting,0.4450678966281113,5,14 - 13,0,0,Charlotte Sting - 1997,0,0,0,0,0,0,L @ Phoenix Mercury 63-78,Phoenix Mercury
+58,1997-08-22,1997,Cleveland Rockers,6.246982569322448,1,14 - 12,0,0,Cleveland Rockers - 1997,0,0,0,0,0,0,,
+58,1997-08-22,1997,Houston Comets,6.104601442859082,2,18 - 9,0,0,Houston Comets - 1997,1,0,2,0,0,0,,
+58,1997-08-22,1997,Los Angeles Sparks,3.283550797884146,3,14 - 13,0,0,Los Angeles Sparks - 1997,0,0,0,0,0,0,W vs. Sacramento Monarchs 88-77,Sacramento Monarchs
+58,1997-08-22,1997,New York Liberty,-2.827269376396783,6,16 - 10,0,0,New York Liberty - 1997,0,1,1,0,0,0,,
+58,1997-08-22,1997,Phoenix Mercury,2.640638673352223,4,15 - 12,0,0,Phoenix Mercury - 1997,0,0,0,0,0,0,W vs. Charlotte Sting 78-63,Charlotte Sting
+58,1997-08-22,1997,Sacramento Monarchs,-7.650733437197645,7,9 - 18,0,0,Sacramento Monarchs - 1997,0,0,0,0,0,0,L @ Los Angeles Sparks 77-88,Los Angeles Sparks
+58,1997-08-22,1997,Utah Starzz,-8.242838566451585,8,7 - 20,0,0,Utah Starzz - 1997,0,0,0,0,0,0,,
+59,1997-08-23,1997,Charlotte Sting,0.3459810724886249,5,14 - 13,0,0,Charlotte Sting - 1997,0,0,0,0,0,0,,
+59,1997-08-23,1997,Cleveland Rockers,5.404839632508221,2,15 - 12,0,0,Cleveland Rockers - 1997,0,0,0,0,0,0,W vs. New York Liberty 72-71,New York Liberty
+59,1997-08-23,1997,Houston Comets,6.00586522350642,1,18 - 9,0,0,Houston Comets - 1997,1,0,2,0,0,0,,
+59,1997-08-23,1997,Los Angeles Sparks,3.38796002572758,3,14 - 13,0,0,Los Angeles Sparks - 1997,0,0,0,0,0,0,,
+59,1997-08-23,1997,New York Liberty,-1.9785742956025685,6,16 - 11,0,0,New York Liberty - 1997,0,1,1,0,0,0,L @ Cleveland Rockers 71-72,Cleveland Rockers
+59,1997-08-23,1997,Phoenix Mercury,2.635396501844005,4,15 - 12,0,0,Phoenix Mercury - 1997,0,0,0,0,0,0,,
+59,1997-08-23,1997,Sacramento Monarchs,-7.557786070630214,7,9 - 18,0,0,Sacramento Monarchs - 1997,0,0,0,0,0,0,,
+59,1997-08-23,1997,Utah Starzz,-8.243682089842071,8,7 - 20,0,0,Utah Starzz - 1997,0,0,0,0,0,0,,
+60,1997-08-24,1997,Charlotte Sting,0.715312741136451,5,15 - 13,0,1,Charlotte Sting - 1997,0,0,0,0,0,0,W vs. Utah Starzz 70-52,Utah Starzz
+60,1997-08-24,1997,Cleveland Rockers,4.35538361401013,1,15 - 13,0,1,Cleveland Rockers - 1997,0,0,0,0,0,0,L @ New York Liberty 72-79,New York Liberty
+60,1997-08-24,1997,Houston Comets,3.73726711806233,2,18 - 10,0,1,Houston Comets - 1997,1,0,2,0,0,0,L vs. Sacramento Monarchs 58-68,Sacramento Monarchs
+60,1997-08-24,1997,Los Angeles Sparks,3.2087468940822226,3,14 - 14,0,1,Los Angeles Sparks - 1997,0,0,0,0,0,0,L @ Phoenix Mercury 68-73,Phoenix Mercury
+60,1997-08-24,1997,New York Liberty,-0.8936074411926095,6,17 - 11,0,1,New York Liberty - 1997,0,1,1,0,0,0,W vs. Cleveland Rockers 79-72,Cleveland Rockers
+60,1997-08-24,1997,Phoenix Mercury,3.107018387647875,4,16 - 12,0,1,Phoenix Mercury - 1997,0,0,0,0,0,0,W vs. Los Angeles Sparks 73-68,Los Angeles Sparks
+60,1997-08-24,1997,Sacramento Monarchs,-5.243989784091625,7,10 - 18,0,1,Sacramento Monarchs - 1997,0,0,0,0,0,0,W @ Houston Comets 68-58,Houston Comets
+60,1997-08-24,1997,Utah Starzz,-8.986131529654784,8,7 - 21,0,1,Utah Starzz - 1997,0,0,0,0,0,0,L @ Charlotte Sting 52-70,Charlotte Sting
+61,1997-08-28,1997,Charlotte Sting,-0.2796495173233326,6,15 - 14,0,0,Charlotte Sting - 1997,0,0,0,0,0,0,L @ Houston Comets 54-70,Houston Comets
+61,1997-08-28,1997,Cleveland Rockers,4.571077282078869,1,15 - 13,0,0,Cleveland Rockers - 1997,0,0,0,0,0,0,,
+61,1997-08-28,1997,Houston Comets,4.424750789415174,2,19 - 10,0,0,Houston Comets - 1997,1,0,2,0,0,0,W vs. Charlotte Sting 70-54,Charlotte Sting
+61,1997-08-28,1997,Los Angeles Sparks,3.2012398771773567,3,14 - 14,0,0,Los Angeles Sparks - 1997,0,0,0,0,0,0,,
+61,1997-08-28,1997,New York Liberty,1.0004738010817873,5,18 - 11,0,0,New York Liberty - 1997,0,1,1,0,0,0,W @ Phoenix Mercury 59-41,Phoenix Mercury
+61,1997-08-28,1997,Phoenix Mercury,1.3732483926690264,4,16 - 13,0,0,Phoenix Mercury - 1997,0,0,0,0,0,0,L vs. New York Liberty 41-59,New York Liberty
+61,1997-08-28,1997,Sacramento Monarchs,-5.146499481821394,7,10 - 18,0,0,Sacramento Monarchs - 1997,0,0,0,0,0,0,,
+61,1997-08-28,1997,Utah Starzz,-9.144641143277491,8,7 - 21,0,0,Utah Starzz - 1997,0,0,0,0,0,0,,
+62,1997-08-30,1997,Charlotte Sting,-0.2192059588227498,6,15 - 14,0,2,Charlotte Sting - 1997,0,0,0,0,0,0,,
+62,1997-08-30,1997,Cleveland Rockers,4.60601173510748,2,15 - 13,0,2,Cleveland Rockers - 1997,0,0,0,0,0,0,,
+62,1997-08-30,1997,Houston Comets,5.05244625709646,1,20 - 10,0,2,Houston Comets - 1997,1,0,2,0,0,0,W vs. New York Liberty 65-51,New York Liberty
+62,1997-08-30,1997,Los Angeles Sparks,3.1798334603288563,3,14 - 14,0,2,Los Angeles Sparks - 1997,0,0,0,0,0,0,,
+62,1997-08-30,1997,New York Liberty,0.2724725552644815,5,18 - 12,0,2,New York Liberty - 1997,0,1,1,0,0,0,L @ Houston Comets 51-65,Houston Comets
+62,1997-08-30,1997,Phoenix Mercury,1.309643720637883,4,16 - 13,0,2,Phoenix Mercury - 1997,0,0,0,0,0,0,,
+62,1997-08-30,1997,Sacramento Monarchs,-5.064482918926056,7,10 - 18,0,2,Sacramento Monarchs - 1997,0,0,0,0,0,0,,
+62,1997-08-30,1997,Utah Starzz,-9.13671885068636,8,7 - 21,0,2,Utah Starzz - 1997,0,0,0,0,0,0,,
+63,1998-06-11,1998,Charlotte Sting,2.6530824822210866,6,1 - 0,0,0,Charlotte Sting - 1998,0,0,0,0,0,0,W vs. Washington Mystics 83-57,Washington Mystics
+63,1998-06-11,1998,Cleveland Rockers,7.238521329998987,2,1 - 0,0,0,Cleveland Rockers - 1998,0,0,0,0,0,0,W vs. New York Liberty 78-71,New York Liberty
+63,1998-06-11,1998,Houston Comets,7.811287331591567,1,0-0,0,0,Houston Comets - 1998,1,0,2,0,0,0,,
+63,1998-06-11,1998,Los Angeles Sparks,5.432291247667163,3,1 - 0,0,0,Los Angeles Sparks - 1998,0,0,0,0,0,0,W @ Utah Starzz 89-83,Utah Starzz
+63,1998-06-11,1998,New York Liberty,2.960626160897105,5,0 - 1,0,0,New York Liberty - 1998,0,0,0,0,0,0,L @ Cleveland Rockers 71-78,Cleveland Rockers
+63,1998-06-11,1998,Phoenix Mercury,3.8473068444549647,4,1 - 0,0,0,Phoenix Mercury - 1998,0,1,1,0,0,0,W @ Sacramento Monarchs 73-70,Sacramento Monarchs
+63,1998-06-11,1998,Sacramento Monarchs,-2.501008241440448,7,0 - 1,0,0,Sacramento Monarchs - 1998,0,0,0,0,0,0,L vs. Phoenix Mercury 70-73,Phoenix Mercury
+63,1998-06-11,1998,Utah Starzz,-6.095189637610956,8,0 - 1,0,0,Utah Starzz - 1998,0,0,0,0,0,0,L vs. Los Angeles Sparks 83-89,Los Angeles Sparks
+63,1998-06-11,1998,Washington Mystics,-21.34691751777947,9,0 - 1,0,0,Washington Mystics - 1998,0,0,0,0,0,0,L @ Charlotte Sting 57-83,Charlotte Sting
+64,1998-06-13,1998,Charlotte Sting,3.1710055348639465,5,2 - 0,0,0,Charlotte Sting - 1998,0,0,0,0,0,0,W @ Detroit Shock 78-69,Detroit Shock
+64,1998-06-13,1998,Cleveland Rockers,7.20763229266891,2,1 - 0,0,0,Cleveland Rockers - 1998,0,0,0,0,0,0,,
+64,1998-06-13,1998,Detroit Shock,-7.8289944651343,9,0 - 1,0,0,Detroit Shock - 1998,0,0,0,0,0,0,L vs. Charlotte Sting 69-78,Charlotte Sting
+64,1998-06-13,1998,Houston Comets,8.110490610518806,1,1 - 0,0,0,Houston Comets - 1998,1,0,2,0,0,0,W vs. New York Liberty 73-62,New York Liberty
+64,1998-06-13,1998,Los Angeles Sparks,5.320117932712373,3,1 - 0,0,0,Los Angeles Sparks - 1998,0,0,0,0,0,0,,
+64,1998-06-13,1998,New York Liberty,2.590132146079174,6,0 - 2,0,0,New York Liberty - 1998,0,0,0,0,0,0,L @ Houston Comets 62-73,Houston Comets
+64,1998-06-13,1998,Phoenix Mercury,3.810023834826612,4,1 - 0,0,0,Phoenix Mercury - 1998,0,1,1,0,0,0,,
+64,1998-06-13,1998,Sacramento Monarchs,-2.3998056546143376,7,0 - 1,0,0,Sacramento Monarchs - 1998,0,0,0,0,0,0,,
+64,1998-06-13,1998,Utah Starzz,-6.7671480759320914,8,1 - 1,0,0,Utah Starzz - 1998,0,0,0,0,0,0,W vs. Washington Mystics 78-77,Washington Mystics
+64,1998-06-13,1998,Washington Mystics,-13.213454155989094,10,0 - 2,0,0,Washington Mystics - 1998,0,0,0,0,0,0,L @ Utah Starzz 77-78,Utah Starzz
+65,1998-06-14,1998,Charlotte Sting,3.170712153368419,5,2 - 0,0,0,Charlotte Sting - 1998,0,0,0,0,0,0,,
+65,1998-06-14,1998,Cleveland Rockers,7.301688841176637,2,1 - 0,0,0,Cleveland Rockers - 1998,0,0,0,0,0,0,,
+65,1998-06-14,1998,Detroit Shock,-7.829287846631438,9,0 - 1,0,0,Detroit Shock - 1998,0,0,0,0,0,0,,
+65,1998-06-14,1998,Houston Comets,8.083278875007545,1,1 - 0,0,0,Houston Comets - 1998,1,0,2,0,0,0,,
+65,1998-06-14,1998,Los Angeles Sparks,4.563918347878838,3,1 - 1,0,0,Los Angeles Sparks - 1998,0,0,0,0,0,0,L @ Phoenix Mercury 60-70,Phoenix Mercury
+65,1998-06-14,1998,New York Liberty,2.5743001445445883,6,0 - 2,0,0,New York Liberty - 1998,0,0,0,0,0,0,,
+65,1998-06-14,1998,Phoenix Mercury,4.431581802322166,4,2 - 0,0,0,Phoenix Mercury - 1998,0,1,1,0,0,0,W vs. Los Angeles Sparks 70-60,Los Angeles Sparks
+65,1998-06-14,1998,Sacramento Monarchs,-2.220306361167271,7,0 - 1,0,0,Sacramento Monarchs - 1998,0,0,0,0,0,0,,
+65,1998-06-14,1998,Utah Starzz,-6.831623670307514,8,1 - 1,0,0,Utah Starzz - 1998,0,0,0,0,0,0,,
+65,1998-06-14,1998,Washington Mystics,-13.244262286191976,10,0 - 2,0,0,Washington Mystics - 1998,0,0,0,0,0,0,,
 66,1998-06-15,1998,Charlotte Sting,2.582664860251682,5,2 - 1,0,0,Charlotte Sting - 1998,0,0,0,0,0,0,L vs. Houston Comets 65-79,Houston Comets
 66,1998-06-15,1998,Cleveland Rockers,6.737556012341532,2,2 - 0,0,0,Cleveland Rockers - 1998,0,0,0,0,0,0,W @ Detroit Shock 96-85,Detroit Shock
 66,1998-06-15,1998,Detroit Shock,-7.315402164248581,9,0 - 2,0,0,Detroit Shock - 1998,0,0,0,0,0,0,L vs. Cleveland Rockers 85-96,Cleveland Rockers
@@ -31538,116 +31735,116 @@ ranking_id,date,season,name,rating,rank,record,current_date,season_flag,name_sea
 2508,2025-10-03,2025,Phoenix Mercury,2.9934274291658585,5,32-20,0,0,Phoenix Mercury - 2025,0,1,1,0,0,0,L @ Las Vegas Aces 86-89,Las Vegas Aces
 2508,2025-10-03,2025,Seattle Storm,0.3171393348589637,6,24-23,0,0,Seattle Storm - 2025,0,0,0,0,0,0,,
 2508,2025-10-03,2025,Washington Mystics,-8.177406348536941,13,16-28,0,0,Washington Mystics - 2025,0,0,0,0,0,0,,
-2509,2025-10-05,2025,Atlanta Dream,8.5900495249518,2,31-16,0,0,Atlanta Dream - 2025,0,0,0,0,0,0,,
-2509,2025-10-05,2025,Chicago Sky,-7.58068822075156,12,10-34,0,0,Chicago Sky - 2025,0,0,0,0,0,0,,
-2509,2025-10-05,2025,Connecticut Sun,-6.333633522601863,10,11-33,0,0,Connecticut Sun - 2025,0,0,0,0,0,0,,
-2509,2025-10-05,2025,Dallas Wings,-6.580564616094968,11,10-34,0,0,Dallas Wings - 2025,0,0,0,0,0,0,,
-2509,2025-10-05,2025,Golden State Valkyries,-0.1159094469205213,7,23-23,0,0,Golden State Valkyries - 2025,0,0,0,0,0,0,,
-2509,2025-10-05,2025,Indiana Fever,4.787926686484733,4,28-24,0,0,Indiana Fever - 2025,0,0,0,1,0,2,,
-2509,2025-10-05,2025,Las Vegas Aces,8.984948773182133,1,37-17,0,0,Las Vegas Aces - 2025,1,0,2,0,0,0,W vs. Phoenix Mercury 91-78,Phoenix Mercury
-2509,2025-10-05,2025,Los Angeles Sparks,-2.3056715333793547,9,21-23,0,0,Los Angeles Sparks - 2025,0,0,0,0,0,0,,
-2509,2025-10-05,2025,Minnesota Lynx,6.458893371698252,3,37-13,0,0,Minnesota Lynx - 2025,0,0,0,0,1,1,,
-2509,2025-10-05,2025,New York Liberty,-0.7974704528322489,8,28-19,0,0,New York Liberty - 2025,0,0,0,0,0,0,,
-2509,2025-10-05,2025,Phoenix Mercury,2.735249823751682,5,32-21,0,0,Phoenix Mercury - 2025,0,1,1,0,0,0,L @ Las Vegas Aces 78-91,Las Vegas Aces
-2509,2025-10-05,2025,Seattle Storm,0.409814607202053,6,24-23,0,0,Seattle Storm - 2025,0,0,0,0,0,0,,
-2509,2025-10-05,2025,Washington Mystics,-8.25294499469014,13,16-28,0,0,Washington Mystics - 2025,0,0,0,0,0,0,,
-2510,2025-10-08,2025,Atlanta Dream,8.599522762635397,2,31-16,0,0,Atlanta Dream - 2025,0,0,0,0,0,0,,
-2510,2025-10-08,2025,Chicago Sky,-7.526670556113224,12,10-34,0,0,Chicago Sky - 2025,0,0,0,0,0,0,,
-2510,2025-10-08,2025,Connecticut Sun,-6.363250132261346,10,11-33,0,0,Connecticut Sun - 2025,0,0,0,0,0,0,,
-2510,2025-10-08,2025,Dallas Wings,-6.620726127967745,11,10-34,0,0,Dallas Wings - 2025,0,0,0,0,0,0,,
-2510,2025-10-08,2025,Golden State Valkyries,-0.11273252279985124,7,23-23,0,0,Golden State Valkyries - 2025,0,0,0,0,0,0,,
-2510,2025-10-08,2025,Indiana Fever,4.838355697796013,4,28-24,0,0,Indiana Fever - 2025,0,0,0,1,0,2,,
-2510,2025-10-08,2025,Las Vegas Aces,8.943000414113513,1,38-17,0,0,Las Vegas Aces - 2025,1,0,2,0,0,0,W @ Phoenix Mercury 90-88,Phoenix Mercury
-2510,2025-10-08,2025,Los Angeles Sparks,-2.3405491590502283,9,21-23,0,0,Los Angeles Sparks - 2025,0,0,0,0,0,0,,
-2510,2025-10-08,2025,Minnesota Lynx,6.455551731659555,3,37-13,0,0,Minnesota Lynx - 2025,0,0,0,0,1,1,,
-2510,2025-10-08,2025,New York Liberty,-0.8382765224269457,8,28-19,0,0,New York Liberty - 2025,0,0,0,0,0,0,,
-2510,2025-10-08,2025,Phoenix Mercury,2.8448475393830646,5,32-22,0,0,Phoenix Mercury - 2025,0,1,1,0,0,0,L vs. Las Vegas Aces 88-90,Las Vegas Aces
-2510,2025-10-08,2025,Seattle Storm,0.43775424791988016,6,24-23,0,0,Seattle Storm - 2025,0,0,0,0,0,0,,
-2510,2025-10-08,2025,Washington Mystics,-8.316827372888095,13,16-28,0,0,Washington Mystics - 2025,0,0,0,0,0,0,,
-2511,2025-10-10,2025,Atlanta Dream,8.635416979120256,2,31-16,0,2,Atlanta Dream - 2025,0,0,0,0,0,0,,
-2511,2025-10-10,2025,Chicago Sky,-7.385682907963444,12,10-34,0,2,Chicago Sky - 2025,0,0,0,0,0,0,,
-2511,2025-10-10,2025,Connecticut Sun,-6.417985804983536,10,11-33,0,2,Connecticut Sun - 2025,0,0,0,0,0,0,,
-2511,2025-10-10,2025,Dallas Wings,-6.681305303651852,11,10-34,0,2,Dallas Wings - 2025,0,0,0,0,0,0,,
-2511,2025-10-10,2025,Golden State Valkyries,-0.133545667067696,7,23-23,0,2,Golden State Valkyries - 2025,0,0,0,0,0,0,,
-2511,2025-10-10,2025,Indiana Fever,4.982299891361366,4,28-24,0,2,Indiana Fever - 2025,0,0,0,1,0,2,,
-2511,2025-10-10,2025,Las Vegas Aces,9.305345466474638,1,39-17,0,2,Las Vegas Aces - 2025,1,0,2,0,0,0,W @ Phoenix Mercury 97-86,Phoenix Mercury
-2511,2025-10-10,2025,Los Angeles Sparks,-2.38192799925646,9,21-23,0,2,Los Angeles Sparks - 2025,0,0,0,0,0,0,,
-2511,2025-10-10,2025,Minnesota Lynx,6.356411338444456,3,37-13,0,2,Minnesota Lynx - 2025,0,0,0,0,1,1,,
-2511,2025-10-10,2025,New York Liberty,-0.9825977121275618,8,28-19,0,2,New York Liberty - 2025,0,0,0,0,0,0,,
-2511,2025-10-10,2025,Phoenix Mercury,2.551931257385992,5,32-23,0,2,Phoenix Mercury - 2025,0,1,1,0,0,0,L vs. Las Vegas Aces 86-97,Las Vegas Aces
-2511,2025-10-10,2025,Seattle Storm,0.5553779131213177,6,24-23,0,2,Seattle Storm - 2025,0,0,0,0,0,0,,
-2511,2025-10-10,2025,Washington Mystics,-8.40373745085749,13,16-28,0,2,Washington Mystics - 2025,0,0,0,0,0,0,,
-2512,2026-05-08,2026,Atlanta Dream,9.326264817227674,2,0-0,0,0,Atlanta Dream - 2026,0,0,0,0,0,0,,
-2512,2026-05-08,2026,Chicago Sky,-6.4638985427780975,11,0-0,0,0,Chicago Sky - 2026,0,0,0,0,0,0,,
-2512,2026-05-08,2026,Connecticut Sun,-7.149365119322107,12,0-1,0,0,Connecticut Sun - 2026,0,0,0,0,0,0,L @ New York Liberty 75-106,New York Liberty
-2512,2026-05-08,2026,Dallas Wings,-5.679650240074004,10,0-0,0,0,Dallas Wings - 2026,0,0,0,0,0,0,,
-2512,2026-05-08,2026,Golden State Valkyries,1.9396631549833725,6,1-0,0,0,Golden State Valkyries - 2026,0,0,0,0,0,0,W @ Seattle Storm 91-80,Seattle Storm
-2512,2026-05-08,2026,Indiana Fever,5.955139398993776,4,0-0,0,0,Indiana Fever - 2026,0,0,0,0,0,0,,
-2512,2026-05-08,2026,Las Vegas Aces,10.232840073029362,1,0-0,0,0,Las Vegas Aces - 2026,0,0,0,0,0,0,,
-2512,2026-05-08,2026,Los Angeles Sparks,-1.5464371756172497,9,0-0,0,0,Los Angeles Sparks - 2026,0,0,0,0,0,0,,
-2512,2026-05-08,2026,Minnesota Lynx,7.556925618691375,3,0-0,0,0,Minnesota Lynx - 2026,0,0,0,0,0,0,,
-2512,2026-05-08,2026,New York Liberty,1.324788526499474,7,1-0,0,0,New York Liberty - 2026,0,0,0,0,0,0,W vs. Connecticut Sun 106-75,Connecticut Sun
-2512,2026-05-08,2026,Phoenix Mercury,3.714262136156991,5,0-0,0,0,Phoenix Mercury - 2026,0,0,0,0,0,0,,
-2512,2026-05-08,2026,Seattle Storm,0.552901294694776,8,0-1,0,0,Seattle Storm - 2026,0,0,0,0,0,0,L vs. Golden State Valkyries 80-91,Golden State Valkyries
-2512,2026-05-08,2026,Toronto Tempo,-12.38171697124267,14,0-1,0,0,Toronto Tempo - 2026,0,0,0,0,0,0,L vs. Washington Mystics 65-68,Washington Mystics
-2512,2026-05-08,2026,Washington Mystics,-7.3817169712426765,13,1-0,0,0,Washington Mystics - 2026,0,0,0,0,0,0,W @ Toronto Tempo 68-65,Toronto Tempo
-2513,2026-05-09,2026,Atlanta Dream,10.79890337209894,1,1-0,0,0,Atlanta Dream - 2026,0,0,0,0,0,0,W @ Minnesota Lynx 91-90,Minnesota Lynx
-2513,2026-05-09,2026,Chicago Sky,-5.143175718305514,11,1-0,0,0,Chicago Sky - 2026,0,0,0,0,0,0,W @ Portland Fire 98-83,Portland Fire
-2513,2026-05-09,2026,Connecticut Sun,-5.539827648005481,12,0-1,0,0,Connecticut Sun - 2026,0,0,0,0,0,0,,
-2513,2026-05-09,2026,Dallas Wings,-2.408679648949469,10,1-0,0,0,Dallas Wings - 2026,0,0,0,0,0,0,W @ Indiana Fever 107-104,Indiana Fever
-2513,2026-05-09,2026,Golden State Valkyries,3.6711868971807684,6,1-0,0,0,Golden State Valkyries - 2026,0,0,0,0,0,0,,
-2513,2026-05-09,2026,Indiana Fever,6.32593371776333,5,0-1,0,0,Indiana Fever - 2026,0,0,0,0,0,0,L vs. Dallas Wings 104-107,Dallas Wings
-2513,2026-05-09,2026,Las Vegas Aces,10.297801518870191,2,0-1,0,0,Las Vegas Aces - 2026,0,0,0,0,0,0,L vs. Phoenix Mercury 66-99,Phoenix Mercury
-2513,2026-05-09,2026,Los Angeles Sparks,0.1417886476134802,9,0-0,0,0,Los Angeles Sparks - 2026,0,0,0,0,0,0,,
-2513,2026-05-09,2026,Minnesota Lynx,9.167136759126574,3,0-1,0,0,Minnesota Lynx - 2026,0,0,0,0,0,0,L vs. Atlanta Dream 90-91,Atlanta Dream
-2513,2026-05-09,2026,New York Liberty,3.208376119395897,7,1-0,0,0,New York Liberty - 2026,0,0,0,0,0,0,,
-2513,2026-05-09,2026,Phoenix Mercury,6.539491271638539,4,1-0,0,0,Phoenix Mercury - 2026,0,0,0,0,0,0,W @ Las Vegas Aces 99-66,Las Vegas Aces
-2513,2026-05-09,2026,Portland Fire,-22.143175718302896,15,0-1,0,0,Portland Fire - 2026,0,0,0,0,0,0,L vs. Chicago Sky 83-98,Chicago Sky
-2513,2026-05-09,2026,Seattle Storm,1.8264831794563903,8,0-1,0,0,Seattle Storm - 2026,0,0,0,0,0,0,,
-2513,2026-05-09,2026,Toronto Tempo,-10.871121374789046,14,0-1,0,0,Toronto Tempo - 2026,0,0,0,0,0,0,,
-2513,2026-05-09,2026,Washington Mystics,-5.871121374791703,13,1-0,0,0,Washington Mystics - 2026,0,0,0,0,0,0,,
-2514,2026-05-10,2026,Atlanta Dream,10.681162474866978,2,1-0,0,0,Atlanta Dream - 2026,0,0,0,0,0,0,,
-2514,2026-05-10,2026,Chicago Sky,-4.9250680098025015,11,1-0,0,0,Chicago Sky - 2026,0,0,0,0,0,0,,
-2514,2026-05-10,2026,Connecticut Sun,-5.80731718138517,13,0-2,0,0,Connecticut Sun - 2026,0,0,0,0,0,0,L vs. Seattle Storm 82-89,Seattle Storm
-2514,2026-05-10,2026,Dallas Wings,-2.5156648293668606,10,1-0,0,0,Dallas Wings - 2026,0,0,0,0,0,0,,
-2514,2026-05-10,2026,Golden State Valkyries,5.049049275082919,6,2-0,0,0,Golden State Valkyries - 2026,0,0,0,0,0,0,W vs. Phoenix Mercury 95-79,Phoenix Mercury
-2514,2026-05-10,2026,Indiana Fever,6.46875463174743,4,0-1,0,0,Indiana Fever - 2026,0,0,0,0,0,0,,
-2514,2026-05-10,2026,Las Vegas Aces,10.833328136068822,1,1-1,0,0,Las Vegas Aces - 2026,0,0,0,0,0,0,W @ Los Angeles Sparks 105-78,Los Angeles Sparks
-2514,2026-05-10,2026,Los Angeles Sparks,-1.3889839829150146,9,0-1,0,0,Los Angeles Sparks - 2026,0,0,0,0,0,0,L vs. Las Vegas Aces 78-105,Las Vegas Aces
-2514,2026-05-10,2026,Minnesota Lynx,9.258899956111225,3,0-1,0,0,Minnesota Lynx - 2026,0,0,0,0,0,0,,
-2514,2026-05-10,2026,New York Liberty,2.902300971846447,7,2-0,0,0,New York Liberty - 2026,0,0,0,0,0,0,W @ Washington Mystics 98-93,Washington Mystics
-2514,2026-05-10,2026,Phoenix Mercury,5.872260861336692,5,1-1,0,0,Phoenix Mercury - 2026,0,0,0,0,0,0,L @ Golden State Valkyries 79-95,Golden State Valkyries
-2514,2026-05-10,2026,Portland Fire,-21.925068009805774,15,0-1,0,0,Portland Fire - 2026,0,0,0,0,0,0,,
-2514,2026-05-10,2026,Seattle Storm,2.1049691899302183,8,1-1,0,0,Seattle Storm - 2026,0,0,0,0,0,0,W @ Connecticut Sun 89-82,Connecticut Sun
-2514,2026-05-10,2026,Toronto Tempo,-10.80431174185937,14,0-1,0,0,Toronto Tempo - 2026,0,0,0,0,0,0,,
-2514,2026-05-10,2026,Washington Mystics,-5.804311741856051,12,1-1,0,0,Washington Mystics - 2026,0,0,0,0,0,0,L vs. New York Liberty 93-98,New York Liberty
-2515,2026-05-12,2026,Atlanta Dream,9.356376630287967,2,2-0,0,0,Atlanta Dream - 2026,0,0,0,0,0,0,W @ Dallas Wings 77-72,Dallas Wings
-2515,2026-05-12,2026,Chicago Sky,-4.42613354110166,11,1-0,0,0,Chicago Sky - 2026,0,0,0,0,0,0,,
-2515,2026-05-12,2026,Connecticut Sun,-6.797297717283048,12,0-2,0,0,Connecticut Sun - 2026,0,0,0,0,0,0,,
-2515,2026-05-12,2026,Dallas Wings,-2.8330789395196576,10,1-1,0,0,Dallas Wings - 2026,0,0,0,0,0,0,L vs. Atlanta Dream 72-77,Atlanta Dream
-2515,2026-05-12,2026,Golden State Valkyries,4.268565233738387,6,2-0,0,0,Golden State Valkyries - 2026,0,0,0,0,0,0,,
-2515,2026-05-12,2026,Indiana Fever,5.714386138169111,4,0-1,0,0,Indiana Fever - 2026,0,0,0,0,0,0,,
-2515,2026-05-12,2026,Las Vegas Aces,10.068610299442781,1,1-1,0,0,Las Vegas Aces - 2026,0,0,0,0,0,0,,
-2515,2026-05-12,2026,Los Angeles Sparks,-2.338355197196427,9,0-1,0,0,Los Angeles Sparks - 2026,0,0,0,0,0,0,,
-2515,2026-05-12,2026,Minnesota Lynx,8.424377668592042,3,1-1,0,0,Minnesota Lynx - 2026,0,0,0,0,0,0,W @ Phoenix Mercury 88-84,Phoenix Mercury
-2515,2026-05-12,2026,New York Liberty,1.1641433594643091,8,2-1,0,0,New York Liberty - 2026,0,0,0,0,0,0,L @ Portland Fire 96-98,Portland Fire
-2515,2026-05-12,2026,Phoenix Mercury,4.8507568883989665,5,1-2,0,0,Phoenix Mercury - 2026,0,0,0,0,0,0,L vs. Minnesota Lynx 84-88,Minnesota Lynx
-2515,2026-05-12,2026,Portland Fire,-9.957223730045634,14,1-1,0,0,Portland Fire - 2026,0,0,0,0,0,0,W vs. New York Liberty 98-96,New York Liberty
-2515,2026-05-12,2026,Seattle Storm,1.3234666060809543,7,1-1,0,0,Seattle Storm - 2026,0,0,0,0,0,0,,
-2515,2026-05-12,2026,Toronto Tempo,-11.909296849514591,15,0-1,0,0,Toronto Tempo - 2026,0,0,0,0,0,0,,
-2515,2026-05-12,2026,Washington Mystics,-6.909296849513505,13,1-1,0,0,Washington Mystics - 2026,0,0,0,0,0,0,,
-2516,2026-05-13,2026,Atlanta Dream,8.27473073534108,2,2-0,1,0,Atlanta Dream - 2026,0,0,0,0,0,0,,
-2516,2026-05-13,2026,Chicago Sky,-3.593080184638751,11,2-0,1,0,Chicago Sky - 2026,0,0,0,0,0,0,W @ Golden State Valkyries 69-63,Golden State Valkyries
-2516,2026-05-13,2026,Connecticut Sun,-8.342201463627477,14,0-3,1,0,Connecticut Sun - 2026,0,0,0,0,0,0,L vs. Las Vegas Aces 69-98,Las Vegas Aces
-2516,2026-05-13,2026,Dallas Wings,-3.879467497644879,12,1-1,1,0,Dallas Wings - 2026,0,0,0,0,0,0,,
-2516,2026-05-13,2026,Golden State Valkyries,2.148185026801891,6,2-1,1,0,Golden State Valkyries - 2026,0,0,0,0,0,0,L vs. Chicago Sky 63-69,Chicago Sky
-2516,2026-05-13,2026,Indiana Fever,5.121306809409065,4,1-1,1,0,Indiana Fever - 2026,0,0,0,0,0,0,W @ Los Angeles Sparks 87-78,Los Angeles Sparks
-2516,2026-05-13,2026,Las Vegas Aces,9.621976942222323,1,2-1,1,0,Las Vegas Aces - 2026,0,0,0,0,0,0,W @ Connecticut Sun 98-69,Connecticut Sun
-2516,2026-05-13,2026,Los Angeles Sparks,-3.531959986355014,10,0-2,1,0,Los Angeles Sparks - 2026,0,0,0,0,0,0,L vs. Indiana Fever 78-87,Indiana Fever
-2516,2026-05-13,2026,Minnesota Lynx,7.247374960228113,3,1-1,1,0,Minnesota Lynx - 2026,0,0,0,0,0,0,,
-2516,2026-05-13,2026,New York Liberty,0.46520369067331724,7,2-1,1,0,New York Liberty - 2026,0,0,0,0,0,0,,
-2516,2026-05-13,2026,Phoenix Mercury,3.9823632980442847,5,1-2,1,0,Phoenix Mercury - 2026,0,0,0,0,0,0,,
-2516,2026-05-13,2026,Portland Fire,-9.899420404206474,15,1-1,1,0,Portland Fire - 2026,0,0,0,0,0,0,,
-2516,2026-05-13,2026,Seattle Storm,-0.5736063610496703,9,1-2,1,0,Seattle Storm - 2026,0,0,0,0,0,0,L @ Toronto Tempo 73-86,Toronto Tempo
-2516,2026-05-13,2026,Toronto Tempo,-0.3075008677447296,8,1-1,1,0,Toronto Tempo - 2026,0,0,0,0,0,0,W vs. Seattle Storm 86-73,Seattle Storm
-2516,2026-05-13,2026,Washington Mystics,-6.733904697453099,13,1-1,1,0,Washington Mystics - 2026,0,0,0,0,0,0,,
+2509,2025-10-05,2025,Atlanta Dream,8.590049524951944,2,31-16,0,0,Atlanta Dream - 2025,0,0,0,0,0,0,,
+2509,2025-10-05,2025,Chicago Sky,-7.580688220751695,12,10-34,0,0,Chicago Sky - 2025,0,0,0,0,0,0,,
+2509,2025-10-05,2025,Connecticut Sun,-6.333633522601776,10,11-33,0,0,Connecticut Sun - 2025,0,0,0,0,0,0,,
+2509,2025-10-05,2025,Dallas Wings,-6.580564616095007,11,10-34,0,0,Dallas Wings - 2025,0,0,0,0,0,0,,
+2509,2025-10-05,2025,Golden State Valkyries,-0.1159094469200447,7,23-23,0,0,Golden State Valkyries - 2025,0,0,0,0,0,0,,
+2509,2025-10-05,2025,Indiana Fever,4.787926686484633,4,28-24,0,0,Indiana Fever - 2025,0,0,0,1,0,2,,
+2509,2025-10-05,2025,Las Vegas Aces,8.984948773181891,1,37-17,0,0,Las Vegas Aces - 2025,1,0,2,0,0,0,W vs. Phoenix Mercury 91-78,Phoenix Mercury
+2509,2025-10-05,2025,Los Angeles Sparks,-2.305671533379367,9,21-23,0,0,Los Angeles Sparks - 2025,0,0,0,0,0,0,,
+2509,2025-10-05,2025,Minnesota Lynx,6.458893371698354,3,37-13,0,0,Minnesota Lynx - 2025,0,0,0,0,1,1,,
+2509,2025-10-05,2025,New York Liberty,-0.7974704528323734,8,28-19,0,0,New York Liberty - 2025,0,0,0,0,0,0,,
+2509,2025-10-05,2025,Phoenix Mercury,2.735249823751634,5,32-21,0,0,Phoenix Mercury - 2025,0,1,1,0,0,0,L @ Las Vegas Aces 78-91,Las Vegas Aces
+2509,2025-10-05,2025,Seattle Storm,0.4098146072019447,6,24-23,0,0,Seattle Storm - 2025,0,0,0,0,0,0,,
+2509,2025-10-05,2025,Washington Mystics,-8.252944994690152,13,16-28,0,0,Washington Mystics - 2025,0,0,0,0,0,0,,
+2510,2025-10-08,2025,Atlanta Dream,8.599522762634848,2,31-16,0,0,Atlanta Dream - 2025,0,0,0,0,0,0,,
+2510,2025-10-08,2025,Chicago Sky,-7.526670556113109,12,10-34,0,0,Chicago Sky - 2025,0,0,0,0,0,0,,
+2510,2025-10-08,2025,Connecticut Sun,-6.363250132261764,10,11-33,0,0,Connecticut Sun - 2025,0,0,0,0,0,0,,
+2510,2025-10-08,2025,Dallas Wings,-6.620726127967906,11,10-34,0,0,Dallas Wings - 2025,0,0,0,0,0,0,,
+2510,2025-10-08,2025,Golden State Valkyries,-0.11273252279964047,7,23-23,0,0,Golden State Valkyries - 2025,0,0,0,0,0,0,,
+2510,2025-10-08,2025,Indiana Fever,4.838355697795939,4,28-24,0,0,Indiana Fever - 2025,0,0,0,1,0,2,,
+2510,2025-10-08,2025,Las Vegas Aces,8.943000414113452,1,38-17,0,0,Las Vegas Aces - 2025,1,0,2,0,0,0,W @ Phoenix Mercury 90-88,Phoenix Mercury
+2510,2025-10-08,2025,Los Angeles Sparks,-2.3405491590500853,9,21-23,0,0,Los Angeles Sparks - 2025,0,0,0,0,0,0,,
+2510,2025-10-08,2025,Minnesota Lynx,6.455551731659744,3,37-13,0,0,Minnesota Lynx - 2025,0,0,0,0,1,1,,
+2510,2025-10-08,2025,New York Liberty,-0.8382765224266061,8,28-19,0,0,New York Liberty - 2025,0,0,0,0,0,0,,
+2510,2025-10-08,2025,Phoenix Mercury,2.8448475393832404,5,32-22,0,0,Phoenix Mercury - 2025,0,1,1,0,0,0,L vs. Las Vegas Aces 88-90,Las Vegas Aces
+2510,2025-10-08,2025,Seattle Storm,0.43775424791976897,6,24-23,0,0,Seattle Storm - 2025,0,0,0,0,0,0,,
+2510,2025-10-08,2025,Washington Mystics,-8.316827372887895,13,16-28,0,0,Washington Mystics - 2025,0,0,0,0,0,0,,
+2511,2025-10-10,2025,Atlanta Dream,8.635416979120249,2,31-16,0,2,Atlanta Dream - 2025,0,0,0,0,0,0,,
+2511,2025-10-10,2025,Chicago Sky,-7.385682907963313,12,10-34,0,2,Chicago Sky - 2025,0,0,0,0,0,0,,
+2511,2025-10-10,2025,Connecticut Sun,-6.417985804983542,10,11-33,0,2,Connecticut Sun - 2025,0,0,0,0,0,0,,
+2511,2025-10-10,2025,Dallas Wings,-6.6813053036518815,11,10-34,0,2,Dallas Wings - 2025,0,0,0,0,0,0,,
+2511,2025-10-10,2025,Golden State Valkyries,-0.13354566706769508,7,23-23,0,2,Golden State Valkyries - 2025,0,0,0,0,0,0,,
+2511,2025-10-10,2025,Indiana Fever,4.982299891361377,4,28-24,0,2,Indiana Fever - 2025,0,0,0,1,0,2,,
+2511,2025-10-10,2025,Las Vegas Aces,9.30534546647465,1,39-17,0,2,Las Vegas Aces - 2025,1,0,2,0,0,0,W @ Phoenix Mercury 97-86,Phoenix Mercury
+2511,2025-10-10,2025,Los Angeles Sparks,-2.3819279992564812,9,21-23,0,2,Los Angeles Sparks - 2025,0,0,0,0,0,0,,
+2511,2025-10-10,2025,Minnesota Lynx,6.356411338444369,3,37-13,0,2,Minnesota Lynx - 2025,0,0,0,0,1,1,,
+2511,2025-10-10,2025,New York Liberty,-0.9825977121275355,8,28-19,0,2,New York Liberty - 2025,0,0,0,0,0,0,,
+2511,2025-10-10,2025,Phoenix Mercury,2.5519312573859754,5,32-23,0,2,Phoenix Mercury - 2025,0,1,1,0,0,0,L vs. Las Vegas Aces 86-97,Las Vegas Aces
+2511,2025-10-10,2025,Seattle Storm,0.5553779131212997,6,24-23,0,2,Seattle Storm - 2025,0,0,0,0,0,0,,
+2511,2025-10-10,2025,Washington Mystics,-8.403737450857465,13,16-28,0,2,Washington Mystics - 2025,0,0,0,0,0,0,,
+2512,2026-05-08,2026,Atlanta Dream,9.326264817227505,2,0-0,0,0,Atlanta Dream - 2026,0,0,0,0,0,0,,
+2512,2026-05-08,2026,Chicago Sky,-6.463898542778084,11,0-0,0,0,Chicago Sky - 2026,0,0,0,0,0,0,,
+2512,2026-05-08,2026,Connecticut Sun,-7.149365119322248,12,0-1,0,0,Connecticut Sun - 2026,0,0,0,0,0,0,L @ New York Liberty 75-106,New York Liberty
+2512,2026-05-08,2026,Dallas Wings,-5.679650240073992,10,0-0,0,0,Dallas Wings - 2026,0,0,0,0,0,0,,
+2512,2026-05-08,2026,Golden State Valkyries,1.9396631549834398,6,1-0,0,0,Golden State Valkyries - 2026,0,0,0,0,0,0,W @ Seattle Storm 91-80,Seattle Storm
+2512,2026-05-08,2026,Indiana Fever,5.955139398993865,4,0-0,0,0,Indiana Fever - 2026,0,0,0,0,0,0,,
+2512,2026-05-08,2026,Las Vegas Aces,10.232840073029447,1,0-0,0,0,Las Vegas Aces - 2026,0,0,0,0,0,0,,
+2512,2026-05-08,2026,Los Angeles Sparks,-1.5464371756172448,9,0-0,0,0,Los Angeles Sparks - 2026,0,0,0,0,0,0,,
+2512,2026-05-08,2026,Minnesota Lynx,7.5569256186914595,3,0-0,0,0,Minnesota Lynx - 2026,0,0,0,0,0,0,,
+2512,2026-05-08,2026,New York Liberty,1.3247885264994295,7,1-0,0,0,New York Liberty - 2026,0,0,0,0,0,0,W vs. Connecticut Sun 106-75,Connecticut Sun
+2512,2026-05-08,2026,Phoenix Mercury,3.714262136156983,5,0-0,0,0,Phoenix Mercury - 2026,0,0,0,0,0,0,,
+2512,2026-05-08,2026,Seattle Storm,0.5529012946948073,8,0-1,0,0,Seattle Storm - 2026,0,0,0,0,0,0,L vs. Golden State Valkyries 80-91,Golden State Valkyries
+2512,2026-05-08,2026,Toronto Tempo,-12.381716971242856,14,0-1,0,0,Toronto Tempo - 2026,0,0,0,0,0,0,L vs. Washington Mystics 65-68,Washington Mystics
+2512,2026-05-08,2026,Washington Mystics,-7.381716971242531,13,1-0,0,0,Washington Mystics - 2026,0,0,0,0,0,0,W @ Toronto Tempo 68-65,Toronto Tempo
+2513,2026-05-09,2026,Atlanta Dream,10.798903372099549,1,1-0,0,0,Atlanta Dream - 2026,0,0,0,0,0,0,W @ Minnesota Lynx 91-90,Minnesota Lynx
+2513,2026-05-09,2026,Chicago Sky,-5.143175718304994,11,1-0,0,0,Chicago Sky - 2026,0,0,0,0,0,0,W @ Portland Fire 98-83,Portland Fire
+2513,2026-05-09,2026,Connecticut Sun,-5.539827648004971,12,0-1,0,0,Connecticut Sun - 2026,0,0,0,0,0,0,,
+2513,2026-05-09,2026,Dallas Wings,-2.4086796489495996,10,1-0,0,0,Dallas Wings - 2026,0,0,0,0,0,0,W @ Indiana Fever 107-104,Indiana Fever
+2513,2026-05-09,2026,Golden State Valkyries,3.6711868971810997,6,1-0,0,0,Golden State Valkyries - 2026,0,0,0,0,0,0,,
+2513,2026-05-09,2026,Indiana Fever,6.325933717763984,5,0-1,0,0,Indiana Fever - 2026,0,0,0,0,0,0,L vs. Dallas Wings 104-107,Dallas Wings
+2513,2026-05-09,2026,Las Vegas Aces,10.297801518870582,2,0-1,0,0,Las Vegas Aces - 2026,0,0,0,0,0,0,L vs. Phoenix Mercury 66-99,Phoenix Mercury
+2513,2026-05-09,2026,Los Angeles Sparks,0.14178864761329718,9,0-0,0,0,Los Angeles Sparks - 2026,0,0,0,0,0,0,,
+2513,2026-05-09,2026,Minnesota Lynx,9.167136759127079,3,0-1,0,0,Minnesota Lynx - 2026,0,0,0,0,0,0,L vs. Atlanta Dream 90-91,Atlanta Dream
+2513,2026-05-09,2026,New York Liberty,3.208376119395636,7,1-0,0,0,New York Liberty - 2026,0,0,0,0,0,0,,
+2513,2026-05-09,2026,Phoenix Mercury,6.53949127163892,4,1-0,0,0,Phoenix Mercury - 2026,0,0,0,0,0,0,W @ Las Vegas Aces 99-66,Las Vegas Aces
+2513,2026-05-09,2026,Portland Fire,-22.143175718304168,15,0-1,0,0,Portland Fire - 2026,0,0,0,0,0,0,L vs. Chicago Sky 83-98,Chicago Sky
+2513,2026-05-09,2026,Seattle Storm,1.8264831794565106,8,0-1,0,0,Seattle Storm - 2026,0,0,0,0,0,0,,
+2513,2026-05-09,2026,Toronto Tempo,-10.871121374791057,14,0-1,0,0,Toronto Tempo - 2026,0,0,0,0,0,0,,
+2513,2026-05-09,2026,Washington Mystics,-5.871121374791869,13,1-0,0,0,Washington Mystics - 2026,0,0,0,0,0,0,,
+2514,2026-05-10,2026,Atlanta Dream,10.681162474865138,2,1-0,0,0,Atlanta Dream - 2026,0,0,0,0,0,0,,
+2514,2026-05-10,2026,Chicago Sky,-4.92506800980241,11,1-0,0,0,Chicago Sky - 2026,0,0,0,0,0,0,,
+2514,2026-05-10,2026,Connecticut Sun,-5.80731718138575,13,0-2,0,0,Connecticut Sun - 2026,0,0,0,0,0,0,L vs. Seattle Storm 82-89,Seattle Storm
+2514,2026-05-10,2026,Dallas Wings,-2.515664829367746,10,1-0,0,0,Dallas Wings - 2026,0,0,0,0,0,0,,
+2514,2026-05-10,2026,Golden State Valkyries,5.049049275082289,6,2-0,0,0,Golden State Valkyries - 2026,0,0,0,0,0,0,W vs. Phoenix Mercury 95-79,Phoenix Mercury
+2514,2026-05-10,2026,Indiana Fever,6.468754631746633,4,0-1,0,0,Indiana Fever - 2026,0,0,0,0,0,0,,
+2514,2026-05-10,2026,Las Vegas Aces,10.833328136068513,1,1-1,0,0,Las Vegas Aces - 2026,0,0,0,0,0,0,W @ Los Angeles Sparks 105-78,Los Angeles Sparks
+2514,2026-05-10,2026,Los Angeles Sparks,-1.3889839829157928,9,0-1,0,0,Los Angeles Sparks - 2026,0,0,0,0,0,0,L vs. Las Vegas Aces 78-105,Las Vegas Aces
+2514,2026-05-10,2026,Minnesota Lynx,9.258899956110671,3,0-1,0,0,Minnesota Lynx - 2026,0,0,0,0,0,0,,
+2514,2026-05-10,2026,New York Liberty,2.9023009718464894,7,2-0,0,0,New York Liberty - 2026,0,0,0,0,0,0,W @ Washington Mystics 98-93,Washington Mystics
+2514,2026-05-10,2026,Phoenix Mercury,5.872260861336161,5,1-1,0,0,Phoenix Mercury - 2026,0,0,0,0,0,0,L @ Golden State Valkyries 79-95,Golden State Valkyries
+2514,2026-05-10,2026,Portland Fire,-21.925068009801784,15,0-1,0,0,Portland Fire - 2026,0,0,0,0,0,0,,
+2514,2026-05-10,2026,Seattle Storm,2.104969189929552,8,1-1,0,0,Seattle Storm - 2026,0,0,0,0,0,0,W @ Connecticut Sun 89-82,Connecticut Sun
+2514,2026-05-10,2026,Toronto Tempo,-10.804311741855692,14,0-1,0,0,Toronto Tempo - 2026,0,0,0,0,0,0,,
+2514,2026-05-10,2026,Washington Mystics,-5.804311741856282,12,1-1,0,0,Washington Mystics - 2026,0,0,0,0,0,0,L vs. New York Liberty 93-98,New York Liberty
+2515,2026-05-12,2026,Atlanta Dream,9.35637663028787,2,2-0,0,0,Atlanta Dream - 2026,0,0,0,0,0,0,W @ Dallas Wings 77-72,Dallas Wings
+2515,2026-05-12,2026,Chicago Sky,-4.42613354110175,11,1-0,0,0,Chicago Sky - 2026,0,0,0,0,0,0,,
+2515,2026-05-12,2026,Connecticut Sun,-6.797297717283171,12,0-2,0,0,Connecticut Sun - 2026,0,0,0,0,0,0,,
+2515,2026-05-12,2026,Dallas Wings,-2.8330789395196843,10,1-1,0,0,Dallas Wings - 2026,0,0,0,0,0,0,L vs. Atlanta Dream 72-77,Atlanta Dream
+2515,2026-05-12,2026,Golden State Valkyries,4.268565233738326,6,2-0,0,0,Golden State Valkyries - 2026,0,0,0,0,0,0,,
+2515,2026-05-12,2026,Indiana Fever,5.714386138169053,4,0-1,0,0,Indiana Fever - 2026,0,0,0,0,0,0,,
+2515,2026-05-12,2026,Las Vegas Aces,10.068610299442751,1,1-1,0,0,Las Vegas Aces - 2026,0,0,0,0,0,0,,
+2515,2026-05-12,2026,Los Angeles Sparks,-2.33835519719646,9,0-1,0,0,Los Angeles Sparks - 2026,0,0,0,0,0,0,,
+2515,2026-05-12,2026,Minnesota Lynx,8.42437766859209,3,1-1,0,0,Minnesota Lynx - 2026,0,0,0,0,0,0,W @ Phoenix Mercury 88-84,Phoenix Mercury
+2515,2026-05-12,2026,New York Liberty,1.1641433594644433,8,2-1,0,0,New York Liberty - 2026,0,0,0,0,0,0,L @ Portland Fire 96-98,Portland Fire
+2515,2026-05-12,2026,Phoenix Mercury,4.850756888399125,5,1-2,0,0,Phoenix Mercury - 2026,0,0,0,0,0,0,L vs. Minnesota Lynx 84-88,Minnesota Lynx
+2515,2026-05-12,2026,Portland Fire,-9.957223730045527,14,1-1,0,0,Portland Fire - 2026,0,0,0,0,0,0,W vs. New York Liberty 98-96,New York Liberty
+2515,2026-05-12,2026,Seattle Storm,1.3234666060809404,7,1-1,0,0,Seattle Storm - 2026,0,0,0,0,0,0,,
+2515,2026-05-12,2026,Toronto Tempo,-11.909296849514472,15,0-1,0,0,Toronto Tempo - 2026,0,0,0,0,0,0,,
+2515,2026-05-12,2026,Washington Mystics,-6.909296849513535,13,1-1,0,0,Washington Mystics - 2026,0,0,0,0,0,0,,
+2516,2026-05-13,2026,Atlanta Dream,8.27473073534115,2,2-0,1,0,Atlanta Dream - 2026,0,0,0,0,0,0,,
+2516,2026-05-13,2026,Chicago Sky,-3.5930801846386906,11,2-0,1,0,Chicago Sky - 2026,0,0,0,0,0,0,W @ Golden State Valkyries 69-63,Golden State Valkyries
+2516,2026-05-13,2026,Connecticut Sun,-8.342201463627571,14,0-3,1,0,Connecticut Sun - 2026,0,0,0,0,0,0,L vs. Las Vegas Aces 69-98,Las Vegas Aces
+2516,2026-05-13,2026,Dallas Wings,-3.8794674976444097,12,1-1,1,0,Dallas Wings - 2026,0,0,0,0,0,0,,
+2516,2026-05-13,2026,Golden State Valkyries,2.148185026802156,6,2-1,1,0,Golden State Valkyries - 2026,0,0,0,0,0,0,L vs. Chicago Sky 63-69,Chicago Sky
+2516,2026-05-13,2026,Indiana Fever,5.1213068094090906,4,1-1,1,0,Indiana Fever - 2026,0,0,0,0,0,0,W @ Los Angeles Sparks 87-78,Los Angeles Sparks
+2516,2026-05-13,2026,Las Vegas Aces,9.621976942222382,1,2-1,1,0,Las Vegas Aces - 2026,0,0,0,0,0,0,W @ Connecticut Sun 98-69,Connecticut Sun
+2516,2026-05-13,2026,Los Angeles Sparks,-3.5319599863549365,10,0-2,1,0,Los Angeles Sparks - 2026,0,0,0,0,0,0,L vs. Indiana Fever 78-87,Indiana Fever
+2516,2026-05-13,2026,Minnesota Lynx,7.247374960228317,3,1-1,1,0,Minnesota Lynx - 2026,0,0,0,0,0,0,,
+2516,2026-05-13,2026,New York Liberty,0.4652036906731326,7,2-1,1,0,New York Liberty - 2026,0,0,0,0,0,0,,
+2516,2026-05-13,2026,Phoenix Mercury,3.9823632980442625,5,1-2,1,0,Phoenix Mercury - 2026,0,0,0,0,0,0,,
+2516,2026-05-13,2026,Portland Fire,-9.899420404207003,15,1-1,1,0,Portland Fire - 2026,0,0,0,0,0,0,,
+2516,2026-05-13,2026,Seattle Storm,-0.573606361049711,9,1-2,1,0,Seattle Storm - 2026,0,0,0,0,0,0,L @ Toronto Tempo 73-86,Toronto Tempo
+2516,2026-05-13,2026,Toronto Tempo,-0.3075008677451767,8,1-1,1,0,Toronto Tempo - 2026,0,0,0,0,0,0,W vs. Seattle Storm 86-73,Seattle Storm
+2516,2026-05-13,2026,Washington Mystics,-6.733904697453003,13,1-1,1,0,Washington Mystics - 2026,0,0,0,0,0,0,,

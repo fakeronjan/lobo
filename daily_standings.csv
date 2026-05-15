@@ -1,4 +1,394 @@
 ranking_id,ranking_date,season,name,wins,losses,record
+1.0,1997-06-21,1997.0,Cleveland Rockers,0,1,0-1
+1.0,1997-06-21,1997.0,Houston Comets,1,0,1-0
+1.0,1997-06-21,1997.0,Los Angeles Sparks,0,1,0-1
+1.0,1997-06-21,1997.0,New York Liberty,1,0,1-0
+1.0,1997-06-21,1997.0,Sacramento Monarchs,1,0,1-0
+1.0,1997-06-21,1997.0,Utah Starzz,0,1,0-1
+2.0,1997-06-22,1997.0,Charlotte Sting,0,1,0-1
+2.0,1997-06-22,1997.0,Cleveland Rockers,0,1,0-1
+2.0,1997-06-22,1997.0,Houston Comets,1,0,1-0
+2.0,1997-06-22,1997.0,Los Angeles Sparks,0,1,0-1
+2.0,1997-06-22,1997.0,New York Liberty,1,0,1-0
+2.0,1997-06-22,1997.0,Phoenix Mercury,1,0,1-0
+2.0,1997-06-22,1997.0,Sacramento Monarchs,1,0,1-0
+2.0,1997-06-22,1997.0,Utah Starzz,0,1,0-1
+3.0,1997-06-23,1997.0,Charlotte Sting,0,1,0-1
+3.0,1997-06-23,1997.0,Cleveland Rockers,0,1,0-1
+3.0,1997-06-23,1997.0,Houston Comets,1,0,1-0
+3.0,1997-06-23,1997.0,Los Angeles Sparks,0,2,0-2
+3.0,1997-06-23,1997.0,New York Liberty,2,0,2-0
+3.0,1997-06-23,1997.0,Phoenix Mercury,1,0,1-0
+3.0,1997-06-23,1997.0,Sacramento Monarchs,1,1,1-1
+3.0,1997-06-23,1997.0,Utah Starzz,1,1,1-1
+4.0,1997-06-24,1997.0,Charlotte Sting,0,1,0-1
+4.0,1997-06-24,1997.0,Cleveland Rockers,0,1,0-1
+4.0,1997-06-24,1997.0,Houston Comets,2,0,2-0
+4.0,1997-06-24,1997.0,Los Angeles Sparks,0,2,0-2
+4.0,1997-06-24,1997.0,New York Liberty,2,0,2-0
+4.0,1997-06-24,1997.0,Phoenix Mercury,1,1,1-1
+4.0,1997-06-24,1997.0,Sacramento Monarchs,1,1,1-1
+4.0,1997-06-24,1997.0,Utah Starzz,1,1,1-1
+5.0,1997-06-25,1997.0,Charlotte Sting,0,2,0-2
+5.0,1997-06-25,1997.0,Cleveland Rockers,0,1,0-1
+5.0,1997-06-25,1997.0,Houston Comets,2,0,2-0
+5.0,1997-06-25,1997.0,Los Angeles Sparks,1,2,1-2
+5.0,1997-06-25,1997.0,New York Liberty,2,0,2-0
+5.0,1997-06-25,1997.0,Phoenix Mercury,1,1,1-1
+5.0,1997-06-25,1997.0,Sacramento Monarchs,1,1,1-1
+5.0,1997-06-25,1997.0,Utah Starzz,1,1,1-1
+6.0,1997-06-26,1997.0,Charlotte Sting,0,3,0-3
+6.0,1997-06-26,1997.0,Cleveland Rockers,1,1,1-1
+6.0,1997-06-26,1997.0,Houston Comets,2,1,2-1
+6.0,1997-06-26,1997.0,Los Angeles Sparks,1,2,1-2
+6.0,1997-06-26,1997.0,New York Liberty,3,0,3-0
+6.0,1997-06-26,1997.0,Phoenix Mercury,1,1,1-1
+6.0,1997-06-26,1997.0,Sacramento Monarchs,2,1,2-1
+6.0,1997-06-26,1997.0,Utah Starzz,1,2,1-2
+7.0,1997-06-27,1997.0,Charlotte Sting,0,3,0-3
+7.0,1997-06-27,1997.0,Cleveland Rockers,1,1,1-1
+7.0,1997-06-27,1997.0,Houston Comets,2,1,2-1
+7.0,1997-06-27,1997.0,Los Angeles Sparks,2,2,2-2
+7.0,1997-06-27,1997.0,New York Liberty,3,0,3-0
+7.0,1997-06-27,1997.0,Phoenix Mercury,1,1,1-1
+7.0,1997-06-27,1997.0,Sacramento Monarchs,2,2,2-2
+7.0,1997-06-27,1997.0,Utah Starzz,1,2,1-2
+8.0,1997-06-28,1997.0,Charlotte Sting,0,3,0-3
+8.0,1997-06-28,1997.0,Cleveland Rockers,1,2,1-2
+8.0,1997-06-28,1997.0,Houston Comets,3,1,3-1
+8.0,1997-06-28,1997.0,Los Angeles Sparks,2,2,2-2
+8.0,1997-06-28,1997.0,New York Liberty,3,0,3-0
+8.0,1997-06-28,1997.0,Phoenix Mercury,2,1,2-1
+8.0,1997-06-28,1997.0,Sacramento Monarchs,2,2,2-2
+8.0,1997-06-28,1997.0,Utah Starzz,1,3,1-3
+9.0,1997-06-29,1997.0,Charlotte Sting,1,3,1-3
+9.0,1997-06-29,1997.0,Cleveland Rockers,1,3,1-3
+9.0,1997-06-29,1997.0,Houston Comets,3,1,3-1
+9.0,1997-06-29,1997.0,Los Angeles Sparks,2,2,2-2
+9.0,1997-06-29,1997.0,New York Liberty,4,0,4-0
+9.0,1997-06-29,1997.0,Phoenix Mercury,2,2,2-2
+9.0,1997-06-29,1997.0,Sacramento Monarchs,2,2,2-2
+9.0,1997-06-29,1997.0,Utah Starzz,1,3,1-3
+10.0,1997-06-30,1997.0,Charlotte Sting,1,3,1-3
+10.0,1997-06-30,1997.0,Cleveland Rockers,1,3,1-3
+10.0,1997-06-30,1997.0,Houston Comets,4,1,4-1
+10.0,1997-06-30,1997.0,Los Angeles Sparks,2,3,2-3
+10.0,1997-06-30,1997.0,New York Liberty,4,0,4-0
+10.0,1997-06-30,1997.0,Phoenix Mercury,2,2,2-2
+10.0,1997-06-30,1997.0,Sacramento Monarchs,2,2,2-2
+10.0,1997-06-30,1997.0,Utah Starzz,1,3,1-3
+11.0,1997-07-02,1997.0,Charlotte Sting,1,3,1-3
+11.0,1997-07-02,1997.0,Cleveland Rockers,1,3,1-3
+11.0,1997-07-02,1997.0,Houston Comets,4,2,4-2
+11.0,1997-07-02,1997.0,Los Angeles Sparks,2,3,2-3
+11.0,1997-07-02,1997.0,New York Liberty,5,0,5-0
+11.0,1997-07-02,1997.0,Phoenix Mercury,2,2,2-2
+11.0,1997-07-02,1997.0,Sacramento Monarchs,2,3,2-3
+11.0,1997-07-02,1997.0,Utah Starzz,2,3,2-3
+12.0,1997-07-03,1997.0,Charlotte Sting,1,3,1-3
+12.0,1997-07-03,1997.0,Cleveland Rockers,1,4,1-4
+12.0,1997-07-03,1997.0,Houston Comets,4,2,4-2
+12.0,1997-07-03,1997.0,Los Angeles Sparks,3,3,3-3
+12.0,1997-07-03,1997.0,New York Liberty,5,0,5-0
+12.0,1997-07-03,1997.0,Phoenix Mercury,3,2,3-2
+12.0,1997-07-03,1997.0,Sacramento Monarchs,2,3,2-3
+12.0,1997-07-03,1997.0,Utah Starzz,2,4,2-4
+13.0,1997-07-04,1997.0,Charlotte Sting,1,3,1-3
+13.0,1997-07-04,1997.0,Cleveland Rockers,1,4,1-4
+13.0,1997-07-04,1997.0,Houston Comets,4,3,4-3
+13.0,1997-07-04,1997.0,Los Angeles Sparks,3,3,3-3
+13.0,1997-07-04,1997.0,New York Liberty,6,0,6-0
+13.0,1997-07-04,1997.0,Phoenix Mercury,3,2,3-2
+13.0,1997-07-04,1997.0,Sacramento Monarchs,2,3,2-3
+13.0,1997-07-04,1997.0,Utah Starzz,2,4,2-4
+14.0,1997-07-05,1997.0,Charlotte Sting,2,3,2-3
+14.0,1997-07-05,1997.0,Cleveland Rockers,1,4,1-4
+14.0,1997-07-05,1997.0,Houston Comets,4,3,4-3
+14.0,1997-07-05,1997.0,Los Angeles Sparks,3,4,3-4
+14.0,1997-07-05,1997.0,New York Liberty,7,0,7-0
+14.0,1997-07-05,1997.0,Phoenix Mercury,3,2,3-2
+14.0,1997-07-05,1997.0,Sacramento Monarchs,2,3,2-3
+14.0,1997-07-05,1997.0,Utah Starzz,2,5,2-5
+15.0,1997-07-06,1997.0,Charlotte Sting,2,3,2-3
+15.0,1997-07-06,1997.0,Cleveland Rockers,1,5,1-5
+15.0,1997-07-06,1997.0,Houston Comets,4,3,4-3
+15.0,1997-07-06,1997.0,Los Angeles Sparks,3,4,3-4
+15.0,1997-07-06,1997.0,New York Liberty,7,0,7-0
+15.0,1997-07-06,1997.0,Phoenix Mercury,3,2,3-2
+15.0,1997-07-06,1997.0,Sacramento Monarchs,3,3,3-3
+15.0,1997-07-06,1997.0,Utah Starzz,2,5,2-5
+16.0,1997-07-07,1997.0,Charlotte Sting,2,4,2-4
+16.0,1997-07-07,1997.0,Cleveland Rockers,2,5,2-5
+16.0,1997-07-07,1997.0,Houston Comets,5,3,5-3
+16.0,1997-07-07,1997.0,Los Angeles Sparks,3,5,3-5
+16.0,1997-07-07,1997.0,New York Liberty,7,1,7-1
+16.0,1997-07-07,1997.0,Phoenix Mercury,4,2,4-2
+16.0,1997-07-07,1997.0,Sacramento Monarchs,4,3,4-3
+16.0,1997-07-07,1997.0,Utah Starzz,2,6,2-6
+17.0,1997-07-09,1997.0,Charlotte Sting,3,4,3-4
+17.0,1997-07-09,1997.0,Cleveland Rockers,2,5,2-5
+17.0,1997-07-09,1997.0,Houston Comets,5,4,5-4
+17.0,1997-07-09,1997.0,Los Angeles Sparks,3,5,3-5
+17.0,1997-07-09,1997.0,New York Liberty,7,2,7-2
+17.0,1997-07-09,1997.0,Phoenix Mercury,5,2,5-2
+17.0,1997-07-09,1997.0,Sacramento Monarchs,4,3,4-3
+17.0,1997-07-09,1997.0,Utah Starzz,2,6,2-6
+18.0,1997-07-10,1997.0,Charlotte Sting,3,5,3-5
+18.0,1997-07-10,1997.0,Cleveland Rockers,3,5,3-5
+18.0,1997-07-10,1997.0,Houston Comets,5,4,5-4
+18.0,1997-07-10,1997.0,Los Angeles Sparks,3,5,3-5
+18.0,1997-07-10,1997.0,New York Liberty,8,2,8-2
+18.0,1997-07-10,1997.0,Phoenix Mercury,5,2,5-2
+18.0,1997-07-10,1997.0,Sacramento Monarchs,4,4,4-4
+18.0,1997-07-10,1997.0,Utah Starzz,2,6,2-6
+19.0,1997-07-11,1997.0,Charlotte Sting,3,5,3-5
+19.0,1997-07-11,1997.0,Cleveland Rockers,3,5,3-5
+19.0,1997-07-11,1997.0,Houston Comets,5,4,5-4
+19.0,1997-07-11,1997.0,Los Angeles Sparks,4,5,4-5
+19.0,1997-07-11,1997.0,New York Liberty,8,2,8-2
+19.0,1997-07-11,1997.0,Phoenix Mercury,5,2,5-2
+19.0,1997-07-11,1997.0,Sacramento Monarchs,4,4,4-4
+19.0,1997-07-11,1997.0,Utah Starzz,2,7,2-7
+20.0,1997-07-12,1997.0,Charlotte Sting,4,5,4-5
+20.0,1997-07-12,1997.0,Cleveland Rockers,3,6,3-6
+20.0,1997-07-12,1997.0,Houston Comets,6,4,6-4
+20.0,1997-07-12,1997.0,Los Angeles Sparks,4,5,4-5
+20.0,1997-07-12,1997.0,New York Liberty,8,2,8-2
+20.0,1997-07-12,1997.0,Phoenix Mercury,5,3,5-3
+20.0,1997-07-12,1997.0,Sacramento Monarchs,4,5,4-5
+20.0,1997-07-12,1997.0,Utah Starzz,3,7,3-7
+21.0,1997-07-13,1997.0,Charlotte Sting,4,5,4-5
+21.0,1997-07-13,1997.0,Cleveland Rockers,3,6,3-6
+21.0,1997-07-13,1997.0,Houston Comets,6,4,6-4
+21.0,1997-07-13,1997.0,Los Angeles Sparks,4,6,4-6
+21.0,1997-07-13,1997.0,New York Liberty,8,2,8-2
+21.0,1997-07-13,1997.0,Phoenix Mercury,6,3,6-3
+21.0,1997-07-13,1997.0,Sacramento Monarchs,4,5,4-5
+21.0,1997-07-13,1997.0,Utah Starzz,3,7,3-7
+22.0,1997-07-14,1997.0,Charlotte Sting,4,5,4-5
+22.0,1997-07-14,1997.0,Cleveland Rockers,3,7,3-7
+22.0,1997-07-14,1997.0,Houston Comets,7,4,7-4
+22.0,1997-07-14,1997.0,Los Angeles Sparks,4,6,4-6
+22.0,1997-07-14,1997.0,New York Liberty,9,2,9-2
+22.0,1997-07-14,1997.0,Phoenix Mercury,6,3,6-3
+22.0,1997-07-14,1997.0,Sacramento Monarchs,4,5,4-5
+22.0,1997-07-14,1997.0,Utah Starzz,3,8,3-8
+23.0,1997-07-15,1997.0,Charlotte Sting,4,5,4-5
+23.0,1997-07-15,1997.0,Cleveland Rockers,3,8,3-8
+23.0,1997-07-15,1997.0,Houston Comets,7,4,7-4
+23.0,1997-07-15,1997.0,Los Angeles Sparks,4,7,4-7
+23.0,1997-07-15,1997.0,New York Liberty,10,2,10-2
+23.0,1997-07-15,1997.0,Phoenix Mercury,6,3,6-3
+23.0,1997-07-15,1997.0,Sacramento Monarchs,5,5,5-5
+23.0,1997-07-15,1997.0,Utah Starzz,3,8,3-8
+24.0,1997-07-16,1997.0,Charlotte Sting,5,5,5-5
+24.0,1997-07-16,1997.0,Cleveland Rockers,3,8,3-8
+24.0,1997-07-16,1997.0,Houston Comets,7,5,7-5
+24.0,1997-07-16,1997.0,Los Angeles Sparks,5,7,5-7
+24.0,1997-07-16,1997.0,New York Liberty,10,2,10-2
+24.0,1997-07-16,1997.0,Phoenix Mercury,7,3,7-3
+24.0,1997-07-16,1997.0,Sacramento Monarchs,5,6,5-6
+24.0,1997-07-16,1997.0,Utah Starzz,3,9,3-9
+25.0,1997-07-17,1997.0,Charlotte Sting,5,6,5-6
+25.0,1997-07-17,1997.0,Cleveland Rockers,4,8,4-8
+25.0,1997-07-17,1997.0,Houston Comets,7,5,7-5
+25.0,1997-07-17,1997.0,Los Angeles Sparks,5,7,5-7
+25.0,1997-07-17,1997.0,New York Liberty,11,2,11-2
+25.0,1997-07-17,1997.0,Phoenix Mercury,7,3,7-3
+25.0,1997-07-17,1997.0,Sacramento Monarchs,5,6,5-6
+25.0,1997-07-17,1997.0,Utah Starzz,3,10,3-10
+26.0,1997-07-18,1997.0,Charlotte Sting,5,6,5-6
+26.0,1997-07-18,1997.0,Cleveland Rockers,4,8,4-8
+26.0,1997-07-18,1997.0,Houston Comets,8,5,8-5
+26.0,1997-07-18,1997.0,Los Angeles Sparks,5,7,5-7
+26.0,1997-07-18,1997.0,New York Liberty,11,2,11-2
+26.0,1997-07-18,1997.0,Phoenix Mercury,7,3,7-3
+26.0,1997-07-18,1997.0,Sacramento Monarchs,5,7,5-7
+26.0,1997-07-18,1997.0,Utah Starzz,3,10,3-10
+27.0,1997-07-19,1997.0,Charlotte Sting,5,6,5-6
+27.0,1997-07-19,1997.0,Cleveland Rockers,5,8,5-8
+27.0,1997-07-19,1997.0,Houston Comets,8,5,8-5
+27.0,1997-07-19,1997.0,Los Angeles Sparks,5,8,5-8
+27.0,1997-07-19,1997.0,New York Liberty,12,2,12-2
+27.0,1997-07-19,1997.0,Phoenix Mercury,7,3,7-3
+27.0,1997-07-19,1997.0,Sacramento Monarchs,5,7,5-7
+27.0,1997-07-19,1997.0,Utah Starzz,3,11,3-11
+28.0,1997-07-21,1997.0,Charlotte Sting,6,6,6-6
+28.0,1997-07-21,1997.0,Cleveland Rockers,5,8,5-8
+28.0,1997-07-21,1997.0,Houston Comets,8,5,8-5
+28.0,1997-07-21,1997.0,Los Angeles Sparks,5,9,5-9
+28.0,1997-07-21,1997.0,New York Liberty,12,2,12-2
+28.0,1997-07-21,1997.0,Phoenix Mercury,8,3,8-3
+28.0,1997-07-21,1997.0,Sacramento Monarchs,5,8,5-8
+28.0,1997-07-21,1997.0,Utah Starzz,3,11,3-11
+29.0,1997-07-22,1997.0,Charlotte Sting,6,6,6-6
+29.0,1997-07-22,1997.0,Cleveland Rockers,5,8,5-8
+29.0,1997-07-22,1997.0,Houston Comets,9,5,9-5
+29.0,1997-07-22,1997.0,Los Angeles Sparks,5,9,5-9
+29.0,1997-07-22,1997.0,New York Liberty,12,3,12-3
+29.0,1997-07-22,1997.0,Phoenix Mercury,8,4,8-4
+29.0,1997-07-22,1997.0,Sacramento Monarchs,5,8,5-8
+29.0,1997-07-22,1997.0,Utah Starzz,4,11,4-11
+30.0,1997-07-23,1997.0,Charlotte Sting,6,7,6-7
+30.0,1997-07-23,1997.0,Cleveland Rockers,6,8,6-8
+30.0,1997-07-23,1997.0,Houston Comets,9,5,9-5
+30.0,1997-07-23,1997.0,Los Angeles Sparks,5,10,5-10
+30.0,1997-07-23,1997.0,New York Liberty,13,3,13-3
+30.0,1997-07-23,1997.0,Phoenix Mercury,8,4,8-4
+30.0,1997-07-23,1997.0,Sacramento Monarchs,5,8,5-8
+30.0,1997-07-23,1997.0,Utah Starzz,4,11,4-11
+31.0,1997-07-25,1997.0,Charlotte Sting,6,7,6-7
+31.0,1997-07-25,1997.0,Cleveland Rockers,6,8,6-8
+31.0,1997-07-25,1997.0,Houston Comets,10,5,10-5
+31.0,1997-07-25,1997.0,Los Angeles Sparks,6,10,6-10
+31.0,1997-07-25,1997.0,New York Liberty,13,3,13-3
+31.0,1997-07-25,1997.0,Phoenix Mercury,8,5,8-5
+31.0,1997-07-25,1997.0,Sacramento Monarchs,5,9,5-9
+31.0,1997-07-25,1997.0,Utah Starzz,4,11,4-11
+32.0,1997-07-26,1997.0,Charlotte Sting,7,7,7-7
+32.0,1997-07-26,1997.0,Cleveland Rockers,7,8,7-8
+32.0,1997-07-26,1997.0,Houston Comets,10,5,10-5
+32.0,1997-07-26,1997.0,Los Angeles Sparks,6,10,6-10
+32.0,1997-07-26,1997.0,New York Liberty,13,4,13-4
+32.0,1997-07-26,1997.0,Phoenix Mercury,8,5,8-5
+32.0,1997-07-26,1997.0,Sacramento Monarchs,5,9,5-9
+32.0,1997-07-26,1997.0,Utah Starzz,4,12,4-12
+33.0,1997-07-27,1997.0,Charlotte Sting,7,7,7-7
+33.0,1997-07-27,1997.0,Cleveland Rockers,7,8,7-8
+33.0,1997-07-27,1997.0,Houston Comets,10,5,10-5
+33.0,1997-07-27,1997.0,Los Angeles Sparks,7,10,7-10
+33.0,1997-07-27,1997.0,New York Liberty,13,4,13-4
+33.0,1997-07-27,1997.0,Phoenix Mercury,8,5,8-5
+33.0,1997-07-27,1997.0,Sacramento Monarchs,5,10,5-10
+33.0,1997-07-27,1997.0,Utah Starzz,4,12,4-12
+34.0,1997-07-28,1997.0,Charlotte Sting,7,7,7-7
+34.0,1997-07-28,1997.0,Cleveland Rockers,8,8,8-8
+34.0,1997-07-28,1997.0,Houston Comets,10,5,10-5
+34.0,1997-07-28,1997.0,Los Angeles Sparks,7,10,7-10
+34.0,1997-07-28,1997.0,New York Liberty,13,4,13-4
+34.0,1997-07-28,1997.0,Phoenix Mercury,8,6,8-6
+34.0,1997-07-28,1997.0,Sacramento Monarchs,5,10,5-10
+34.0,1997-07-28,1997.0,Utah Starzz,4,12,4-12
+35.0,1997-07-29,1997.0,Charlotte Sting,7,7,7-7
+35.0,1997-07-29,1997.0,Cleveland Rockers,9,8,9-8
+35.0,1997-07-29,1997.0,Houston Comets,10,6,10-6
+35.0,1997-07-29,1997.0,Los Angeles Sparks,7,10,7-10
+35.0,1997-07-29,1997.0,New York Liberty,13,4,13-4
+35.0,1997-07-29,1997.0,Phoenix Mercury,8,6,8-6
+35.0,1997-07-29,1997.0,Sacramento Monarchs,5,10,5-10
+35.0,1997-07-29,1997.0,Utah Starzz,4,12,4-12
+36.0,1997-07-30,1997.0,Charlotte Sting,8,7,8-7
+36.0,1997-07-30,1997.0,Cleveland Rockers,9,8,9-8
+36.0,1997-07-30,1997.0,Houston Comets,10,6,10-6
+36.0,1997-07-30,1997.0,Los Angeles Sparks,8,10,8-10
+36.0,1997-07-30,1997.0,New York Liberty,14,4,14-4
+36.0,1997-07-30,1997.0,Phoenix Mercury,8,7,8-7
+36.0,1997-07-30,1997.0,Sacramento Monarchs,5,11,5-11
+36.0,1997-07-30,1997.0,Utah Starzz,4,13,4-13
+37.0,1997-07-31,1997.0,Charlotte Sting,8,7,8-7
+37.0,1997-07-31,1997.0,Cleveland Rockers,10,8,10-8
+37.0,1997-07-31,1997.0,Houston Comets,10,6,10-6
+37.0,1997-07-31,1997.0,Los Angeles Sparks,8,10,8-10
+37.0,1997-07-31,1997.0,New York Liberty,14,4,14-4
+37.0,1997-07-31,1997.0,Phoenix Mercury,8,8,8-8
+37.0,1997-07-31,1997.0,Sacramento Monarchs,5,11,5-11
+37.0,1997-07-31,1997.0,Utah Starzz,4,13,4-13
+38.0,1997-08-01,1997.0,Charlotte Sting,9,7,9-7
+38.0,1997-08-01,1997.0,Cleveland Rockers,10,8,10-8
+38.0,1997-08-01,1997.0,Houston Comets,11,6,11-6
+38.0,1997-08-01,1997.0,Los Angeles Sparks,8,11,8-11
+38.0,1997-08-01,1997.0,New York Liberty,14,4,14-4
+38.0,1997-08-01,1997.0,Phoenix Mercury,8,8,8-8
+38.0,1997-08-01,1997.0,Sacramento Monarchs,5,12,5-12
+38.0,1997-08-01,1997.0,Utah Starzz,4,13,4-13
+39.0,1997-08-02,1997.0,Charlotte Sting,9,7,9-7
+39.0,1997-08-02,1997.0,Cleveland Rockers,11,8,11-8
+39.0,1997-08-02,1997.0,Houston Comets,11,7,11-7
+39.0,1997-08-02,1997.0,Los Angeles Sparks,8,11,8-11
+39.0,1997-08-02,1997.0,New York Liberty,15,4,15-4
+39.0,1997-08-02,1997.0,Phoenix Mercury,8,9,8-9
+39.0,1997-08-02,1997.0,Sacramento Monarchs,5,13,5-13
+39.0,1997-08-02,1997.0,Utah Starzz,5,13,5-13
+40.0,1997-08-03,1997.0,Charlotte Sting,10,7,10-7
+40.0,1997-08-03,1997.0,Cleveland Rockers,11,8,11-8
+40.0,1997-08-03,1997.0,Houston Comets,11,7,11-7
+40.0,1997-08-03,1997.0,Los Angeles Sparks,8,12,8-12
+40.0,1997-08-03,1997.0,New York Liberty,15,4,15-4
+40.0,1997-08-03,1997.0,Phoenix Mercury,8,9,8-9
+40.0,1997-08-03,1997.0,Sacramento Monarchs,5,13,5-13
+40.0,1997-08-03,1997.0,Utah Starzz,5,13,5-13
+41.0,1997-08-04,1997.0,Charlotte Sting,10,8,10-8
+41.0,1997-08-04,1997.0,Cleveland Rockers,11,8,11-8
+41.0,1997-08-04,1997.0,Houston Comets,11,7,11-7
+41.0,1997-08-04,1997.0,Los Angeles Sparks,8,12,8-12
+41.0,1997-08-04,1997.0,New York Liberty,15,4,15-4
+41.0,1997-08-04,1997.0,Phoenix Mercury,9,9,9-9
+41.0,1997-08-04,1997.0,Sacramento Monarchs,5,14,5-14
+41.0,1997-08-04,1997.0,Utah Starzz,6,13,6-13
+42.0,1997-08-05,1997.0,Charlotte Sting,10,8,10-8
+42.0,1997-08-05,1997.0,Cleveland Rockers,11,9,11-9
+42.0,1997-08-05,1997.0,Houston Comets,12,7,12-7
+42.0,1997-08-05,1997.0,Los Angeles Sparks,9,12,9-12
+42.0,1997-08-05,1997.0,New York Liberty,15,5,15-5
+42.0,1997-08-05,1997.0,Phoenix Mercury,9,9,9-9
+42.0,1997-08-05,1997.0,Sacramento Monarchs,5,14,5-14
+42.0,1997-08-05,1997.0,Utah Starzz,6,13,6-13
+43.0,1997-08-06,1997.0,Charlotte Sting,10,9,10-9
+43.0,1997-08-06,1997.0,Cleveland Rockers,11,9,11-9
+43.0,1997-08-06,1997.0,Houston Comets,12,7,12-7
+43.0,1997-08-06,1997.0,Los Angeles Sparks,9,12,9-12
+43.0,1997-08-06,1997.0,New York Liberty,15,5,15-5
+43.0,1997-08-06,1997.0,Phoenix Mercury,10,9,10-9
+43.0,1997-08-06,1997.0,Sacramento Monarchs,6,14,6-14
+43.0,1997-08-06,1997.0,Utah Starzz,6,14,6-14
+44.0,1997-08-07,1997.0,Charlotte Sting,10,9,10-9
+44.0,1997-08-07,1997.0,Cleveland Rockers,11,10,11-10
+44.0,1997-08-07,1997.0,Houston Comets,13,7,13-7
+44.0,1997-08-07,1997.0,Los Angeles Sparks,10,12,10-12
+44.0,1997-08-07,1997.0,New York Liberty,15,5,15-5
+44.0,1997-08-07,1997.0,Phoenix Mercury,10,10,10-10
+44.0,1997-08-07,1997.0,Sacramento Monarchs,6,14,6-14
+44.0,1997-08-07,1997.0,Utah Starzz,6,14,6-14
+45.0,1997-08-08,1997.0,Charlotte Sting,10,9,10-9
+45.0,1997-08-08,1997.0,Cleveland Rockers,11,10,11-10
+45.0,1997-08-08,1997.0,Houston Comets,13,7,13-7
+45.0,1997-08-08,1997.0,Los Angeles Sparks,10,12,10-12
+45.0,1997-08-08,1997.0,New York Liberty,15,5,15-5
+45.0,1997-08-08,1997.0,Phoenix Mercury,10,10,10-10
+45.0,1997-08-08,1997.0,Sacramento Monarchs,7,14,7-14
+45.0,1997-08-08,1997.0,Utah Starzz,6,15,6-15
+46.0,1997-08-09,1997.0,Charlotte Sting,11,9,11-9
+46.0,1997-08-09,1997.0,Cleveland Rockers,11,10,11-10
+46.0,1997-08-09,1997.0,Houston Comets,14,7,14-7
+46.0,1997-08-09,1997.0,Los Angeles Sparks,10,13,10-13
+46.0,1997-08-09,1997.0,New York Liberty,15,5,15-5
+46.0,1997-08-09,1997.0,Phoenix Mercury,10,11,10-11
+46.0,1997-08-09,1997.0,Sacramento Monarchs,7,14,7-14
+46.0,1997-08-09,1997.0,Utah Starzz,6,15,6-15
+47.0,1997-08-10,1997.0,Charlotte Sting,11,9,11-9
+47.0,1997-08-10,1997.0,Cleveland Rockers,11,10,11-10
+47.0,1997-08-10,1997.0,Houston Comets,14,7,14-7
+47.0,1997-08-10,1997.0,Los Angeles Sparks,10,13,10-13
+47.0,1997-08-10,1997.0,New York Liberty,15,6,15-6
+47.0,1997-08-10,1997.0,Phoenix Mercury,10,11,10-11
+47.0,1997-08-10,1997.0,Sacramento Monarchs,8,14,8-14
+47.0,1997-08-10,1997.0,Utah Starzz,6,15,6-15
+48.0,1997-08-11,1997.0,Charlotte Sting,11,10,11-10
+48.0,1997-08-11,1997.0,Cleveland Rockers,12,10,12-10
+48.0,1997-08-11,1997.0,Houston Comets,15,7,15-7
+48.0,1997-08-11,1997.0,Los Angeles Sparks,10,13,10-13
+48.0,1997-08-11,1997.0,New York Liberty,15,6,15-6
+48.0,1997-08-11,1997.0,Phoenix Mercury,10,11,10-11
+48.0,1997-08-11,1997.0,Sacramento Monarchs,8,14,8-14
+48.0,1997-08-11,1997.0,Utah Starzz,6,16,6-16
+49.0,1997-08-12,1997.0,Charlotte Sting,11,10,11-10
+49.0,1997-08-12,1997.0,Cleveland Rockers,12,11,12-11
+49.0,1997-08-12,1997.0,Houston Comets,16,7,16-7
+49.0,1997-08-12,1997.0,Los Angeles Sparks,10,13,10-13
+49.0,1997-08-12,1997.0,New York Liberty,15,7,15-7
+49.0,1997-08-12,1997.0,Phoenix Mercury,11,11,11-11
+49.0,1997-08-12,1997.0,Sacramento Monarchs,9,14,9-14
+49.0,1997-08-12,1997.0,Utah Starzz,6,17,6-17
 50.0,1997-08-14,1997.0,Charlotte Sting,12,10,12 - 10
 50.0,1997-08-14,1997.0,Cleveland Rockers,12,12,12 - 12
 50.0,1997-08-14,1997.0,Houston Comets,16,7,16 - 7
