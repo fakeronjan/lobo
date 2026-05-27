@@ -145,6 +145,14 @@ _reg_record_lookup = {
     for _, row in df[df['season_flag'] == 1].iterrows()
 }
 
+# End-of-playoffs combined record per (team, season): from season_flag == 2.
+# Lets GOAT rows show the team's eventual playoff record regardless of which
+# snapshot the row itself comes from (RS-end snapshots wouldn't know it yet).
+_full_record_lookup = {
+    (row['name'], int(row['season'])): row['record']
+    for _, row in df[df['season_flag'] == 2].iterrows()
+}
+
 
 def _parse_record(rec):
     """Parse a 'W - L' string into (wins, losses). Returns None if unparseable."""
@@ -193,32 +201,61 @@ standings_data = {
 with open('docs/data/current_standings.json', 'w') as f:
     json.dump(standings_data, f, separators=(',', ':'))
 
-# ── 2. GOAT table (top 50 single-season ratings at end of season) ────────────
-# Only include fully-complete seasons (flag=2 = Finals ended) AND teams that
-# reached the Finals (finals_status >= 1). Filter applied because GOAT is
-# canonically "best championship-contending teams" — strong regular-season
-# teams that flamed out before the Finals are noise in this view.
-print("Writing goat_teams.json...")
-eos_all = df[(df['season_flag'] == 2) & (df['finals_status'] >= 1)].copy()
-eos_top = eos_all.sort_values('rating', ascending=False).head(50).reset_index(drop=True)
+# ── 2. GOAT tables (end-of-RS + end-of-playoffs) ─────────────────────────────
+# Two lists, matching the DUNCAN/SAKIC/GRIFFEY fleet pattern:
+#   goat_rs.json — top 50 single-season ratings at end of regular season, all teams.
+#   goat_ps.json — top 50 single-season ratings at end of playoffs, WNBA Finals participants only.
+# Both gated to fully-complete seasons (a season is "complete" once a
+# season_flag == 2 row exists for that season — i.e. the Finals have ended).
+print("Writing goat_rs.json + goat_ps.json...")
 
-goat_data = []
-for i, (_, r) in enumerate(eos_top.iterrows()):
-    reg = _reg_record_lookup.get((r['name'], int(r['season'])), '')
-    goat_data.append({
-        'rank':           i + 1,
-        'team':           r['name'],
-        'conference':     conf(r['name']),
-        'season':         int(r['season']),
-        'rating':         round(float(r['rating']), 3),
-        'record':         clean(r['record']),
-        'regular_record': reg,
-        'playoff_record': playoff_record(r['record'], reg),
-        'finals_status':  int(r['finals_status']) if not pd.isna(r['finals_status']) else 0,
-        'cup_status':     int(r['cup_status']) if 'cup_status' in r and not pd.isna(r['cup_status']) else 0,
-    })
-with open('docs/data/goat_teams.json', 'w') as f:
-    json.dump(goat_data, f, separators=(',', ':'))
+# Short / disrupted seasons — flagged on GOAT rows so the UI can tag them
+# inline. WNBA regular-season length has grown over time (28g → 44g) as the
+# league has expanded, so most early-era short totals are "normal for the
+# era", not disrupted. Only seasons with abnormal mid-stream disruption
+# are tagged here.
+SHORT_SEASONS = {
+    2020: "COVID Wubble",  # 22-game season played in the Bradenton bubble
+}
+
+completed_seasons = set(df.loc[df['season_flag'] == 2, 'season'].astype(int).unique())
+
+
+def build_goat(flag, require_finalist):
+    rows = df[(df['season_flag'] == flag) &
+              (df['season'].astype(int).isin(completed_seasons))].copy()
+    if require_finalist:
+        rows = rows[rows['finals_status'].fillna(0) >= 1]
+    rows = rows.sort_values('rating', ascending=False).head(50).reset_index(drop=True)
+    out = []
+    for i, (_, r) in enumerate(rows.iterrows()):
+        s = int(r['season'])
+        reg = _reg_record_lookup.get((r['name'], s), '')
+        full = _full_record_lookup.get((r['name'], s), '')
+        out.append({
+            'rank':             i + 1,
+            'team':             r['name'],
+            'conference':       conf(r['name']),
+            'season':           s,
+            'short_season':     s in SHORT_SEASONS,
+            'short_season_tag': SHORT_SEASONS.get(s, ''),
+            'rating':           round(float(r['rating']), 3),
+            'record':           clean(full or r['record']),
+            'regular_record':   reg,
+            'playoff_record':   playoff_record(full, reg) if full else '',
+            'finals_status':    int(r['finals_status']) if not pd.isna(r['finals_status']) else 0,
+            'cup_status':       int(r['cup_status']) if 'cup_status' in r and not pd.isna(r['cup_status']) else 0,
+        })
+    return out
+
+
+goat_rs = build_goat(flag=1, require_finalist=False)
+goat_ps = build_goat(flag=2, require_finalist=True)
+
+with open('docs/data/goat_rs.json', 'w') as f:
+    json.dump(goat_rs, f, separators=(',', ':'))
+with open('docs/data/goat_ps.json', 'w') as f:
+    json.dump(goat_ps, f, separators=(',', ':'))
 
 # ── 3. Per-team JSON files ───────────────────────────────────────────────────
 print("Writing per-team JSON files...")
