@@ -215,7 +215,11 @@ print("Writing goat_rs.json + goat_ps.json...")
 # era", not disrupted. Only seasons with abnormal mid-stream disruption
 # are tagged here.
 SHORT_SEASONS = {
-    2020: "COVID Wubble",  # 22-game season played in the Bradenton bubble
+    2020: {
+        'tag': 'COVID Wubble',
+        'category': 'covid',
+        'note': "The 2020 season was shortened to 22 games and played in a single-site bubble at IMG Academy in Bradenton, FL.",
+    },
 }
 
 completed_seasons = set(df.loc[df['season_flag'] == 2, 'season'].astype(int).unique())
@@ -237,8 +241,10 @@ def build_goat(flag, require_finalist):
             'team':             r['name'],
             'conference':       conf(r['name']),
             'season':           s,
-            'short_season':     s in SHORT_SEASONS,
-            'short_season_tag': SHORT_SEASONS.get(s, ''),
+            'short_season':          s in SHORT_SEASONS,
+            'short_season_tag':      SHORT_SEASONS.get(s, {}).get('tag', '')      if s in SHORT_SEASONS else '',
+            'short_season_category': SHORT_SEASONS.get(s, {}).get('category', '') if s in SHORT_SEASONS else '',
+            'short_season_note':     SHORT_SEASONS.get(s, {}).get('note', '')     if s in SHORT_SEASONS else '',
             'rating':           round(float(r['rating']), 3),
             'record':           clean(full or r['record']),
             'regular_record':   reg,
@@ -363,6 +369,10 @@ seasons_meta = {
     'first_date': str(games['date_game'].min()),  # actual first game (not first rated date)
     'last_date':  str(games['date_game'].max()),
     'generated_at': datetime.now(timezone.utc).isoformat(),
+    'disrupted_seasons': {
+        str(year): {'tag': info['tag'], 'category': info['category'], 'note': info['note']}
+        for year, info in SHORT_SEASONS.items()
+    },
 }
 with open('docs/data/seasons_index.json', 'w') as f:
     json.dump(seasons_meta, f, separators=(',', ':'))
