@@ -490,56 +490,76 @@ def assemble_final(master_df, ratings_df, standings_df):
     # -------------------------------------------------------------------------
     final_df['season_flag'] = 0
 
-    # Detect Finals champion + runner-up per season from games (event-based —
-    # mirrors GRIFFEY's WS-walker, new ZIDANE's CL-Final-date gate, and the
-    # twin DUNCAN block). WNBA Finals format has changed over time:
-    #   1997:        BO1 (1 win clinches)
-    #   1998-2004:   BO3 (2 wins clinch)
-    #   2005-2024:   BO5 (3 wins clinch)
-    #   2025+:       BO7 (4 wins clinch)
-    # The 7-day cushion on last-game-in-data disambiguates conference-final
-    # clinchers (also series) from the actual Finals clinch.
-    def wnba_clinch_threshold(season_year):
-        y = int(season_year)
-        if y < 1998: return 1
-        if y < 2005: return 2
-        if y < 2025: return 3
-        return 4
+    # Detect Finals champion + runner-up via bracket walk over post-RS
+    # games. For each playoff matchup (a sorted team pair), the H2H winner
+    # is the team with more wins; in-progress matchups (tied H2H) are
+    # skipped. A team is "still in" if their LATEST matchup was a win.
+    # When exactly one team is still in, they're the champion, and their
+    # latest opponent is the runner-up. Format-agnostic — handles WNBA's
+    # 1997 BO1, BO3 era, BO5 era, BO7 era, single-elim play-in rounds, and
+    # variable bracket depths uniformly. No date cushion: the structure of
+    # the bracket distinguishes a CF/semis clinch (2+ teams still in) from
+    # the Finals clinch (exactly 1 team still in).
+    def detect_finals_champion(season_games, rs_end_date):
+        if rs_end_date is None:
+            return None, None
+        pg = season_games[pd.to_datetime(season_games['date_game']) > pd.Timestamp(rs_end_date)].copy()
+        if pg.empty:
+            return None, None
+        pg['date_game'] = pd.to_datetime(pg['date_game'])
+        pg['_matchup'] = pg.apply(
+            lambda r: tuple(sorted([r['home_team_name'], r['visitor_team_name']])),
+            axis=1
+        )
+        # Split each matchup into consecutive series (gap > 10 days = new
+        # series). Harmless for normal WNBA seasons; defensive against any
+        # round-robin-style postseason format that could pair same teams
+        # in separate stages.
+        team_history = {}
+        for matchup, mg in pg.groupby('_matchup'):
+            a, b = matchup
+            mg_sorted = mg.sort_values('date_game').reset_index(drop=True)
+            current_idx = [0]
+            for i in range(1, len(mg_sorted)):
+                gap = (mg_sorted.loc[i, 'date_game'] - mg_sorted.loc[i-1, 'date_game']).days
+                if gap > 10:
+                    _process_series(mg_sorted.iloc[current_idx], a, b, team_history)
+                    current_idx = [i]
+                else:
+                    current_idx.append(i)
+            _process_series(mg_sorted.iloc[current_idx], a, b, team_history)
+        still_in = []
+        for team, hist in team_history.items():
+            hist.sort(key=lambda x: x[0])
+            if hist[-1][1]:
+                still_in.append((team, hist))
+        if len(still_in) != 1:
+            return None, None
+        champion, hist = still_in[0]
+        _, _, runner_up = hist[-1]
+        return champion, runner_up
 
-    def detect_finals_champion(season_games, threshold):
-        sg = season_games.sort_values('date_game')
-        if sg.empty:
-            return None, None
-        last = sg.iloc[-1]
-        last_date = pd.to_datetime(last['date_game']).date()
-        if (date.today() - last_date).days < 7:
-            return None, None
-        a = last['home_team_name']
-        b = last['visitor_team_name']
-        last_dt = pd.Timestamp(last_date)
-        window_start = last_dt - pd.Timedelta(days=21)
-        sg_dt = pd.to_datetime(sg['date_game'])
-        h2h = sg[
-            (sg_dt >= window_start) & (sg_dt <= last_dt) &
-            (((sg['home_team_name'] == a) & (sg['visitor_team_name'] == b)) |
-             ((sg['home_team_name'] == b) & (sg['visitor_team_name'] == a)))
-        ]
-        a_wins = (((h2h['home_team_name'] == a) & (h2h['home_win'] == 1)) |
-                  ((h2h['visitor_team_name'] == a) & (h2h['home_win'] == 0))).sum()
-        b_wins = len(h2h) - a_wins
-        if a_wins >= threshold:
-            return a, b
-        if b_wins >= threshold:
-            return b, a
-        return None, None
+    def _process_series(series_df, a, b, team_history):
+        a_wins = (((series_df['home_team_name'] == a) & (series_df['home_win'] == 1)) |
+                  ((series_df['visitor_team_name'] == a) & (series_df['home_win'] == 0))).sum()
+        b_wins = len(series_df) - a_wins
+        if a_wins > b_wins:
+            winner, loser = a, b
+        elif b_wins > a_wins:
+            winner, loser = b, a
+        else:
+            return
+        last_date = series_df['date_game'].max()
+        team_history.setdefault(winner, []).append((last_date, True, loser))
+        team_history.setdefault(loser, []).append((last_date, False, winner))
 
     _finals_results = {}  # season -> (champion, runner_up)
     for season in final_df['season'].unique():
         season_games = master_df[master_df['season'] == season]
         if season_games.empty:
             continue
-        threshold = wnba_clinch_threshold(season)
-        champ, ru = detect_finals_champion(season_games, threshold)
+        rs_end = _get_regular_season_end_date(master_df, season)
+        champ, ru = detect_finals_champion(season_games, rs_end)
         if champ is not None:
             _finals_results[season] = (champ, ru)
 
