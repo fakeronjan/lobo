@@ -490,10 +490,61 @@ def assemble_final(master_df, ratings_df, standings_df):
     # -------------------------------------------------------------------------
     final_df['season_flag'] = 0
 
-    # WNBA Finals end by mid-October; season YYYY is fully complete after Nov 30 of YYYY.
-    today = datetime.now().date()
+    # Detect Finals champion + runner-up per season from games (event-based —
+    # mirrors GRIFFEY's WS-walker, new ZIDANE's CL-Final-date gate, and the
+    # twin DUNCAN block). WNBA Finals format has changed over time:
+    #   1997:        BO1 (1 win clinches)
+    #   1998-2004:   BO3 (2 wins clinch)
+    #   2005-2024:   BO5 (3 wins clinch)
+    #   2025+:       BO7 (4 wins clinch)
+    # The 7-day cushion on last-game-in-data disambiguates conference-final
+    # clinchers (also series) from the actual Finals clinch.
+    def wnba_clinch_threshold(season_year):
+        y = int(season_year)
+        if y < 1998: return 1
+        if y < 2005: return 2
+        if y < 2025: return 3
+        return 4
+
+    def detect_finals_champion(season_games, threshold):
+        sg = season_games.sort_values('date_game')
+        if sg.empty:
+            return None, None
+        last = sg.iloc[-1]
+        last_date = pd.to_datetime(last['date_game']).date()
+        if (date.today() - last_date).days < 7:
+            return None, None
+        a = last['home_team_name']
+        b = last['visitor_team_name']
+        last_dt = pd.Timestamp(last_date)
+        window_start = last_dt - pd.Timedelta(days=21)
+        sg_dt = pd.to_datetime(sg['date_game'])
+        h2h = sg[
+            (sg_dt >= window_start) & (sg_dt <= last_dt) &
+            (((sg['home_team_name'] == a) & (sg['visitor_team_name'] == b)) |
+             ((sg['home_team_name'] == b) & (sg['visitor_team_name'] == a)))
+        ]
+        a_wins = (((h2h['home_team_name'] == a) & (h2h['home_win'] == 1)) |
+                  ((h2h['visitor_team_name'] == a) & (h2h['home_win'] == 0))).sum()
+        b_wins = len(h2h) - a_wins
+        if a_wins >= threshold:
+            return a, b
+        if b_wins >= threshold:
+            return b, a
+        return None, None
+
+    _finals_results = {}  # season -> (champion, runner_up)
+    for season in final_df['season'].unique():
+        season_games = master_df[master_df['season'] == season]
+        if season_games.empty:
+            continue
+        threshold = wnba_clinch_threshold(season)
+        champ, ru = detect_finals_champion(season_games, threshold)
+        if champ is not None:
+            _finals_results[season] = (champ, ru)
+
     def season_is_fully_complete(season):
-        return today > datetime(int(season), 11, 30).date()
+        return season in _finals_results
 
     # Regular season is "done" once any team has played the threshold count
     regular_season_complete = set()
@@ -538,69 +589,14 @@ def assemble_final(master_df, ratings_df, standings_df):
         )
 
     # -------------------------------------------------------------------------
-    # Champion & runner-up: detect the Finals series structurally.
+    # Champion & runner-up: assign from the _finals_results dict computed
+    # earlier alongside season_is_fully_complete (same event-based detection).
     # -------------------------------------------------------------------------
-    # The Finals is a clinched head-to-head series at season's end. We declare
-    # a champion only when:
-    #   1. One team has reached the format's clinch threshold in head-to-head
-    #      games against another team within the last 21 days, AND
-    #   2. The last game on file is at least 7 days old (gates out conference
-    #      finals — the actual WNBA Finals start ~5-7 days after the
-    #      conference-final clinchers).
-    # WNBA Finals format has changed over time:
-    #   1997:        BO1 (1 win clinches)
-    #   1998-2004:   BO3 (2 wins clinch)
-    #   2005-2024:   BO5 (3 wins clinch)
-    #   2025+:       BO7 (4 wins clinch)
-    def wnba_clinch_threshold(season_year):
-        y = int(season_year)
-        if y < 1998: return 1
-        if y < 2005: return 2
-        if y < 2025: return 3
-        return 4
-
-    def detect_finals_champion(season_games, threshold):
-        sg = season_games.sort_values('date_game')
-        if sg.empty:
-            return None, None
-        last = sg.iloc[-1]
-        last_date = pd.to_datetime(last['date_game']).date()
-        if (date.today() - last_date).days < 7:
-            return None, None
-        a = last['home_team_name']
-        b = last['visitor_team_name']
-        last_dt = pd.Timestamp(last_date)
-        window_start = last_dt - pd.Timedelta(days=21)
-        sg_dt = pd.to_datetime(sg['date_game'])
-        h2h = sg[
-            (sg_dt >= window_start) & (sg_dt <= last_dt) &
-            (((sg['home_team_name'] == a) & (sg['visitor_team_name'] == b)) |
-             ((sg['home_team_name'] == b) & (sg['visitor_team_name'] == a)))
-        ]
-        a_wins = (((h2h['home_team_name'] == a) & (h2h['home_win'] == 1)) |
-                  ((h2h['visitor_team_name'] == a) & (h2h['home_win'] == 0))).sum()
-        b_wins = len(h2h) - a_wins
-        if a_wins >= threshold:
-            return a, b
-        if b_wins >= threshold:
-            return b, a
-        return None, None
-
     final_df['champ'] = 0
     final_df['runnerup'] = 0
-
-    for season in final_df['season'].unique():
-        season_games = master_df[master_df['season'] == season]
-        if season_games.empty:
-            continue
-        threshold = wnba_clinch_threshold(season)
-        champion, runner_up = detect_finals_champion(season_games, threshold)
-        if champion is None:
-            continue
-
+    for season, (champion, runner_up) in _finals_results.items():
         champ_season = f"{champion} - {season}"
         runnerup_season = f"{runner_up} - {season}"
-
         final_df['champ'] = np.where(final_df['name_season'] == champ_season, 1, final_df['champ'])
         final_df['runnerup'] = np.where(final_df['name_season'] == runnerup_season, 1, final_df['runnerup'])
 
