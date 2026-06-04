@@ -500,7 +500,7 @@ def assemble_final(master_df, ratings_df, standings_df):
     # variable bracket depths uniformly. No date cushion: the structure of
     # the bracket distinguishes a CF/semis clinch (2+ teams still in) from
     # the Finals clinch (exactly 1 team still in).
-    def detect_finals_champion(season_games, rs_end_date):
+    def detect_finals_champion(season_games, rs_end_date, clinch_threshold):
         if rs_end_date is None:
             return None, None
         pg = season_games[pd.to_datetime(season_games['date_game']) > pd.Timestamp(rs_end_date)].copy()
@@ -523,11 +523,11 @@ def assemble_final(master_df, ratings_df, standings_df):
             for i in range(1, len(mg_sorted)):
                 gap = (mg_sorted.loc[i, 'date_game'] - mg_sorted.loc[i-1, 'date_game']).days
                 if gap > 10:
-                    _process_series(mg_sorted.iloc[current_idx], a, b, team_history)
+                    _process_series(mg_sorted.iloc[current_idx], a, b, team_history, clinch_threshold)
                     current_idx = [i]
                 else:
                     current_idx.append(i)
-            _process_series(mg_sorted.iloc[current_idx], a, b, team_history)
+            _process_series(mg_sorted.iloc[current_idx], a, b, team_history, clinch_threshold)
         still_in = []
         for team, hist in team_history.items():
             hist.sort(key=lambda x: x[0])
@@ -539,13 +539,33 @@ def assemble_final(master_df, ratings_df, standings_df):
         _, _, runner_up = hist[-1]
         return champion, runner_up
 
-    def _process_series(series_df, a, b, team_history):
+    # WNBA Finals clinch threshold has moved over the years:
+    #   1997        BO1 (1 win)
+    #   1998-2004   BO3 (2 wins)
+    #   2005-2024   BO5 (3 wins)
+    #   2025+       BO7 (4 wins)
+    # Until the winner of a matchup has reached this count the series is
+    # in progress; without this gate a 1-0 lead in a live Finals series
+    # would falsely crown the Game 1 winner (the same bug that bit DUNCAN
+    # mid-2026 Finals). We apply the Finals threshold to ALL matchups in
+    # the season; earlier rounds with shorter formats may go unrecorded,
+    # but the "still in" check only depends on a team's LATEST matchup,
+    # which for the champion is always the Finals — so champion + runner-
+    # up detection still resolves correctly.
+    def _wnba_finals_clinch(season):
+        y = int(season)
+        if y < 1998: return 1
+        if y < 2005: return 2
+        if y < 2025: return 3
+        return 4
+
+    def _process_series(series_df, a, b, team_history, clinch_threshold):
         a_wins = (((series_df['home_team_name'] == a) & (series_df['home_win'] == 1)) |
                   ((series_df['visitor_team_name'] == a) & (series_df['home_win'] == 0))).sum()
         b_wins = len(series_df) - a_wins
-        if a_wins > b_wins:
+        if a_wins >= clinch_threshold and a_wins > b_wins:
             winner, loser = a, b
-        elif b_wins > a_wins:
+        elif b_wins >= clinch_threshold and b_wins > a_wins:
             winner, loser = b, a
         else:
             return
@@ -559,7 +579,7 @@ def assemble_final(master_df, ratings_df, standings_df):
         if season_games.empty:
             continue
         rs_end = _get_regular_season_end_date(master_df, season)
-        champ, ru = detect_finals_champion(season_games, rs_end)
+        champ, ru = detect_finals_champion(season_games, rs_end, _wnba_finals_clinch(season))
         if champ is not None:
             _finals_results[season] = (champ, ru)
 

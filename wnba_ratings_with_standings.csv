@@ -32013,6 +32013,7 @@ ranking_id,date,season,name,rating,rank,record,current_date,season_flag,name_sea
 2527,2026-05-25,2026,Seattle Storm,-1.8320073139648203,9,3-4,0,0,Seattle Storm - 2026,0,0,0,0,0,0,,
 2527,2026-05-25,2026,Toronto Tempo,-4.614772540266974,12,3-4,0,0,Toronto Tempo - 2026,0,0,0,0,0,0,,
 2527,2026-05-25,2026,Washington Mystics,-8.350083654841768,14,2-3,0,0,Washington Mystics - 2026,0,0,0,0,0,0,,
+<<<<<<< Updated upstream
 2528,2026-05-27,2026,Atlanta Dream,6.666286346505227,3,4-2,0,0,Atlanta Dream - 2026,0,0,0,0,0,0,L 81-96 @ Minnesota Lynx,Minnesota Lynx
 2528,2026-05-27,2026,Chicago Sky,-2.8027935252685587,10,3-4,0,0,Chicago Sky - 2026,0,0,0,0,0,0,L 104-111 vs. Toronto Tempo,Toronto Tempo
 2528,2026-05-27,2026,Connecticut Sun,-10.47293076311268,15,1-8,0,0,Connecticut Sun - 2026,0,0,0,0,0,0,L 61-71 @ Portland Fire,Portland Fire
@@ -32133,3 +32134,125 @@ ranking_id,date,season,name,rating,rank,record,current_date,season_flag,name_sea
 2535,2026-06-03,2026,Seattle Storm,-6.548105360302154,14,3-8,1,0,Seattle Storm - 2026,0,0,0,0,0,0,L 68-72 vs. Phoenix Mercury,Phoenix Mercury
 2535,2026-06-03,2026,Toronto Tempo,-2.838915703209591,10,5-5,1,0,Toronto Tempo - 2026,0,0,0,0,0,0,L 82-97 @ New York Liberty,New York Liberty
 2535,2026-06-03,2026,Washington Mystics,-4.923915941461872,13,4-4,1,0,Washington Mystics - 2026,0,0,0,0,0,0,,
+=======
+2528,2026-05-27,2026,Atlanta Dream,6.666286346505207,3,4-2,0,0,Atlanta Dream - 2026,0,0,0,0,0,0,L 81-96 @ Minnesota Lynx,Minnesota Lynx
+2528,2026-05-27,2026,Chicago Sky,-2.8027935252685654,10,3-4,0,0,Chicago Sky - 2026,0,0,0,0,0,0,L 104-111 vs. Toronto Tempo,Toronto Tempo
+2528,2026-05-27,2026,Connecticut Sun,-10.472930763112673,15,1-8,0,0,Connecticut Sun - 2026,0,0,0,0,0,0,L 61-71 @ Portland Fire,Portland Fire
+2528,2026-05-27,2026,Dallas Wings,1.5029669912695598,6,4-3,0,0,Dallas Wings - 2026,0,0,0,0,0,0,,
+2528,2026-05-27,2026,Golden State Valkyries,4.191310636967622,5,4-2,0,0,Golden State Valkyries - 2026,0,0,0,0,0,0,,
+2528,2026-05-27,2026,Indiana Fever,5.095940408473464,4,4-2,0,0,Indiana Fever - 2026,0,0,0,0,0,0,,
+2528,2026-05-27,2026,Las Vegas Aces,7.214642050598312,2,4-2,0,0,Las Vegas Aces - 2026,0,0,0,0,0,0,,
+2528,2026-05-27,2026,Los Angeles Sparks,-1.7030151972168852,9,3-3,0,0,Los Angeles Sparks - 2026,0,0,0,0,0,0,,
+2528,2026-05-27,2026,Minnesota Lynx,7.383819790406868,1,5-2,0,0,Minnesota Lynx - 2026,0,0,0,0,0,0,W 96-81 vs. Atlanta Dream,Atlanta Dream
+2528,2026-05-27,2026,New York Liberty,-1.3852472168694374,8,4-4,0,0,New York Liberty - 2026,0,0,0,0,0,0,W 84-74 vs. Phoenix Mercury,Phoenix Mercury
+2528,2026-05-27,2026,Phoenix Mercury,1.2446131043601842,7,2-6,0,0,Phoenix Mercury - 2026,0,0,0,0,0,0,L 74-84 @ New York Liberty,New York Liberty
+2528,2026-05-27,2026,Portland Fire,-4.352308735118598,13,5-3,0,0,Portland Fire - 2026,0,0,0,0,0,0,W 71-61 vs. Connecticut Sun,Connecticut Sun
+2528,2026-05-27,2026,Seattle Storm,-3.5169204414008055,12,3-5,0,0,Seattle Storm - 2026,0,0,0,0,0,0,L 64-78 vs. Washington Mystics,Washington Mystics
+2528,2026-05-27,2026,Toronto Tempo,-2.9438124732732263,11,4-4,0,0,Toronto Tempo - 2026,0,0,0,0,0,0,W 111-104 @ Chicago Sky,Chicago Sky
+2528,2026-05-27,2026,Washington Mystics,-6.122550976321033,14,3-3,0,0,Washington Mystics - 2026,0,0,0,0,0,0,W 78-64 @ Seattle Storm,Seattle Storm
+2529,2026-05-28,2026,Atlanta Dream,6.708474496834995,2,4-2,0,0,Atlanta Dream - 2026,0,0,0,0,0,0,,
+2529,2026-05-28,2026,Chicago Sky,-2.703499319153934,10,3-4,0,0,Chicago Sky - 2026,0,0,0,0,0,0,,
+2529,2026-05-28,2026,Connecticut Sun,-10.678313227383725,15,1-8,0,0,Connecticut Sun - 2026,0,0,0,0,0,0,,
+2529,2026-05-28,2026,Dallas Wings,2.7025711374552484,6,5-3,0,0,Dallas Wings - 2026,0,0,0,0,0,0,W 95-87 vs. Las Vegas Aces,Las Vegas Aces
+2529,2026-05-28,2026,Golden State Valkyries,4.309936235824266,5,5-2,0,0,Golden State Valkyries - 2026,0,0,0,0,0,0,W 90-88 vs. Indiana Fever,Indiana Fever
+2529,2026-05-28,2026,Indiana Fever,4.991963263132627,4,4-3,0,0,Indiana Fever - 2026,0,0,0,0,0,0,L 88-90 @ Golden State Valkyries,Golden State Valkyries
+2529,2026-05-28,2026,Las Vegas Aces,6.500977731166675,3,4-3,0,0,Las Vegas Aces - 2026,0,0,0,0,0,0,L 87-95 @ Dallas Wings,Dallas Wings
+2529,2026-05-28,2026,Los Angeles Sparks,-1.7931335297313198,9,3-3,0,0,Los Angeles Sparks - 2026,0,0,0,0,0,0,,
+2529,2026-05-28,2026,Minnesota Lynx,7.473121086780862,1,5-2,0,0,Minnesota Lynx - 2026,0,0,0,0,0,0,,
+2529,2026-05-28,2026,New York Liberty,-1.386350167459352,8,4-4,0,0,New York Liberty - 2026,0,0,0,0,0,0,,
+2529,2026-05-28,2026,Phoenix Mercury,1.1002252436631277,7,2-6,0,0,Phoenix Mercury - 2026,0,0,0,0,0,0,,
+2529,2026-05-28,2026,Portland Fire,-4.402681804730669,13,5-3,0,0,Portland Fire - 2026,0,0,0,0,0,0,,
+2529,2026-05-28,2026,Seattle Storm,-3.7210380042544564,12,3-5,0,0,Seattle Storm - 2026,0,0,0,0,0,0,,
+2529,2026-05-28,2026,Toronto Tempo,-2.9896580636876093,11,4-4,0,0,Toronto Tempo - 2026,0,0,0,0,0,0,,
+2529,2026-05-28,2026,Washington Mystics,-6.11259507845674,14,3-3,0,0,Washington Mystics - 2026,0,0,0,0,0,0,,
+2530,2026-05-29,2026,Atlanta Dream,7.73709327419903,2,5-2,0,0,Atlanta Dream - 2026,0,0,0,0,0,0,W 86-66 @ Portland Fire,Portland Fire
+2530,2026-05-29,2026,Chicago Sky,-3.641429685372348,11,3-5,0,0,Chicago Sky - 2026,0,0,0,0,0,0,L 58-79 vs. Minnesota Lynx,Minnesota Lynx
+2530,2026-05-29,2026,Connecticut Sun,-10.905699984180746,15,1-8,0,0,Connecticut Sun - 2026,0,0,0,0,0,0,,
+2530,2026-05-29,2026,Dallas Wings,3.1370400885816303,6,5-3,0,0,Dallas Wings - 2026,0,0,0,0,0,0,,
+2530,2026-05-29,2026,Golden State Valkyries,4.439185823318474,5,5-2,0,0,Golden State Valkyries - 2026,0,0,0,0,0,0,,
+2530,2026-05-29,2026,Indiana Fever,5.139786556616822,4,4-3,0,0,Indiana Fever - 2026,0,0,0,0,0,0,,
+2530,2026-05-29,2026,Las Vegas Aces,6.5289139847039666,3,4-3,0,0,Las Vegas Aces - 2026,0,0,0,0,0,0,,
+2530,2026-05-29,2026,Los Angeles Sparks,-1.458736673198699,9,4-3,0,0,Los Angeles Sparks - 2026,0,0,0,0,0,0,W 92-87 @ Washington Mystics,Washington Mystics
+2530,2026-05-29,2026,Minnesota Lynx,8.361770670992657,1,6-2,0,0,Minnesota Lynx - 2026,0,0,0,0,0,0,W 79-58 @ Chicago Sky,Chicago Sky
+2530,2026-05-29,2026,New York Liberty,-1.1787888896721082,8,5-4,0,0,New York Liberty - 2026,0,0,0,0,0,0,W 75-68 vs. Phoenix Mercury,Phoenix Mercury
+2530,2026-05-29,2026,Phoenix Mercury,0.8941154552226201,7,2-7,0,0,Phoenix Mercury - 2026,0,0,0,0,0,0,L 68-75 @ New York Liberty,New York Liberty
+2530,2026-05-29,2026,Portland Fire,-5.718833772106662,13,5-4,0,0,Portland Fire - 2026,0,0,0,0,0,0,L 66-86 vs. Atlanta Dream,Atlanta Dream
+2530,2026-05-29,2026,Seattle Storm,-3.853327442948733,12,3-5,0,0,Seattle Storm - 2026,0,0,0,0,0,0,,
+2530,2026-05-29,2026,Toronto Tempo,-3.168793022758174,10,4-4,0,0,Toronto Tempo - 2026,0,0,0,0,0,0,,
+2530,2026-05-29,2026,Washington Mystics,-6.312296383397725,14,3-4,0,0,Washington Mystics - 2026,0,0,0,0,0,0,L 87-92 vs. Los Angeles Sparks,Los Angeles Sparks
+2531,2026-05-30,2026,Atlanta Dream,7.613266039269348,2,5-2,0,0,Atlanta Dream - 2026,0,0,0,0,0,0,,
+2531,2026-05-30,2026,Chicago Sky,-3.368675490231725,12,3-5,0,0,Chicago Sky - 2026,0,0,0,0,0,0,,
+2531,2026-05-30,2026,Connecticut Sun,-10.24176579071869,15,2-8,0,0,Connecticut Sun - 2026,0,0,0,0,0,0,W 84-81 vs. Los Angeles Sparks,Los Angeles Sparks
+2531,2026-05-30,2026,Dallas Wings,2.9911216509158822,6,5-3,0,0,Dallas Wings - 2026,0,0,0,0,0,0,,
+2531,2026-05-30,2026,Golden State Valkyries,3.999473431915566,4,5-2,0,0,Golden State Valkyries - 2026,0,0,0,0,0,0,,
+2531,2026-05-30,2026,Indiana Fever,3.3808685534499126,5,4-4,0,0,Indiana Fever - 2026,0,0,0,0,0,0,L 84-100 @ Portland Fire,Portland Fire
+2531,2026-05-30,2026,Las Vegas Aces,5.9193282452004885,3,4-3,0,0,Las Vegas Aces - 2026,0,0,0,0,0,0,,
+2531,2026-05-30,2026,Los Angeles Sparks,-2.485037408303069,10,4-4,0,0,Los Angeles Sparks - 2026,0,0,0,0,0,0,L 81-84 @ Connecticut Sun,Connecticut Sun
+2531,2026-05-30,2026,Minnesota Lynx,8.33734157274067,1,6-2,0,0,Minnesota Lynx - 2026,0,0,0,0,0,0,,
+2531,2026-05-30,2026,New York Liberty,-0.7921693356882155,8,5-4,0,0,New York Liberty - 2026,0,0,0,0,0,0,,
+2531,2026-05-30,2026,Phoenix Mercury,0.7754499653054991,7,2-7,0,0,Phoenix Mercury - 2026,0,0,0,0,0,0,,
+2531,2026-05-30,2026,Portland Fire,-2.772685531886541,11,6-4,0,0,Portland Fire - 2026,0,0,0,0,0,0,W 100-84 vs. Indiana Fever,Indiana Fever
+2531,2026-05-30,2026,Seattle Storm,-5.402435856512703,13,3-6,0,0,Seattle Storm - 2026,0,0,0,0,0,0,L 72-93 @ Toronto Tempo,Toronto Tempo
+2531,2026-05-30,2026,Toronto Tempo,-1.0530134028082363,9,5-4,0,0,Toronto Tempo - 2026,0,0,0,0,0,0,W 93-72 vs. Seattle Storm,Seattle Storm
+2531,2026-05-30,2026,Washington Mystics,-6.901066642648193,14,3-4,0,0,Washington Mystics - 2026,0,0,0,0,0,0,,
+2532,2026-05-31,2026,Atlanta Dream,7.697833579715086,2,5-2,0,0,Atlanta Dream - 2026,0,0,0,0,0,0,,
+2532,2026-05-31,2026,Chicago Sky,-3.2839722869874675,12,3-5,0,0,Chicago Sky - 2026,0,0,0,0,0,0,,
+2532,2026-05-31,2026,Connecticut Sun,-10.332789704078209,15,2-8,0,0,Connecticut Sun - 2026,0,0,0,0,0,0,,
+2532,2026-05-31,2026,Dallas Wings,3.2131868061245203,5,5-3,0,0,Dallas Wings - 2026,0,0,0,0,0,0,,
+2532,2026-05-31,2026,Golden State Valkyries,3.1506192866654374,6,5-3,0,0,Golden State Valkyries - 2026,0,0,0,0,0,0,L 81-91 vs. Las Vegas Aces,Las Vegas Aces
+2532,2026-05-31,2026,Indiana Fever,3.3827389671182853,4,4-4,0,0,Indiana Fever - 2026,0,0,0,0,0,0,,
+2532,2026-05-31,2026,Las Vegas Aces,6.477128299678121,3,5-3,0,0,Las Vegas Aces - 2026,0,0,0,0,0,0,W 91-81 @ Golden State Valkyries,Golden State Valkyries
+2532,2026-05-31,2026,Los Angeles Sparks,-2.335680434765511,10,4-4,0,0,Los Angeles Sparks - 2026,0,0,0,0,0,0,,
+2532,2026-05-31,2026,Minnesota Lynx,8.319317341779705,1,6-2,0,0,Minnesota Lynx - 2026,0,0,0,0,0,0,,
+2532,2026-05-31,2026,New York Liberty,-0.8617810822658454,8,5-4,0,0,New York Liberty - 2026,0,0,0,0,0,0,,
+2532,2026-05-31,2026,Phoenix Mercury,0.8315866928710881,7,2-7,0,0,Phoenix Mercury - 2026,0,0,0,0,0,0,,
+2532,2026-05-31,2026,Portland Fire,-2.777647481454711,11,6-4,0,0,Portland Fire - 2026,0,0,0,0,0,0,,
+2532,2026-05-31,2026,Seattle Storm,-5.527312758229047,13,3-6,0,0,Seattle Storm - 2026,0,0,0,0,0,0,,
+2532,2026-05-31,2026,Toronto Tempo,-1.0335504437805134,9,5-4,0,0,Toronto Tempo - 2026,0,0,0,0,0,0,,
+2532,2026-05-31,2026,Washington Mystics,-6.919676782390942,14,3-4,0,0,Washington Mystics - 2026,0,0,0,0,0,0,,
+2533,2026-06-01,2026,Atlanta Dream,7.996233221661445,2,5-2,0,0,Atlanta Dream - 2026,0,0,0,0,0,0,,
+2533,2026-06-01,2026,Chicago Sky,-2.954584047326009,12,3-5,0,0,Chicago Sky - 2026,0,0,0,0,0,0,,
+2533,2026-06-01,2026,Connecticut Sun,-10.658069726875848,15,2-8,0,0,Connecticut Sun - 2026,0,0,0,0,0,0,,
+2533,2026-06-01,2026,Dallas Wings,4.585225105420106,4,6-3,0,0,Dallas Wings - 2026,0,0,0,0,0,0,W 79-56 vs. Seattle Storm,Seattle Storm
+2533,2026-06-01,2026,Golden State Valkyries,3.200903934000393,6,5-3,0,0,Golden State Valkyries - 2026,0,0,0,0,0,0,,
+2533,2026-06-01,2026,Indiana Fever,3.3933290709239814,5,4-4,0,0,Indiana Fever - 2026,0,0,0,0,0,0,,
+2533,2026-06-01,2026,Las Vegas Aces,6.289025183659361,3,5-3,0,0,Las Vegas Aces - 2026,0,0,0,0,0,0,,
+2533,2026-06-01,2026,Los Angeles Sparks,-2.5034923806984324,10,4-4,0,0,Los Angeles Sparks - 2026,0,0,0,0,0,0,,
+2533,2026-06-01,2026,Minnesota Lynx,9.554570245508856,1,7-2,0,0,Minnesota Lynx - 2026,0,0,0,0,0,0,W 111-77 @ Phoenix Mercury,Phoenix Mercury
+2533,2026-06-01,2026,New York Liberty,-1.0709988212563402,8,5-4,0,0,New York Liberty - 2026,0,0,0,0,0,0,,
+2533,2026-06-01,2026,Phoenix Mercury,0.06346616471996284,7,2-8,0,0,Phoenix Mercury - 2026,0,0,0,0,0,0,L 77-111 vs. Minnesota Lynx,Minnesota Lynx
+2533,2026-06-01,2026,Portland Fire,-2.8479759890756835,11,6-4,0,0,Portland Fire - 2026,0,0,0,0,0,0,,
+2533,2026-06-01,2026,Seattle Storm,-6.627286852585366,13,3-7,0,0,Seattle Storm - 2026,0,0,0,0,0,0,L 56-79 @ Dallas Wings,Dallas Wings
+2533,2026-06-01,2026,Toronto Tempo,-1.2515659570606157,9,5-4,0,0,Toronto Tempo - 2026,0,0,0,0,0,0,,
+2533,2026-06-01,2026,Washington Mystics,-7.168779151015815,14,3-4,0,0,Washington Mystics - 2026,0,0,0,0,0,0,,
+2534,2026-06-02,2026,Atlanta Dream,7.525090401032654,2,6-2,0,0,Atlanta Dream - 2026,0,0,0,0,0,0,W 91-75 vs. Connecticut Sun,Connecticut Sun
+2534,2026-06-02,2026,Chicago Sky,-4.646738118831931,12,3-6,0,0,Chicago Sky - 2026,0,0,0,0,0,0,L 72-90 @ Washington Mystics,Washington Mystics
+2534,2026-06-02,2026,Connecticut Sun,-10.511546454821163,15,2-9,0,0,Connecticut Sun - 2026,0,0,0,0,0,0,L 75-91 @ Atlanta Dream,Atlanta Dream
+2534,2026-06-02,2026,Dallas Wings,4.77016682895975,4,6-3,0,0,Dallas Wings - 2026,0,0,0,0,0,0,,
+2534,2026-06-02,2026,Golden State Valkyries,3.9449051427255277,5,6-3,0,0,Golden State Valkyries - 2026,0,0,0,0,0,0,W 95-77 vs. Portland Fire,Portland Fire
+2534,2026-06-02,2026,Indiana Fever,3.5013283489426605,6,4-4,0,0,Indiana Fever - 2026,0,0,0,0,0,0,,
+2534,2026-06-02,2026,Las Vegas Aces,6.41760630910871,3,6-3,0,0,Las Vegas Aces - 2026,0,0,0,0,0,0,W 79-69 @ Los Angeles Sparks,Los Angeles Sparks
+2534,2026-06-02,2026,Los Angeles Sparks,-2.5178879924510054,10,4-5,0,0,Los Angeles Sparks - 2026,0,0,0,0,0,0,L 69-79 vs. Las Vegas Aces,Las Vegas Aces
+2534,2026-06-02,2026,Minnesota Lynx,9.319689071348948,1,7-2,0,0,Minnesota Lynx - 2026,0,0,0,0,0,0,,
+2534,2026-06-02,2026,New York Liberty,-1.0899218648530924,8,5-4,0,0,New York Liberty - 2026,0,0,0,0,0,0,,
+2534,2026-06-02,2026,Phoenix Mercury,-0.034307815639582705,7,2-8,0,0,Phoenix Mercury - 2026,0,0,0,0,0,0,,
+2534,2026-06-02,2026,Portland Fire,-3.9635818004413057,11,6-5,0,0,Portland Fire - 2026,0,0,0,0,0,0,L 77-95 @ Golden State Valkyries,Golden State Valkyries
+2534,2026-06-02,2026,Seattle Storm,-6.337178991021921,14,3-7,0,0,Seattle Storm - 2026,0,0,0,0,0,0,,
+2534,2026-06-02,2026,Toronto Tempo,-1.3663101621320497,9,5-4,0,0,Toronto Tempo - 2026,0,0,0,0,0,0,,
+2534,2026-06-02,2026,Washington Mystics,-5.01131290192621,13,4-4,0,0,Washington Mystics - 2026,0,0,0,0,0,0,W 90-72 vs. Chicago Sky,Chicago Sky
+2535,2026-06-03,2026,Atlanta Dream,7.5906965069375705,2,6-2,1,0,Atlanta Dream - 2026,0,0,0,0,0,0,,
+2535,2026-06-03,2026,Chicago Sky,-4.60974387003446,12,3-6,1,0,Chicago Sky - 2026,0,0,0,0,0,0,,
+2535,2026-06-03,2026,Connecticut Sun,-10.539717926843148,15,2-9,1,0,Connecticut Sun - 2026,0,0,0,0,0,0,,
+2535,2026-06-03,2026,Dallas Wings,5.0501914398935694,4,6-3,1,0,Dallas Wings - 2026,0,0,0,0,0,0,,
+2535,2026-06-03,2026,Golden State Valkyries,4.086453262322234,5,6-3,1,0,Golden State Valkyries - 2026,0,0,0,0,0,0,,
+2535,2026-06-03,2026,Indiana Fever,3.5432637698391494,6,4-4,1,0,Indiana Fever - 2026,0,0,0,0,0,0,,
+2535,2026-06-03,2026,Las Vegas Aces,6.383187330870795,3,6-3,1,0,Las Vegas Aces - 2026,0,0,0,0,0,0,,
+2535,2026-06-03,2026,Los Angeles Sparks,-2.704093273720274,9,4-5,1,0,Los Angeles Sparks - 2026,0,0,0,0,0,0,,
+2535,2026-06-03,2026,Minnesota Lynx,9.36631190923927,1,7-2,1,0,Minnesota Lynx - 2026,0,0,0,0,0,0,,
+2535,2026-06-03,2026,New York Liberty,-0.08855501353068328,8,6-4,1,0,New York Liberty - 2026,0,0,0,0,0,0,W 97-82 vs. Toronto Tempo,Toronto Tempo
+2535,2026-06-03,2026,Phoenix Mercury,0.04141726662469005,7,3-8,1,0,Phoenix Mercury - 2026,0,0,0,0,0,0,W 72-68 @ Seattle Storm,Seattle Storm
+2535,2026-06-03,2026,Portland Fire,-3.8084743966252375,11,6-5,1,0,Portland Fire - 2026,0,0,0,0,0,0,,
+2535,2026-06-03,2026,Seattle Storm,-6.548105360302047,14,3-8,1,0,Seattle Storm - 2026,0,0,0,0,0,0,L 68-72 vs. Phoenix Mercury,Phoenix Mercury
+2535,2026-06-03,2026,Toronto Tempo,-2.83891570320957,10,5-5,1,0,Toronto Tempo - 2026,0,0,0,0,0,0,L 82-97 @ New York Liberty,New York Liberty
+2535,2026-06-03,2026,Washington Mystics,-4.923915941461853,13,4-4,1,0,Washington Mystics - 2026,0,0,0,0,0,0,,
+>>>>>>> Stashed changes
