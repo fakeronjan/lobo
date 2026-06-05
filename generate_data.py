@@ -403,6 +403,70 @@ with open('docs/data/seasons_index.json', 'w') as f:
 # ── 5. Champions table ────────────────────────────────────────────────────────
 print("Writing champions.json...")
 
+# Pre-Finals snapshot per season: the ranking_id of the last rating snapshot
+# STRICTLY BEFORE the Finals series begins, for each season. Used in the
+# Lists sub-view to evaluate matchup quality / closeness / upsets without
+# the circularity of letting the Finals result colour the "going-in" rating.
+# Mirrors DUNCAN's pattern.
+def _build_pre_finals_lookup():
+    out = {}
+    for season in df['season'].unique():
+        season_df = df[df['season'] == season]
+        champ_names = season_df[season_df['champ'] == 1]['name'].unique()
+        ru_names    = season_df[season_df['runnerup'] == 1]['name'].unique()
+        if len(champ_names) == 0 or len(ru_names) == 0:
+            continue
+        champ, ru = champ_names[0], ru_names[0]
+        rs_end = _rs_end_dates.get(season)
+        season_games = games[games['season'] == season]
+        if rs_end is not None:
+            season_games = season_games[season_games['date_game'] > rs_end]
+        # Finals = playoff games where these two specific teams meet. WNBA's
+        # bracket structure means the champion and runner-up only ever meet
+        # in the Finals (different bracket sides), so all post-RS head-to-
+        # head games are the Finals.
+        finals = season_games[
+            ((season_games['home_team_name'] == champ) & (season_games['visitor_team_name'] == ru)) |
+            ((season_games['home_team_name'] == ru) & (season_games['visitor_team_name'] == champ))
+        ]
+        if finals.empty:
+            continue
+        finals_g1_date = finals['date_game'].min()
+        # Latest ranking_id with date strictly before Finals Game 1.
+        pre = season_df[season_df['date'] < finals_g1_date]
+        if pre.empty:
+            continue
+        pre_id = int(pre['ranking_id'].max())
+        snap = season_df[season_df['ranking_id'] == pre_id]
+        for _, r in snap.iterrows():
+            out[(r['name'], int(season))] = {
+                'rating': round(float(r['rating']), 3),
+                'rank':   int(r['rank']),
+                'record': clean(r['record']),
+                **_od_fields(r),
+            }
+    return out
+
+_pre_finals_lookup = _build_pre_finals_lookup()
+print(f"  pre-Finals snapshots computed for {len(set(s for (_, s) in _pre_finals_lookup))} seasons")
+
+
+def pre_finals_fields(name, season, reg_record):
+    """Return the pre-Finals rating/rank/playoff_record block, or empty if missing."""
+    p = _pre_finals_lookup.get((name, int(season)))
+    if p is None:
+        return {}
+    return {
+        'rating_pre':         p['rating'],
+        'rank_pre':           p['rank'],
+        'rating_o_pre':       p.get('rating_o'),
+        'rating_d_pre':       p.get('rating_d'),
+        'rank_o_pre':         p.get('rank_o'),
+        'rank_d_pre':         p.get('rank_d'),
+        'playoff_record_pre': playoff_record(p['record'], reg_record),
+    }
+
+
 champions = []
 for season in sorted(df['season'].unique(), reverse=True):
     sdf = df[(df['season'] == season) & (df['season_flag'] == 2)]
@@ -463,6 +527,7 @@ for season in sorted(df['season'].unique(), reverse=True):
             'regular_record': champ_reg,
             'playoff_record': playoff_record(cr['record'], champ_reg),
             'cup_status':     int(cr['cup_status']) if 'cup_status' in cr and not pd.isna(cr['cup_status']) else 0,
+            **pre_finals_fields(cr['name'], season, champ_reg),
         },
         'runner_up': {
             'team':           rr['name'],
@@ -473,6 +538,7 @@ for season in sorted(df['season'].unique(), reverse=True):
             'regular_record': ru_reg,
             'playoff_record': playoff_record(rr['record'], ru_reg),
             'cup_status':     int(rr['cup_status']) if 'cup_status' in rr and not pd.isna(rr['cup_status']) else 0,
+            **pre_finals_fields(rr['name'], season, ru_reg),
         },
     })
 
