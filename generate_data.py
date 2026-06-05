@@ -74,6 +74,18 @@ def slug(name):
     return re.sub(r'[^\w]', '_', name).strip('_')
 
 
+def _od_fields(r):
+    """Return rating_o/rating_d/rank_o/rank_d safely from a row. Returns
+    None for missing values so downstream consumers render '-' rather
+    than '0'."""
+    return {
+        'rating_o': round(float(r['rating_o']), 3) if 'rating_o' in r and not pd.isna(r['rating_o']) else None,
+        'rating_d': round(float(r['rating_d']), 3) if 'rating_d' in r and not pd.isna(r['rating_d']) else None,
+        'rank_o':   int(r['rank_o']) if 'rank_o' in r and not pd.isna(r['rank_o']) else None,
+        'rank_d':   int(r['rank_d']) if 'rank_d' in r and not pd.isna(r['rank_d']) else None,
+    }
+
+
 def _played(result):
     """True iff this row represents an actual game played. Upstream now
     writes empty strings for non-game-days (was 'No Game' previously) —
@@ -190,6 +202,7 @@ standings_data = {
             'team':            r['name'],
             'conference':      conf(r['name']),
             'rating':          round(float(r['rating']), 3),
+            **_od_fields(r),
             'record':          clean(r['record']),
             'last_match':      clean(r['last_game_result']) if _played(r['last_game_result']) else last_game_as_of(r['name'], str(r['date']), r['season']),
             'finals_status':   int(r['finals_status']) if not pd.isna(r['finals_status']) else 0,
@@ -225,12 +238,13 @@ SHORT_SEASONS = {
 completed_seasons = set(df.loc[df['season_flag'] == 2, 'season'].astype(int).unique())
 
 
-def build_goat(flag, require_finalist):
+def build_goat(flag, require_finalist, sort_col='rating'):
     rows = df[(df['season_flag'] == flag) &
               (df['season'].astype(int).isin(completed_seasons))].copy()
     if require_finalist:
         rows = rows[rows['finals_status'].fillna(0) >= 1]
-    rows = rows.sort_values('rating', ascending=False).head(50).reset_index(drop=True)
+    rows = rows[rows[sort_col].notna()]
+    rows = rows.sort_values(sort_col, ascending=False).head(50).reset_index(drop=True)
     out = []
     for i, (_, r) in enumerate(rows.iterrows()):
         s = int(r['season'])
@@ -246,6 +260,7 @@ def build_goat(flag, require_finalist):
             'short_season_category': SHORT_SEASONS.get(s, {}).get('category', '') if s in SHORT_SEASONS else '',
             'short_season_note':     SHORT_SEASONS.get(s, {}).get('note', '')     if s in SHORT_SEASONS else '',
             'rating':           round(float(r['rating']), 3),
+            **_od_fields(r),
             'record':           clean(full or r['record']),
             'regular_record':   reg,
             'playoff_record':   playoff_record(full, reg) if full else '',
@@ -255,13 +270,19 @@ def build_goat(flag, require_finalist):
     return out
 
 
-goat_rs = build_goat(flag=1, require_finalist=False)
-goat_ps = build_goat(flag=2, require_finalist=True)
-
-with open('docs/data/goat_rs.json', 'w') as f:
-    json.dump(goat_rs, f, separators=(',', ':'))
-with open('docs/data/goat_ps.json', 'w') as f:
-    json.dump(goat_ps, f, separators=(',', ':'))
+# Six GOAT files: {Rating, Offense, Defense} × {RS-end, PS-end}. Mirrors DUNCAN.
+goat_files = [
+    ('goat_rs.json',   1, False, 'rating'),
+    ('goat_ps.json',   2, True,  'rating'),
+    ('goat_rs_o.json', 1, False, 'rating_o'),
+    ('goat_rs_d.json', 1, False, 'rating_d'),
+    ('goat_ps_o.json', 2, True,  'rating_o'),
+    ('goat_ps_d.json', 2, True,  'rating_d'),
+]
+for fname, flag, require_finalist, sort_col in goat_files:
+    payload = build_goat(flag=flag, require_finalist=require_finalist, sort_col=sort_col)
+    with open(f'docs/data/{fname}', 'w') as f:
+        json.dump(payload, f, separators=(',', ':'))
 
 # ── 3. Per-team JSON files ───────────────────────────────────────────────────
 print("Writing per-team JSON files...")
@@ -296,6 +317,7 @@ for team in all_teams:
                 'date':              str(r['date']),
                 'rating':            round(float(r['rating']), 3),
                 'rank':              int(r['rank']),
+                **_od_fields(r),
                 'record':            clean(r['record']),
                 'regular_record':    reg,
                 'playoff_record':    po,
@@ -350,6 +372,7 @@ for season in all_seasons:
                 'team':            r['name'],
                 'conference':      conf(r['name']),
                 'rating':          round(float(r['rating']), 3),
+                **_od_fields(r),
                 'record':          clean(r['record']),
                 'regular_record':  reg,
                 'playoff_record':  po,
@@ -435,6 +458,7 @@ for season in sorted(df['season'].unique(), reverse=True):
             'team':           cr['name'],
             'rating':         round(float(cr['rating']), 3),
             'rank':           int(cr['rank']),
+            **_od_fields(cr),
             'record':         clean(cr['record']),
             'regular_record': champ_reg,
             'playoff_record': playoff_record(cr['record'], champ_reg),
@@ -444,6 +468,7 @@ for season in sorted(df['season'].unique(), reverse=True):
             'team':           rr['name'],
             'rating':         round(float(rr['rating']), 3),
             'rank':           int(rr['rank']),
+            **_od_fields(rr),
             'record':         clean(rr['record']),
             'regular_record': ru_reg,
             'playoff_record': playoff_record(rr['record'], ru_reg),
