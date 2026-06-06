@@ -119,7 +119,16 @@ def scrape_games(min_season, max_season, existing_df):
 
     combined = pd.concat([existing_df] + new_frames, axis=0, sort=False).reset_index(drop=True)
     combined.sort_values('Season', inplace=True)
-    combined.drop_duplicates(keep="first", inplace=True)
+    # Dedup by game-identity (date + teams), preferring the row with a
+    # completed-game score over the scheduled-placeholder row. Mirrors
+    # the DUNCAN fix - each cron re-scrapes the in-progress season; the
+    # scheduled placeholder rows (NaN PTS) get filled in when the game
+    # completes, so plain drop_duplicates leaves both versions in place.
+    combined['_sort_pts'] = pd.to_numeric(combined['PTS.1'], errors='coerce')
+    combined = combined.sort_values('_sort_pts', na_position='first', kind='mergesort')
+    combined = combined.drop_duplicates(
+        subset=['Date', 'Home/Neutral', 'Visitor/Neutral'], keep='last'
+    ).drop(columns='_sort_pts').sort_values('Season').reset_index(drop=True)
     combined.to_csv('loaded_wnba_games.csv', index=False)
     return combined
 
