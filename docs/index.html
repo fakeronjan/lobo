@@ -595,6 +595,14 @@ function fmtOD(rating, rank) {
   return `<div class="od-val">${r}</div><div class="od-rank">${rank}</div>`;
 }
 
+// Title Odds: percentage above, rank below. Mirrors GRIFFEY/DUNCAN.
+function fmtTitleOdds(odds, rank) {
+  if (odds == null) return '-';
+  const pct = odds < 0.001 ? '<0.1%' : (odds * 100).toFixed(1) + '%';
+  if (rank == null) return pct;
+  return `<div class="od-val">${pct}</div><div class="od-rank">${rank}</div>`;
+}
+
 function fmtRecordStacked(reg, playoff) {
   // Champions/GOAT: regular-season W-L with win pct on top.
   // For playoff teams, add playoff W-L on a new line (no parens).
@@ -887,6 +895,7 @@ function renderStandings() {
     <td>${ratingBar(t.rating)}</td>
     <td class="rating-cell od-cell col-hide-mobile">${fmtOD(t.rating_o, t.rank_o)}</td>
     <td class="rating-cell od-cell col-hide-mobile">${fmtOD(t.rating_d, t.rank_d)}</td>
+    <td class="rating-cell od-cell col-hide-mobile">${fmtTitleOdds(t.title_odds, t.title_odds_rank)}</td>
     <td class="last-match-cell">${renderLastMatch(t.last_match, season, isStale)}</td>
     <td class="col-hide-mobile" style="font-size:11px;color:#888;white-space:nowrap">${t.last_match_date || ''}</td>
     <td class="col-hide-mobile" style="text-align:center">${finishBadge(t.finals_status, t.cup_status)}</td>
@@ -904,6 +913,7 @@ function renderStandings() {
         <th>W-L (Pct)</th><th>Rating</th>
         <th class="col-hide-mobile col-od">OFF</th>
         <th class="col-hide-mobile col-od">DEF</th>
+        <th class="col-hide-mobile col-od" title="Probability of winning the WNBA Finals, given (Rating, Offense, Defense, season progress, current playoff series state if applicable) at this snapshot. Trained on every other season's snapshots since 1998. League-wide probabilities sum to 100%.">TITLE ODDS</th>
         <th>Last Game</th>
         <th class="col-hide-mobile">Date</th>
         <th class="col-hide-mobile">Honors</th>
@@ -1041,6 +1051,7 @@ function renderTeamTable() {
     <td>${ratingBar(g.rating)}</td>
     <td class="rating-cell od-cell col-hide-mobile">${fmtOD(g.rating_o, g.rank_o)}</td>
     <td class="rating-cell od-cell col-hide-mobile">${fmtOD(g.rating_d, g.rank_d)}</td>
+    <td class="rating-cell od-cell col-hide-mobile">${fmtTitleOdds(g.title_odds, g.title_odds_rank)}</td>
     <td class="col-hide-mobile" style="font-size:11px">${confBadge(data.conference, g.finals_status, parseInt(g.season))}</td>
     <td class="col-hide-mobile" style="font-size:11px">${finishBadge(g.finals_status, g.cup_status)}</td>
   </tr>`;
@@ -1053,6 +1064,7 @@ function renderTeamTable() {
         <th>W-L (Pct)</th><th>Rank</th><th>Rating</th>
         <th class="col-hide-mobile col-od">OFF</th>
         <th class="col-hide-mobile col-od">DEF</th>
+        <th class="col-hide-mobile col-od" title="Probability of winning the WNBA Finals, given (Rating, Offense, Defense, season progress, current playoff series state if applicable) at this snapshot. Trained on every other season's snapshots since 1998. League-wide probabilities sum to 100%.">TITLE ODDS</th>
         <th class="col-hide-mobile">Conf</th>
         <th class="col-hide-mobile">Honors</th>
       </tr></thead>
