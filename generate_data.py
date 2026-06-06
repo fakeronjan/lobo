@@ -220,6 +220,9 @@ def _to_rs_games(season):
 # the team's bracket; round_total is the total rounds in this team's bracket.
 def _to_clinch_threshold(season, round_pos, round_total):
     s = int(season)
+    # 1997: single-elim 2-round format, every round BO1.
+    if s == 1997:
+        return 1
     is_finals = (round_pos == round_total)
     is_semis  = (round_pos == round_total - 1)
     # WNBA finals BO5 since 2005, briefly BO5 2000-01 and 2003-04, BO3 otherwise
@@ -257,8 +260,9 @@ _to_season_total_rounds = {}  # season -> int total rounds in this season's brac
 
 for season, rs_end in _rs_end_dates.items():
     s_int = int(season)
-    if s_int < TITLE_TRAIN_FROM_SEASON:
-        continue
+    # Build the bracket walker for EVERY season so 1997 (unique single-elim
+    # 2-round format) also gets predicted - just won't contribute to LR
+    # training. TITLE_TRAIN_FROM_SEASON only gates training-set inclusion.
     ps = games[(games['season'] == s_int) & (games['date_game'] > rs_end)].copy()
     if ps.empty:
         continue
@@ -337,19 +341,11 @@ for season, rs_end in _rs_end_dates.items():
         field.update(s['pair'])
         # Tag round_pos for each series (1 = first round in bracket, N = Finals).
         s['round_pos'] = total_rounds - series_depth[id(s)]
-        # Clinch threshold: derived from data for closed series (winner_wins).
-        # Fall back to era-aware for in-progress series (max win count not yet
-        # at the era-expected clinch).
-        winner_wins = max(s['a_wins'], s['b_wins'])
-        loser_wins  = min(s['a_wins'], s['b_wins'])
-        # If series is decided (someone has clearly clinched), winner_wins IS the clinch.
-        # For 2-of-3 (BO3) series with winner 2-0 or 2-1, winner_wins = 2.
-        # For 3-of-5 (BO5) series with winner 3-0/3-1/3-2, winner_wins = 3.
-        # For 1-of-1 (BO1) series, winner_wins = 1.
-        # Need to handle in-progress edge: if winner_wins is less than era-min,
-        # series is in progress. Use era-aware threshold.
-        era_clinch = _to_clinch_threshold(s_int, s['round_pos'], total_rounds)
-        s['clinch'] = max(winner_wins, era_clinch) if winner_wins > 0 else era_clinch
+        # Clinch threshold is era-aware - derived from (round_pos, season).
+        # Always era-driven (not max-of-winner_wins) so the in-progress logic
+        # works the same way for closed and current seasons; for 1997 BO1
+        # this correctly yields clinch=1 throughout.
+        s['clinch'] = _to_clinch_threshold(s_int, s['round_pos'], total_rounds)
     _to_field[s_int] = field
 
     # Per-team paths sorted by start.
@@ -432,13 +428,13 @@ def _to_snap_state(s_int, team, snap_date):
     return (True, False, PHASE_POST_RS_TO, 0, 0)
 
 
-# Build training rows.
+# Build feature rows for EVERY season (including 1997). Training set will
+# be restricted later to TITLE_TRAIN_FROM_SEASON+; 1997 will be scored via
+# the full-trained model the same way in-progress current seasons are.
 _to_rows = []
 rated = df[df['rating_o'].notna() & df['rating_d'].notna()].copy()
 for _, r in rated.iterrows():
     s_int = int(r['season'])
-    if s_int < TITLE_TRAIN_FROM_SEASON:
-        continue
     team = r['name']
     sd = r['date']
     in_field, is_elim, progress, sw, sl = _to_snap_state(s_int, team, sd)
@@ -458,8 +454,10 @@ for _, r in rated.iterrows():
     })
 
 _to_train_df = pd.DataFrame(_to_rows)
+_train_pool = _to_train_df[_to_train_df['season'] >= TITLE_TRAIN_FROM_SEASON]
 print(f"  Title-odds rows: {len(_to_train_df):,} "
-      f"({int(_to_train_df['is_champion'].sum())} champion-positive)")
+      f"({int(_to_train_df['is_champion'].sum())} champion-positive) - "
+      f"training pool {len(_train_pool):,}")
 
 
 def _to_features(d):
@@ -498,10 +496,12 @@ def _to_predict_logistic(X, beta):
     return 1.0 / (1.0 + np.exp(-z))
 
 
-_completed_seasons = {s for s in _to_train_df['season'].unique() if s in _to_champion}
+# LOO across completed seasons in the training pool (1998+). The held-out
+# season is scored using a model trained on every OTHER pool season.
+_completed_seasons = {s for s in _train_pool['season'].unique() if s in _to_champion}
 for s_int in _completed_seasons:
-    train = _to_train_df[_to_train_df['season'] != s_int]
-    held  = _to_train_df[_to_train_df['season'] == s_int]
+    train = _train_pool[_train_pool['season'] != s_int]
+    held  = _train_pool[_train_pool['season'] == s_int]
     if train.empty or held.empty:
         continue
     beta = _to_fit_logistic(_to_features(train), train['is_champion'].values.astype(float))
@@ -512,12 +512,14 @@ for s_int in _completed_seasons:
     for _, r in held.iterrows():
         _title_odds_cache[(int(r['ranking_id']), r['team'])] = float(r['p_norm'])
 
-# In-progress current season: train on full eligible set + predict.
-_in_progress = _to_train_df[~_to_train_df['season'].isin(_completed_seasons)]
-if not _in_progress.empty and not _to_train_df.empty:
-    beta_full = _to_fit_logistic(_to_features(_to_train_df),
-                                 _to_train_df['is_champion'].values.astype(float))
-    cur = _in_progress.copy()
+# Everything outside the LOO loop (in-progress current season + 1997, which
+# is excluded from training due to its unique single-elim format) gets
+# scored using a model trained on the full 1998+ pool.
+_remaining = _to_train_df[~_to_train_df['season'].isin(_completed_seasons)]
+if not _remaining.empty and not _train_pool.empty:
+    beta_full = _to_fit_logistic(_to_features(_train_pool),
+                                 _train_pool['is_champion'].values.astype(float))
+    cur = _remaining.copy()
     cur['p_raw'] = _to_predict_logistic(_to_features(cur), beta_full)
     cur['p_norm'] = cur.groupby('ranking_id')['p_raw'].transform(
         lambda x: x / x.sum() if x.sum() > 0 else 0.0)
