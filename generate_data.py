@@ -1,5 +1,5 @@
 """
-generate_data.py — reads wnba_ratings_with_standings.csv and writes JSON for the LOBO web frontend.
+generate_data.py - reads wnba_ratings_with_standings.csv and writes JSON for the LOBO web frontend.
 Run after wnba.py. Outputs to docs/data/.
 
 Mirrors the ZIDANE site architecture, simplified for a single league.
@@ -88,7 +88,7 @@ def _od_fields(r):
 
 def _played(result):
     """True iff this row represents an actual game played. Upstream now
-    writes empty strings for non-game-days (was 'No Game' previously) —
+    writes empty strings for non-game-days (was 'No Game' previously) -
     both must be treated as "didn't play" or the forward-fill of last_match
     breaks for any snapshot date a team didn't play on."""
     if result is None or pd.isna(result):
@@ -103,7 +103,7 @@ df['is_game_day'] = df['last_game_result'].apply(_played).astype(int)
 df['is_end_of_season'] = df['season_flag'].isin([1, 2]).astype(int)
 
 # Per-(team, season) forward-filled last game. Keying by season prevents
-# cross-season carry-forward — at the start of a new season, teams that
+# cross-season carry-forward - at the start of a new season, teams that
 # haven't played yet correctly show empty rather than their previous-season
 # Finals result.
 _last_game_history = {}
@@ -135,7 +135,7 @@ def last_game_date_as_of(team, snap_date_str, season):
     return dates[idx] if idx >= 0 else ''
 
 
-# Per-season last regular-season date — used to flag playoff vs regular-season entries
+# Per-season last regular-season date - used to flag playoff vs regular-season entries
 _rs_end_dates = (
     df[df['season_flag'] == 1]
     .groupby('season')['date']
@@ -216,13 +216,13 @@ with open('docs/data/current_standings.json', 'w') as f:
 
 # ── 2. GOAT tables (end-of-RS + end-of-playoffs) ─────────────────────────────
 # Two lists, matching the DUNCAN/SAKIC/GRIFFEY fleet pattern:
-#   goat_rs.json — top 50 single-season ratings at end of regular season, all teams.
-#   goat_ps.json — top 50 single-season ratings at end of playoffs, WNBA Finals participants only.
+#   goat_rs.json - top 50 single-season ratings at end of regular season, all teams.
+#   goat_ps.json - top 50 single-season ratings at end of playoffs, WNBA Finals participants only.
 # Both gated to fully-complete seasons (a season is "complete" once a
-# season_flag == 2 row exists for that season — i.e. the Finals have ended).
+# season_flag == 2 row exists for that season - i.e. the Finals have ended).
 print("Writing goat_rs.json + goat_ps.json...")
 
-# Short / disrupted seasons — flagged on GOAT rows so the UI can tag them
+# Short / disrupted seasons - flagged on GOAT rows so the UI can tag them
 # inline. WNBA regular-season length has grown over time (28g → 44g) as the
 # league has expanded, so most early-era short totals are "normal for the
 # era", not disrupted. Only seasons with abnormal mid-stream disruption

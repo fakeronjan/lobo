@@ -2,7 +2,7 @@ name: Update LOBO Ratings
 
 on:
   schedule:
-    - cron: '33 15 * * *'   # 15:33 UTC daily — staggered +20 min after DUNCAN; same basketball-reference backend (rate-limited)
+    - cron: '33 15 * * *'   # 15:33 UTC daily - staggered +20 min after DUNCAN; same basketball-reference backend (rate-limited)
   workflow_dispatch:        # allow manual trigger from GitHub UI
 
 permissions:

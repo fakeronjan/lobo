@@ -280,7 +280,7 @@
   /* League History table */
   .col-champ  { background: #fffdf3; }
   .col-ru     { background: #fafafa; }
-  /* Lists sub-view highlights — sort-key column gets a yellow tint so the
+  /* Lists sub-view highlights - sort-key column gets a yellow tint so the
      viewer's eye lands on the metric being ranked. row-group-end draws
      the divider line between repeat-champ / rematch pairs. */
   .sort-col              { background: #fff8d0 !important; }
@@ -310,7 +310,7 @@
     .col-hide-mobile { display: none; }
   }
 
-  /* Fleet nav strip — links to sister sites in the fakeronjan sports ratings family */
+  /* Fleet nav strip - links to sister sites in the fakeronjan sports ratings family */
   .fleet-nav {
     background: #0e4a5f;
     display: flex;
@@ -537,7 +537,7 @@ let goatDataRSO       = null;
 let goatDataRSD       = null;
 let goatDataPSO       = null;
 let goatDataPSD       = null;
-let goatMode          = 'ps';  // 'ps' (end of playoffs — championship contenders) or 'rs' (end of regular season)
+let goatMode          = 'ps';  // 'ps' (end of playoffs - championship contenders) or 'rs' (end of regular season)
 let goatMetric        = 'rating';  // 'rating' (overall), 'o' (Offense only), 'd' (Defense only)
 let teamsIndex        = null;
 let teamCache         = {};
@@ -1255,14 +1255,14 @@ function defView(team) { return { ...team, rating: team.rating_d, rank: team.ran
 
 function fmtSigned(n) { return (n >= 0 ? '+' : '') + n.toFixed(2); }
 
-// Flip "3-2" to "2-3" — used when the loser is the focal team so the series
+// Flip "3-2" to "2-3" - used when the loser is the focal team so the series
 // score reads from their POV.
 function flipSeries(s) {
   const m = s && s.match(/^(\d+)-(\d+)$/);
   return m ? `${m[2]}-${m[1]}` : s;
 }
 
-// Lists-specific team block — adds the optional sort-col highlight on the
+// Lists-specific team block - adds the optional sort-col highlight on the
 // Rating cell for team-quality rankings.
 function rankTeamBlock(t, bg, season, sortReact) {
   if (!t) return `<td class="${bg}" colspan="4">-</td>`;

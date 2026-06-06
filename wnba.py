@@ -11,7 +11,7 @@ from datetime import datetime, date
 # CONFIGURATION
 # =========================================================
 
-MIN_SEASON = 1997             # first WNBA season — DO NOT CHANGE
+MIN_SEASON = 1997             # first WNBA season - DO NOT CHANGE
 
 # Season-aware rolling window: window (game-days) = WINDOW_MULTIPLIER * games-per-team-per-season.
 # At 1.5, a 44-game modern season gets a 66-day window (~57% of season). Bubble/lockout
@@ -21,7 +21,7 @@ WINDOW_MULTIPLIER = 1.5
 HOME_COURT_ADJUSTMENT = 2.0   # raw-point home advantage, subtracted from home margin pre-transform
 
 # Margin transform: raw | sqrt | cap | log | tanh. cap=25 places the
-# threshold at ~p94 of WNBA margins — typical games count linearly (the
+# threshold at ~p94 of WNBA margins - typical games count linearly (the
 # rating reads as an expected point spread), the ~6% of garbage-time
 # blowouts get clipped so they don't dominate the solve.
 MARGIN_TRANSFORM = "cap"
@@ -29,7 +29,7 @@ MARGIN_CAP = 25  # only used by cap / tanh
 
 # Weighting mode: "wls" applies recency weights to observation influence
 # via proper weighted least squares. The legacy "margin_scale" mode is
-# preserved for historical reproduction only — it inflates margins by
+# preserved for historical reproduction only - it inflates margins by
 # weight, which produces extreme ratings for thin-data (expansion) teams.
 WEIGHTING_MODE = "wls"
 
@@ -40,7 +40,7 @@ WEIGHTING_MODE = "wls"
 RECOMPUTE_TAIL_DAYS = 7
 
 # Regular season game count per season (Option B proxy for playoff start).
-# WNBA schedule has changed frequently — full lookup is cleaner than a default + overrides.
+# WNBA schedule has changed frequently - full lookup is cleaner than a default + overrides.
 REGULAR_SEASON_GAMES = {
     1997: 28,
     1998: 30,
@@ -77,7 +77,7 @@ REGULAR_SEASON_GAMES = {
 # WNBA Commissioner's Cup champion / runner-up by season.
 # basketball-reference does NOT include the Cup final game in our scraped
 # data (it's treated as exhibition), so honors come from this hardcoded
-# lookup. Add a new entry each year — cup final happens mid-summer.
+# lookup. Add a new entry each year - cup final happens mid-summer.
 WNBA_CUP_RESULTS = {
     2021: ('Seattle Storm',     'Connecticut Sun'),
     2022: ('Las Vegas Aces',    'Chicago Sky'),
@@ -109,11 +109,11 @@ def scrape_games(min_season, max_season, existing_df):
         try:
             df = pd.read_html(url)[0]
         except Exception:
-            print(f"{year} — not found, skipping.")
+            print(f"{year} - not found, skipping.")
             continue
         df['Season'] = year
         new_frames.append(df)
-        print(f"{year} — scraped!")
+        print(f"{year} - scraped!")
 
     print("Successfully scraped!")
 
@@ -193,7 +193,7 @@ def prepare_game_data(raw_df):
 
 
 # =========================================================
-# FAKERONJAN WLS RATINGS — homebrew weighted least squares solver
+# FAKERONJAN WLS RATINGS - homebrew weighted least squares solver
 # =========================================================
 
 def _apply_margin_transform(margin, transform, cap):
@@ -582,7 +582,7 @@ def _get_regular_season_end_date(master_df, season):
 
 def assemble_final(master_df, ratings_df, standings_df):
     """Merge ratings and standings, add flags and last-game context."""
-    print("Final step — merging WNBA ratings and standings...")
+    print("Final step - merging WNBA ratings and standings...")
 
     final_df = pd.merge(ratings_df, standings_df, how='left', on=['ranking_id', 'name'])
     final_df.rename(columns={'ranking_date_x': 'date', 'season_x': 'season'}, inplace=True)
@@ -606,7 +606,7 @@ def assemble_final(master_df, ratings_df, standings_df):
     # is the team with more wins; in-progress matchups (tied H2H) are
     # skipped. A team is "still in" if their LATEST matchup was a win.
     # When exactly one team is still in, they're the champion, and their
-    # latest opponent is the runner-up. Format-agnostic — handles WNBA's
+    # latest opponent is the runner-up. Format-agnostic - handles WNBA's
     # 1997 BO1, BO3 era, BO5 era, BO7 era, single-elim play-in rounds, and
     # variable bracket depths uniformly. No date cushion: the structure of
     # the bracket distinguishes a CF/semis clinch (2+ teams still in) from
@@ -661,7 +661,7 @@ def assemble_final(master_df, ratings_df, standings_df):
     # mid-2026 Finals). We apply the Finals threshold to ALL matchups in
     # the season; earlier rounds with shorter formats may go unrecorded,
     # but the "still in" check only depends on a team's LATEST matchup,
-    # which for the champion is always the Finals — so champion + runner-
+    # which for the champion is always the Finals - so champion + runner-
     # up detection still resolves correctly.
     def _wnba_finals_clinch(season):
         y = int(season)
@@ -710,7 +710,7 @@ def assemble_final(master_df, ratings_df, standings_df):
         if all_g.groupby('team').size().max() >= threshold:
             regular_season_complete.add(season)
 
-    # Last day of postseason — only for fully complete seasons
+    # Last day of postseason - only for fully complete seasons
     season_max_id = final_df.groupby('season')['ranking_id'].transform('max')
     is_completed = final_df['season'].apply(season_is_fully_complete)
     final_df['season_flag'] = np.where(
@@ -719,7 +719,7 @@ def assemble_final(master_df, ratings_df, standings_df):
         0
     )
 
-    # Last day of regular season — only for seasons where regular season has actually ended
+    # Last day of regular season - only for seasons where regular season has actually ended
     for season in final_df['season'].unique():
         if season not in regular_season_complete:
             continue
