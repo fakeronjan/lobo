@@ -372,7 +372,12 @@ def _to_snap_state(s_int, team, snap_date):
     Uses dynamic decided-as-of detection (same as the GRIFFEY clinch-day fix)
     so on a series-clinching day the team is advanced to next-round state."""
     rs_end = _rs_end_dates.get(s_int)
-    if rs_end is None or snap_date <= rs_end:
+    # Strict `<` so the rs_end snapshot itself falls through to the
+    # in_field gate below - non-playoff teams correctly read as null
+    # (rather than progress=0.50 RS odds) at the moment RS ends. PS teams
+    # then get the proper post-RS progress (0.55) via the "no series
+    # started" branch at the end of the walker.
+    if rs_end is None or snap_date < rs_end:
         gp = _to_games_played(s_int, team, snap_date)
         progress = PHASE_RS_MAX_TO * min(gp / _to_rs_games(s_int), 1.0)
         return (True, False, progress, 0, 0)
