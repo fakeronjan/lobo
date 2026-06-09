@@ -447,7 +447,7 @@
     <span class="count-label" id="standings-count"></span>
   </div>
   <p class="data-note" id="warmup-note" style="display:none">
-    Note: ratings need a 50 game-day warm-up window, so the 1997 season's first ranked snapshot is August 14.
+    Note: ratings need a 50 game-day warm-up window, so the 1997 season's first rating is August 14.
   </p>
   <div class="disrupted-note" id="standings-disrupted-note" style="display:none"></div>
   <div id="standings-table-wrap"><p class="loading">Loading standings...</p></div>
@@ -513,7 +513,7 @@
 
 <!-- ── GOAT TABLE ───────────────────────────────────────────────────────── -->
 <div id="goat" class="tab">
-  <p class="data-note">Top 50 single-season ratings · Pick the snapshot (end of regular season vs. end of playoffs), then the metric (overall Rating, offense only, or defense only).</p>
+  <p class="data-note">Top 50 single-season ratings · Pick the timeframe (end of regular season vs. end of playoffs), then the metric (overall Rating, offense only, or defense only).</p>
   <div class="conf-pills" id="goat-mode-pills"></div>
   <div class="conf-pills" id="goat-metric-pills"></div>
   <div class="conf-pills" id="goat-conf-pills"></div>
@@ -913,7 +913,7 @@ function renderStandings() {
         <th>W-L (Pct)</th><th>Rating</th>
         <th class="col-hide-mobile col-od">OFF</th>
         <th class="col-hide-mobile col-od">DEF</th>
-        <th class="col-hide-mobile col-od" title="Probability of winning the WNBA Finals, given (Rating, Offense, Defense, season progress, current playoff series state if applicable) at this snapshot. Trained on every other season's snapshots since 1998. League-wide probabilities sum to 100%.">TITLE ODDS</th>
+        <th class="col-hide-mobile col-od" title="Probability of winning the WNBA Finals, given (Rating, Offense, Defense, season progress, current playoff series state if applicable) through this point in the season. Trained on the same point in every other season since 1998. League-wide probabilities sum to 100%.">TITLE ODDS</th>
         <th>Last Game</th>
         <th class="col-hide-mobile">Date</th>
         <th class="col-hide-mobile">Honors</th>
@@ -1064,7 +1064,7 @@ function renderTeamTable() {
         <th>W-L (Pct)</th><th>Rank</th><th>Rating</th>
         <th class="col-hide-mobile col-od">OFF</th>
         <th class="col-hide-mobile col-od">DEF</th>
-        <th class="col-hide-mobile col-od" title="Probability of winning the WNBA Finals, given (Rating, Offense, Defense, season progress, current playoff series state if applicable) at this snapshot. Trained on every other season's snapshots since 1998. League-wide probabilities sum to 100%.">TITLE ODDS</th>
+        <th class="col-hide-mobile col-od" title="Probability of winning the WNBA Finals, given (Rating, Offense, Defense, season progress, current playoff series state if applicable) through this point in the season. Trained on the same point in every other season since 1998. League-wide probabilities sum to 100%.">TITLE ODDS</th>
         <th class="col-hide-mobile">Conf</th>
         <th class="col-hide-mobile">Honors</th>
       </tr></thead>
