@@ -4,3 +4,6 @@ __pycache__/
 Backup*/
 logan_ratings_with_standings.csv
 investigations/
+
+# Engine-migration backup snapshots (never commit)
+*-bak
