@@ -1252,7 +1252,7 @@ function renderChampions() {
     <td class="season-cell linked" data-season-link="${e.season}">${e.season}${seasonTag(e.season)}</td>
     ${teamCell(e.champion,  'col-champ', e.season)}
     <td class="divider-col" style="text-align:center;font-size:11px;font-weight:600;white-space:nowrap;width:64px;padding:2px 4px;line-height:1.3">
-      ${e.final_score || ''}${e.series_score ? `<div style="font-size:10px;color:#888;font-weight:400">(${e.series_score})</div>` : ''}
+      ${e.series_score || ''}${e.final_score ? `<div style="font-size:10px;color:#888;font-weight:400">(${e.final_score})</div>` : ''}
     </td>
     ${teamCell(e.runner_up, 'col-ru', e.season)}
   </tr>`).join('');
@@ -1267,7 +1267,7 @@ function renderChampions() {
         <th class="col-champ col-hide-mobile col-od">OFF</th>
         <th class="col-champ col-hide-mobile col-od">DEF</th>
         <th class="col-champ col-hide-mobile">W-L</th>
-        <th class="divider-col" style="text-align:center;font-size:10px;width:64px">Score<br>(Series)</th>
+        <th class="divider-col" style="text-align:center;font-size:10px;width:64px">Series<br>(Last game)</th>
         <th class="col-ru">Runner-Up</th>
         <th class="col-ru col-hide-mobile">Rank</th>
         <th class="col-ru">Rating</th>
@@ -1611,7 +1611,7 @@ function renderRankingTable(rows, mode, metricLabel) {
     <th class="col-champ col-hide-mobile">Rank</th>
     ${leftReactHeader}
     <th class="col-champ col-hide-mobile">W-L</th>
-    <th class="divider-col" style="text-align:center;font-size:10px;width:64px">Score<br>(Series)</th>
+    <th class="divider-col" style="text-align:center;font-size:10px;width:64px">Series<br>(Last game)</th>
     <th class="col-ru">${rightLabel}</th>
     <th class="col-ru col-hide-mobile">Rank</th>
     <th class="col-ru">${label}${preTag}</th>
@@ -1633,7 +1633,7 @@ function renderRankingTable(rows, mode, metricLabel) {
     const displaySeries = loserFocal ? flipSeries(e.series) : e.series;
     const displayScore  = e.score;
     const scoreCell = `<td class="divider-col" style="text-align:center;font-size:11px;font-weight:600;white-space:nowrap;width:64px;padding:2px 4px;line-height:1.3">
-      ${displayScore || ''}${displaySeries ? `<div style="font-size:10px;color:#888;font-weight:400">(${displaySeries})</div>` : ''}
+      ${displaySeries || ''}${displayScore ? `<div style="font-size:10px;color:#888;font-weight:400">(${displayScore})</div>` : ''}
     </td>`;
 
     return `<tr>
@@ -1656,7 +1656,7 @@ const PAIR_HEAD = `
     <th class="col-champ col-hide-mobile">Rank</th>
     <th class="col-champ">Rating</th>
     <th class="col-champ col-hide-mobile">W-L</th>
-    <th class="divider-col" style="text-align:center;font-size:10px;width:64px">Score<br>(Series)</th>
+    <th class="divider-col" style="text-align:center;font-size:10px;width:64px">Series<br>(Last game)</th>
     <th class="col-ru">Runner-Up</th>
     <th class="col-ru col-hide-mobile">Rank</th>
     <th class="col-ru">Rating</th>
@@ -1668,7 +1668,7 @@ function pairRow(e, isPairEnd) {
       ${rankSeasonCell(e)}
       ${rankTeamBlock(e.champion,  'col-champ', e.season, false)}
       <td class="divider-col" style="text-align:center;font-size:11px;font-weight:600;white-space:nowrap;width:64px;padding:2px 4px;line-height:1.3">
-        ${e.final_score || ''}${e.series_score ? `<div style="font-size:10px;color:#888;font-weight:400">(${e.series_score})</div>` : ''}
+        ${e.series_score || ''}${e.final_score ? `<div style="font-size:10px;color:#888;font-weight:400">(${e.final_score})</div>` : ''}
       </td>
       ${rankTeamBlock(e.runner_up, 'col-ru',    e.season, false)}
     </tr>`;
