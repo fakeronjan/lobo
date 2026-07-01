@@ -63,6 +63,11 @@ df['date'] = pd.to_datetime(df['date']).dt.date
 
 games = pd.read_csv('all_wnba_games.csv')
 games['date_game'] = pd.to_datetime(games['date_game']).dt.date
+# Commissioner's Cup finals feed ratings only (see wnba.py). Drop them here so
+# regular-season game counts, phase progress, bracket detection, and last-match
+# display all stay cup-blind, matching the standings/records built in wnba.py.
+if 'is_cup_final' in games.columns:
+    games = games[games['is_cup_final'] != 1].reset_index(drop=True)
 
 
 def clean(val):

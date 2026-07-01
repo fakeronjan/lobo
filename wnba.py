@@ -74,17 +74,38 @@ REGULAR_SEASON_GAMES = {
     2026: 44,
 }
 
-# WNBA Commissioner's Cup champion / runner-up by season.
-# basketball-reference does NOT include the Cup final game in our scraped
-# data (it's treated as exhibition), so honors come from this hardcoded
-# lookup. Add a new entry each year - cup final happens mid-summer.
-WNBA_CUP_RESULTS = {
-    2021: ('Seattle Storm',     'Connecticut Sun'),
-    2022: ('Las Vegas Aces',    'Chicago Sky'),
-    2023: ('New York Liberty',  'Las Vegas Aces'),
-    2024: ('Minnesota Lynx',    'New York Liberty'),
-    2025: ('Indiana Fever',     'Minnesota Lynx'),
-}
+# WNBA Commissioner's Cup championship games. basketball-reference does NOT
+# include the Cup final in our scraped data (it's treated as an exhibition),
+# so we inject it here by hand as a real game row. Like the NBA Cup on DUNCAN,
+# the Cup final is a genuine on-court result that COUNTS for the ratings
+# (signal) but is EXCLUDED from regular-season W-L standings. It also feeds
+# the Cup champion / runner-up badge (derived from the game result in
+# assemble_final - no separate honors lookup). Add a new row each year; the
+# Cup final happens mid-summer. home_team is the designated host (takes HCA).
+# (season, date 'YYYY-MM-DD', home_team, home_pts, visitor_team, visitor_pts)
+WNBA_CUP_FINALS = [
+    (2021, '2021-08-12', 'Seattle Storm',    79, 'Connecticut Sun',  57),
+    (2022, '2022-07-26', 'Chicago Sky',      83, 'Las Vegas Aces',   93),
+    (2023, '2023-08-15', 'Las Vegas Aces',   63, 'New York Liberty', 82),
+    (2024, '2024-06-25', 'New York Liberty', 89, 'Minnesota Lynx',   94),
+    (2025, '2025-07-01', 'Minnesota Lynx',   59, 'Indiana Fever',    74),
+    (2026, '2026-06-30', 'New York Liberty', 93, 'Las Vegas Aces',   85),
+]
+
+
+def cup_finals_df():
+    """Commissioner's Cup finals as game rows (see WNBA_CUP_FINALS), marked
+    is_cup_final=1 so downstream code can include them in ratings but exclude
+    them from standings / records / bracket detection."""
+    return pd.DataFrame([{
+        'season':            season,
+        'date_game':         pd.Timestamp(game_date),
+        'visitor_team_name': visitor_team,
+        'visitor_pts':       visitor_pts,
+        'home_team_name':    home_team,
+        'home_pts':          home_pts,
+        'is_cup_final':      1,
+    } for (season, game_date, home_team, home_pts, visitor_team, visitor_pts) in WNBA_CUP_FINALS])
 
 # =========================================================
 # SCRAPING
@@ -160,6 +181,19 @@ def prepare_game_data(raw_df):
     df['visitor_pts'] = pd.to_numeric(df['visitor_pts'])
     df['home_pts'] = pd.to_numeric(df['home_pts'])
 
+    # Drop incomplete (unplayed/scheduled) rows before date parsing.
+    df = df.dropna(subset=['visitor_pts', 'home_pts'])
+
+    # Date parsing
+    df['date_game'] = pd.to_datetime(df['date_game'], format='%a, %b %d, %Y')
+    df['is_cup_final'] = 0
+
+    # Inject Commissioner's Cup finals (absent from the bball-ref scrape).
+    # They ride through the same margin/win/id derivation below; is_cup_final
+    # keeps them out of standings/records/brackets while the ratings solver
+    # still sees them. Re-injected fresh each run, so no dup accumulates.
+    df = pd.concat([df, cup_finals_df()], ignore_index=True)
+
     # Margin of victory (raw points). HCA and the margin transform are
     # applied inside the solver, not here, so downstream consumers see
     # the unmodified game record.
@@ -170,11 +204,7 @@ def prepare_game_data(raw_df):
     df['visitor_win'] = np.where(df['visitor_margin'] > 0, 1, 0)
     df['home_win'] = 1 - df['visitor_win']
 
-    # Drop incomplete rows before date parsing
-    df = df.dropna()
-
-    # Date parsing and sorting
-    df['date_game'] = pd.to_datetime(df['date_game'], format='%a, %b %d, %Y')
+    # Sorting and dedup
     df.sort_values('date_game', inplace=True)
     df.drop_duplicates(keep="first", inplace=True)
 
@@ -503,7 +533,15 @@ def compute_standings(master_df, existing_standings_df):
     Compute cumulative season standings for each day in master_df.
     Skips dates already present in existing_standings_df.
     """
-    game_df = master_df[['season', 'date_game', 'grouped_date_id', 'visitor_team_name', 'visitor_win', 'home_team_name', 'home_win']]
+    # Commissioner's Cup finals count for ratings but NOT for W-L standings
+    # (WNBA rule; mirrors DUNCAN's NBA Cup). Drop them from the games feeding
+    # records - grouped_date_id numbering is untouched, so ranking_ids still
+    # line up with the ratings side and the merge in assemble_final holds.
+    standings_cols = ['season', 'date_game', 'grouped_date_id', 'visitor_team_name', 'visitor_win', 'home_team_name', 'home_win']
+    if 'is_cup_final' in master_df.columns:
+        game_df = master_df[master_df['is_cup_final'] != 1][standings_cols]
+    else:
+        game_df = master_df[standings_cols]
     max_date_id = max(master_df['grouped_date_id'])
     # Standings are cumulative - no window to fill, so we start from the first game-day.
     min_date_id = int(master_df['grouped_date_id'].min())
@@ -592,6 +630,13 @@ def _get_regular_season_end_date(master_df, season):
 def assemble_final(master_df, ratings_df, standings_df):
     """Merge ratings and standings, add flags and last-game context."""
     print("Final step - merging WNBA ratings and standings...")
+
+    # Cup finals feed ratings only. Every consumer in this function - the
+    # regular-season-end detection, the playoff bracket walk, and the
+    # last-game display - runs off the cup-excluded view so those games stay
+    # invisible to standings/records/brackets. The ratings solver already
+    # captured them upstream; the Cup badge below reads the flagged rows.
+    rs_master = master_df[master_df['is_cup_final'] != 1] if 'is_cup_final' in master_df.columns else master_df
 
     final_df = pd.merge(ratings_df, standings_df, how='left', on=['ranking_id', 'name'])
     final_df.rename(columns={'ranking_date_x': 'date', 'season_x': 'season'}, inplace=True)
@@ -695,10 +740,10 @@ def assemble_final(master_df, ratings_df, standings_df):
 
     _finals_results = {}  # season -> (champion, runner_up)
     for season in final_df['season'].unique():
-        season_games = master_df[master_df['season'] == season]
+        season_games = rs_master[rs_master['season'] == season]
         if season_games.empty:
             continue
-        rs_end = _get_regular_season_end_date(master_df, season)
+        rs_end = _get_regular_season_end_date(rs_master, season)
         champ, ru = detect_finals_champion(season_games, rs_end, _wnba_finals_clinch(season))
         if champ is not None:
             _finals_results[season] = (champ, ru)
@@ -709,7 +754,7 @@ def assemble_final(master_df, ratings_df, standings_df):
     # Regular season is "done" once any team has played the threshold count
     regular_season_complete = set()
     for season in final_df['season'].unique():
-        sg = master_df[master_df['season'] == season]
+        sg = rs_master[rs_master['season'] == season]
         if sg.empty:
             continue
         home = sg[['home_team_name']].rename(columns={'home_team_name': 'team'})
@@ -732,7 +777,7 @@ def assemble_final(master_df, ratings_df, standings_df):
     for season in final_df['season'].unique():
         if season not in regular_season_complete:
             continue
-        rs_end_date = _get_regular_season_end_date(master_df, season)
+        rs_end_date = _get_regular_season_end_date(rs_master, season)
         if rs_end_date is None:
             continue
         rs_end_str = str(rs_end_date.date()) if hasattr(rs_end_date, 'date') else str(rs_end_date)
@@ -766,13 +811,21 @@ def assemble_final(master_df, ratings_df, standings_df):
     # -------------------------------------------------------------------------
     # WNBA Commissioner's Cup champion & runner-up (since 2021)
     # -------------------------------------------------------------------------
+    # Derived from the injected Cup final games (is_cup_final == 1): the
+    # winning side is champion, the other runner-up. Single source of truth -
+    # the same game row that feeds ratings also drives the badge.
     final_df['cup_champ']    = 0
     final_df['cup_runnerup'] = 0
-    for season, (champion, runner_up) in WNBA_CUP_RESULTS.items():
-        champ_ns    = f"{champion} - {season}"
-        runnerup_ns = f"{runner_up} - {season}"
-        final_df['cup_champ']    = np.where(final_df['name_season'] == champ_ns,    1, final_df['cup_champ'])
-        final_df['cup_runnerup'] = np.where(final_df['name_season'] == runnerup_ns, 1, final_df['cup_runnerup'])
+    if 'is_cup_final' in master_df.columns:
+        for _, game in master_df[master_df['is_cup_final'] == 1].iterrows():
+            if game['home_win'] == 1:
+                champion, runner_up = game['home_team_name'], game['visitor_team_name']
+            else:
+                champion, runner_up = game['visitor_team_name'], game['home_team_name']
+            champ_ns    = f"{champion} - {game['season']}"
+            runnerup_ns = f"{runner_up} - {game['season']}"
+            final_df['cup_champ']    = np.where(final_df['name_season'] == champ_ns,    1, final_df['cup_champ'])
+            final_df['cup_runnerup'] = np.where(final_df['name_season'] == runnerup_ns, 1, final_df['cup_runnerup'])
 
     # 0 = neither, 1 = cup runner-up, 2 = cup champion
     final_df['cup_status'] = final_df['cup_runnerup'] + 2 * final_df['cup_champ']
@@ -783,12 +836,12 @@ def assemble_final(master_df, ratings_df, standings_df):
     final_df['date_str'] = final_df['date'].astype(str)
 
     lastgameh = (
-        master_df[['date_game', 'home_team_name', 'home_result', 'visitor_team_name']]
+        rs_master[['date_game', 'home_team_name', 'home_result', 'visitor_team_name']]
         .rename(columns={'home_team_name': 'name', 'date_game': 'date_str'})
         .assign(date_str=lambda d: d['date_str'].astype(str))
     )
     lastgamev = (
-        master_df[['date_game', 'visitor_team_name', 'visitor_result', 'home_team_name']]
+        rs_master[['date_game', 'visitor_team_name', 'visitor_result', 'home_team_name']]
         .rename(columns={'visitor_team_name': 'name', 'date_game': 'date_str'})
         .assign(date_str=lambda d: d['date_str'].astype(str))
     )
