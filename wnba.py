@@ -835,14 +835,18 @@ def assemble_final(master_df, ratings_df, standings_df):
     # -------------------------------------------------------------------------
     final_df['date_str'] = final_df['date'].astype(str)
 
+    # The Last Game display INCLUDES the Cup final (a real played game) even
+    # though it never touched the W-L record - so it reads off the full
+    # master_df, not the cup-excluded rs_master. is_cup_final rides along so
+    # the frontend can tag it "Cup Final" in the Last Game column.
     lastgameh = (
-        rs_master[['date_game', 'home_team_name', 'home_result', 'visitor_team_name']]
-        .rename(columns={'home_team_name': 'name', 'date_game': 'date_str'})
+        master_df[['date_game', 'home_team_name', 'home_result', 'visitor_team_name', 'is_cup_final']]
+        .rename(columns={'home_team_name': 'name', 'date_game': 'date_str', 'is_cup_final': 'h_cup'})
         .assign(date_str=lambda d: d['date_str'].astype(str))
     )
     lastgamev = (
-        rs_master[['date_game', 'visitor_team_name', 'visitor_result', 'home_team_name']]
-        .rename(columns={'visitor_team_name': 'name', 'date_game': 'date_str'})
+        master_df[['date_game', 'visitor_team_name', 'visitor_result', 'home_team_name', 'is_cup_final']]
+        .rename(columns={'visitor_team_name': 'name', 'date_game': 'date_str', 'is_cup_final': 'v_cup'})
         .assign(date_str=lambda d: d['date_str'].astype(str))
     )
 
@@ -854,6 +858,10 @@ def assemble_final(master_df, ratings_df, standings_df):
 
     final_df['last_game_result'] = (final_df['home_result'] + final_df['visitor_result'])
     final_df['opponent'] = final_df['home_team_name'] + final_df['visitor_team_name']
+    # 1 iff the displayed Last Game is a Cup final (only one side matches per day).
+    final_df['last_game_is_cup'] = (
+        final_df['h_cup'].fillna(0) + final_df['v_cup'].fillna(0)
+    ).clip(upper=1).astype(int)
 
     final_df = final_df[[
         'ranking_id', 'date', 'season', 'name', 'rating', 'rank',
@@ -861,7 +869,7 @@ def assemble_final(master_df, ratings_df, standings_df):
         'record', 'current_date', 'season_flag', 'name_season',
         'champ', 'runnerup', 'finals_status',
         'cup_champ', 'cup_runnerup', 'cup_status',
-        'last_game_result', 'opponent'
+        'last_game_result', 'last_game_is_cup', 'opponent'
     ]]
 
     final_df.to_csv('wnba_ratings_with_standings.csv', index=False)
