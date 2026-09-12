@@ -6,6 +6,7 @@ import requests
 import pandas as pd
 import numpy as np
 from datetime import datetime, date
+from urllib.error import HTTPError
 
 # =========================================================
 # CONFIGURATION
@@ -129,6 +130,18 @@ def scrape_games(min_season, max_season, existing_df):
         url = f'https://www.basketball-reference.com/wnba/years/{year}_games.html'
         try:
             df = pd.read_html(url)[0]
+        except HTTPError as e:
+            if e.code == 403:
+                # Same company/Cloudflare setup as pro-football-reference,
+                # which started serving a bot challenge instead of real pages
+                # in Aug 2026 - the cron kept running green for weeks before
+                # anyone noticed. Fail loud instead so a GH Actions failure
+                # email catches it immediately.
+                raise RuntimeError(
+                    f"basketball-reference blocked the scraper (403) fetching {url}"
+                ) from e
+            print(f"{year} - not found, skipping.")
+            continue
         except Exception:
             print(f"{year} - not found, skipping.")
             continue
