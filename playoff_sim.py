@@ -20,7 +20,13 @@ import numpy as np
 import pandas as pd
 from scipy.special import ndtr
 
-N_SIMS = 10000
+# Simulation counts. Once the regular season is over the grid is the live
+# view, so it gets MESSI's 1M for the current season (10k left a visible
+# ~1-point day-to-day wobble: 2025 Atlanta pre-playoffs 32.7% at 10k vs
+# 33.8% at 1M). Past postseasons get 100k; regular-season dates 10k.
+N_SIMS = 10_000
+N_SIMS_PLAYOFFS = 100_000
+N_SIMS_LIVE = 1_000_000
 A = 0.0654
 
 
@@ -179,6 +185,9 @@ class SeasonSim:
         self.bracket = bracket_for(season)
         self.n_rounds = max(r for _, r, *_ in self.bracket)
 
+    def rs_over(self, d):
+        return not ((self.rs['date'] > d) | self.rs['home_pts'].isna()).any()
+
     def _static_tiebreak(self, done):
         """Deterministic tiebreak once the regular season is complete:
         head-to-head win% within each group tied on win%, then point
@@ -322,7 +331,7 @@ class SeasonSim:
         return pd.DataFrame(rows.T, index=self.teams, columns=cols)
 
 
-def compute(games, ratings_df, rs_games_by_season, conf_of, log=print):
+def compute(games, ratings_df, rs_games_by_season, conf_of, current_season, log=print):
     """games: all WNBA games (season, date, home, away, home_pts, visitor_pts),
     Commissioner's Cup final excluded, scheduled games with NaN points.
     ratings_df: (season, date, name, rating). Returns (odds, brackets):
@@ -339,9 +348,12 @@ def compute(games, ratings_df, rs_games_by_season, conf_of, log=print):
             continue
         sim = SeasonSim(season, g, rs_games_by_season(season), conf_of, ratings)
         for d in sorted(ratings):
-            o = sim.odds_at(d)
+            n = N_SIMS
+            if sim.rs_over(d):
+                n = N_SIMS_LIVE if season == current_season else N_SIMS_PLAYOFFS
+            o = sim.odds_at(d, n_sims=n)
             if sim.rs_complete:
-                brackets.setdefault(season, {})[d] = (dict(sim.seeds), list(sim.matchups))
+                brackets.setdefault(season, {})[d] = (dict(sim.seeds), list(sim.matchups), n)
             o.index.name = 'team'
             o = o.reset_index()
             o['season'] = season

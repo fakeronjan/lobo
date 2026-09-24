@@ -233,7 +233,7 @@ _sim_games = pd.concat([_sim_games, pd.DataFrame({
 _sim_ratings = df[['season', 'date', 'name', 'rating']].copy()
 _sim_ratings['date'] = pd.to_datetime(_sim_ratings['date'])
 _playoff_odds, _brackets = playoff_sim.compute(
-    _sim_games, _sim_ratings, lambda s: REGULAR_SEASON_GAMES.get(s, 44), _conf_of)
+    _sim_games, _sim_ratings, lambda s: REGULAR_SEASON_GAMES.get(s, 44), _conf_of, _cur_season)
 _playoff_odds['date'] = _playoff_odds['date'].dt.date
 _rid_by_date = df.drop_duplicates('date').set_index('date')['ranking_id'].to_dict()
 _playoff_odds['ranking_id'] = _playoff_odds['date'].map(_rid_by_date)
@@ -258,7 +258,7 @@ def _playoff_odds_json():
         po = _playoff_odds[_playoff_odds['season'] == season].set_index(['date', 'team'])
         sg = _sim_games[(_sim_games['season'] == season) & _sim_games['home_pts'].notna()]
         snaps = []
-        for d, (seeds, matchups) in sorted(_brackets[season].items()):
+        for d, (seeds, matchups, n_sims) in sorted(_brackets[season].items()):
             d_date = d.date() if hasattr(d, 'date') else d
             series = {}
             for rnd, bo, ta, tb, wins in matchups:
@@ -299,7 +299,7 @@ def _playoff_odds_json():
                                                    sum(1 for y in x[4] if y == x[3])) < x[1] // 2 + 1]
                 stage = names[min(x[0] for x in live) - 1] if live else names[max(x[0] for x in played) - 1]
             snaps.append({
-                'date': str(d_date), 'stage': stage,
+                'date': str(d_date), 'stage': stage, 'n_sims': int(n_sims),
                 'results': [{'home': x.home, 'away': x.away, 'hp': int(x.home_pts), 'vp': int(x.visitor_pts)}
                             for x in day.itertuples(index=False)] if played else [],
                 'teams': teams,
