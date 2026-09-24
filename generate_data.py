@@ -226,7 +226,7 @@ _TO_RS_GAMES = {
     2009: 34, 2010: 34, 2011: 34, 2012: 34, 2013: 34, 2014: 34,
     2015: 34, 2016: 34, 2017: 34, 2018: 34, 2019: 34,
     2020: 22,  # COVID Wubble
-    2021: 32, 2022: 36, 2023: 40, 2024: 40, 2025: 44,
+    2021: 32, 2022: 36, 2023: 40, 2024: 40, 2025: 44, 2026: 44,
 }
 def _to_rs_games(season):
     return _TO_RS_GAMES.get(int(season), 44)
@@ -241,8 +241,10 @@ def _to_clinch_threshold(season, round_pos, round_total):
         return 1
     is_finals = (round_pos == round_total)
     is_semis  = (round_pos == round_total - 1)
-    # WNBA finals BO5 since 2005, briefly BO5 2000-01 and 2003-04, BO3 otherwise
+    # WNBA finals BO7 since 2025, BO5 2005-2024 (and 2000-01, 2003-04),
+    # BO3 otherwise. Must match wnba.py's _wnba_finals_clinch.
     if is_finals:
+        if s >= 2025: return 4
         if s >= 2005: return 3
         if s in (2000, 2001, 2003, 2004): return 3
         return 2
@@ -273,6 +275,11 @@ _to_team_path = {}            # (season, team) -> [series dict, ordered by start
 _to_champion = {}             # season -> champion team
 _to_field = {}                # season -> set of teams in PS
 _to_season_total_rounds = {}  # season -> int total rounds in this season's bracket
+# Seasons whose Finals are over (wnba.py flags the last PS day season_flag==2).
+# Anything else with PS games is an in-progress postseason: no champion yet,
+# and the bracket walk-back below can't run because the last-ending series
+# isn't the Finals.
+_to_completed_ps = set(int(x) for x in df.loc[df['season_flag'] == 2, 'season'].unique())
 
 for season, rs_end in _rs_end_dates.items():
     s_int = int(season)
@@ -323,6 +330,29 @@ for season, rs_end in _rs_end_dates.items():
             'state_by_team': {a: state_a, b: state_b},
         })
     series_list.sort(key=lambda s: s['end'])
+
+    if s_int not in _to_completed_ps:
+        # In-progress postseason. Round = 1 + the most series either team
+        # has already played (handles byes: the bye'd team enters against
+        # an opponent that already has one). Total rounds come from the
+        # latest completed season, which shares the current format.
+        prior = [x for x in _to_season_total_rounds if x < s_int]
+        if not prior:
+            continue
+        total_rounds = _to_season_total_rounds[max(prior)]
+        _to_season_total_rounds[s_int] = total_rounds
+        field = set()
+        for s in sorted(series_list, key=lambda x: x['start']):
+            depth = max(sum(1 for x in series_list if t in x['pair'] and x['start'] < s['start'])
+                        for t in s['pair'])
+            s['round_pos'] = min(depth + 1, total_rounds)
+            s['clinch'] = _to_clinch_threshold(s_int, s['round_pos'], total_rounds)
+            field.update(s['pair'])
+        _to_field[s_int] = field
+        for team in field:
+            _to_team_path[(s_int, team)] = sorted(
+                [s for s in series_list if team in s['pair']], key=lambda x: x['start'])
+        continue
 
     # Structural bracket walk: starting from Finals (last series by end_date),
     # walk back via each series's participants' immediately-preceding series.
@@ -393,7 +423,11 @@ def _to_snap_state(s_int, team, snap_date):
     # (rather than progress=0.50 RS odds) at the moment RS ends. PS teams
     # then get the proper post-RS progress (0.55) via the "no series
     # started" branch at the end of the walker.
-    if rs_end is None or snap_date < rs_end:
+    # Also covers the gap between the last RS day and the first PS game:
+    # the field isn't known from games yet, so keep scoring everyone as an
+    # RS team rather than nulling every team. Recomputed with the real
+    # field on the first run after PS games land.
+    if rs_end is None or snap_date < rs_end or s_int not in _to_field:
         gp = _to_games_played(s_int, team, snap_date)
         progress = PHASE_RS_MAX_TO * min(gp / _to_rs_games(s_int), 1.0)
         return (True, False, progress, 0, 0)
