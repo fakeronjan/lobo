@@ -129,14 +129,28 @@ def host_pattern(season, best_of):
 
 
 def round_names(season):
-    """Column labels for reach-round odds, round 2 onward."""
-    b = bracket_for(season)
-    n = max(r for _, r, *_ in b)
+    """(full, short) names for every round, first to last."""
+    n = max(r for _, r, *_ in bracket_for(season))
     if n == 2:
-        return ['Finals']
-    if n == 3:
-        return ['Semifinals', 'Finals'] if season >= 2022 else ['Conference Finals', 'Finals']
-    return ['Second Round', 'Semifinals', 'Finals']
+        return ['Semifinals', 'Finals'], ['Semi', 'Final']
+    if n == 4:
+        return (['First Round', 'Second Round', 'Semifinals', 'Finals'],
+                ['R1', 'R2', 'Semi', 'Final'])
+    if season <= 2015:
+        return ['First Round', 'Conference Finals', 'Finals'], ['R1', 'Conf Final', 'Final']
+    return ['First Round', 'Semifinals', 'Finals'], ['R1', 'Semi', 'Final']
+
+
+def entry_rounds(season):
+    """Seed slot -> round that seed enters (later than 1 = bye)."""
+    out = {}
+    for _, rnd, _, *slots in bracket_for(season):
+        for sl in slots:
+            if sl[0] == 'conf':
+                out.setdefault(f"{sl[1][0]}{sl[2]}", rnd)
+            elif sl[0] == 'lg':
+                out.setdefault(str(sl[1]), rnd)
+    return out
 
 
 class SeasonSim:
@@ -244,6 +258,20 @@ class SeasonSim:
             ps_by_pair.setdefault(frozenset((r.home, r.away)), []).append(r.winner)
 
         self.used_actual = 0  # validation: real PS games the bracket consumed
+        # Once the regular season is over the seeds are fixed; record them and
+        # every matchup whose teams are settled (for the playoff odds tab).
+        self.rs_complete = rest.empty
+        self.seeds = {}
+        if self.rs_complete:
+            conf_fmt = any(sl[0] == 'conf' for m in self.bracket for sl in m[3:])
+            if conf_fmt:
+                for c, arr in by_conf.items():
+                    for k, t in enumerate(arr[0]):
+                        self.seeds[self.teams[t]] = f"{c[0]}{k + 1}"
+            else:
+                for k, t in enumerate(lg_all[0]):
+                    self.seeds[self.teams[t]] = str(k + 1)
+        self.matchups = []  # (round, best_of, team_a, team_b, [winners so far])
         reach = np.zeros((self.n_rounds + 2, T))  # [0]=playoffs, [k]=reach round k, [-1]=champ
         entered = np.zeros((n_sims, T), dtype=bool)
         res = {}
@@ -265,10 +293,15 @@ class SeasonSim:
                 new = ~entered[sim_ix, t]
                 entered[sim_ix, t] = True
                 np.add.at(reach[0], t[new], 1)
+                # A bye counts as getting through the rounds it skipped.
+                for k in range(2, rnd):
+                    np.add.at(reach[k], t[new], 1)
                 np.add.at(reach[rnd], t, 1)
             a_better = lg_rank[sim_ix, a] < lg_rank[sim_ix, b]
             fixed = np.all(a == a[0]) and np.all(b == b[0])
             actual = ps_by_pair.get(frozenset((self.teams[a[0]], self.teams[b[0]])), []) if fixed else []
+            if fixed and self.rs_complete:
+                self.matchups.append((rnd, bo, self.teams[a[0]], self.teams[b[0]], list(actual[:bo])))
             need = bo // 2 + 1
             wa = np.zeros(n_sims, dtype=int); wb = np.zeros(n_sims, dtype=int)
             for gi, better_hosts in enumerate(host_pattern(self.season, bo)):
@@ -292,9 +325,12 @@ class SeasonSim:
 def compute(games, ratings_df, rs_games_by_season, conf_of, log=print):
     """games: all WNBA games (season, date, home, away, home_pts, visitor_pts),
     Commissioner's Cup final excluded, scheduled games with NaN points.
-    ratings_df: (season, date, name, rating). Returns long DataFrame
-    (season, date, team, playoffs, r2.., champ)."""
+    ratings_df: (season, date, name, rating). Returns (odds, brackets):
+    odds = long DataFrame (season, date, team, playoffs, r2.., champ);
+    brackets = {season: {date: (seeds, matchups)}} for every snapshot on or
+    after the end of the regular season."""
     out = []
+    brackets = {}
     for season, g in games.groupby('season'):
         season = int(season)
         rsub = ratings_df[ratings_df['season'] == season]
@@ -304,10 +340,12 @@ def compute(games, ratings_df, rs_games_by_season, conf_of, log=print):
         sim = SeasonSim(season, g, rs_games_by_season(season), conf_of, ratings)
         for d in sorted(ratings):
             o = sim.odds_at(d)
+            if sim.rs_complete:
+                brackets.setdefault(season, {})[d] = (dict(sim.seeds), list(sim.matchups))
             o.index.name = 'team'
             o = o.reset_index()
             o['season'] = season
             o['date'] = d
             out.append(o)
         log(f"  {season}: {len(ratings)} snapshots")
-    return pd.concat(out, ignore_index=True)
+    return pd.concat(out, ignore_index=True), brackets
