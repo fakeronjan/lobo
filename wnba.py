@@ -764,7 +764,10 @@ def assemble_final(master_df, ratings_df, standings_df):
     def season_is_fully_complete(season):
         return season in _finals_results
 
-    # Regular season is "done" once any team has played the threshold count
+    # Regular season is "done" once EVERY team has played the threshold count.
+    # (Using the max let the first team to finish its slate flag the whole
+    # season's RS as over while others still had games left, which nulled
+    # every team's title odds on that snapshot.)
     regular_season_complete = set()
     for season in final_df['season'].unique():
         sg = rs_master[rs_master['season'] == season]
@@ -774,7 +777,7 @@ def assemble_final(master_df, ratings_df, standings_df):
         away = sg[['visitor_team_name']].rename(columns={'visitor_team_name': 'team'})
         all_g = pd.concat([home, away])
         threshold = REGULAR_SEASON_GAMES.get(season, 34)
-        if all_g.groupby('team').size().max() >= threshold:
+        if all_g.groupby('team').size().min() >= threshold:
             regular_season_complete.add(season)
 
     # Last day of postseason - only for fully complete seasons
