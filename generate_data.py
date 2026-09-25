@@ -282,7 +282,10 @@ def _playoff_odds_json():
                     'rating_o': round(float(r['rating_o']), 2), 'rank_o': int(r['rank_o']),
                     'rating_d': round(float(r['rating_d']), 2), 'rank_d': int(r['rank_d']),
                     'adv': [round(x, 4) for x in adv],
-                    'eliminated': any(x['done'] and not x['won'] for x in ser),
+                    # Lost a matchup and nothing left to play (same rule as DUNCAN,
+                    # where the 7-vs-8 play-in loser gets a second game).
+                    'eliminated': any(x['done'] and not x['won'] for x in ser)
+                                  and not any(not x['done'] for x in ser),
                     'series': ser,
                 })
             # Seeds beyond the bracket (e.g. 9th place) never enter.
