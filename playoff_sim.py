@@ -20,13 +20,12 @@ import numpy as np
 import pandas as pd
 from scipy.special import ndtr
 
-# Simulation counts. Once the regular season is over the grid is the live
-# view, so it gets MESSI's 1M for the current season (10k left a visible
-# ~1-point day-to-day wobble: 2025 Atlanta pre-playoffs 32.7% at 10k vs
-# 33.8% at 1M). Past postseasons get 100k; regular-season dates 10k.
+# Simulation counts (fleet standard): regular-season dates 10k; once the
+# regular season is over, 100k. 10k left a visible ~1-point day-to-day
+# wobble in the playoff grid (2025 Atlanta pre-playoffs 32.7% at 10k vs
+# 33.8% at 1M); 100k is within ~0.1 pt of 1M.
 N_SIMS = 10_000
 N_SIMS_PLAYOFFS = 100_000
-N_SIMS_LIVE = 1_000_000
 A = 0.0654
 
 
@@ -350,7 +349,7 @@ def compute(games, ratings_df, rs_games_by_season, conf_of, current_season, log=
         for d in sorted(ratings):
             n = N_SIMS
             if sim.rs_over(d):
-                n = N_SIMS_LIVE if season == current_season else N_SIMS_PLAYOFFS
+                n = N_SIMS_PLAYOFFS
             o = sim.odds_at(d, n_sims=n)
             if sim.rs_complete:
                 brackets.setdefault(season, {})[d] = (dict(sim.seeds), list(sim.matchups), n)
