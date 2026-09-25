@@ -27,6 +27,17 @@ from scipy.special import ndtr
 N_SIMS = 10_000
 N_SIMS_PLAYOFFS = 100_000
 A = 0.0654
+# Ratings aren't fixed for the rest of the season: each simulation gives
+# every team a random rating offset for the remaining games, SD =
+# DRIFT_SD0 * (share of regular season left)**DRIFT_K, fit to how far this
+# league's ratings actually moved from each date to the end of the regular
+# season. Zero once the regular season is over. (Same fix as DILLON: fixed
+# ratings made early-season odds overconfident.)
+# WNBA: the measured shape (SD 5.05 * left**0.50) helped at 10% of the
+# season but cost a little from 25% on, where WNBA odds were already
+# slightly underconfident; fading it faster (**1.5) keeps the early gain
+# (champion -log p 2.19 -> 2.02 at 10%) and is neutral later.
+DRIFT_SD0, DRIFT_K = 5.05, 1.5
 
 
 # Standings ties the WNBA broke differently from our head-to-head + point
@@ -225,13 +236,17 @@ class SeasonSim:
 
         played = self.rs['home_pts'].notna() & (self.rs['date'] <= d)
         done, rest = self.rs[played], self.rs[~played]
+        frac_left = len(rest) / max(len(self.rs), 1)
+        sd = DRIFT_SD0 * frac_left ** DRIFT_K if frac_left > 0 else 0.0
+        E = rng.normal(0.0, sd, (n_sims, T)) if sd > 0 else None   # per-sim rating offsets
         w0 = np.zeros(T); g0 = np.zeros(T)
         for h, a, hpt, vpt in done[['h', 'a', 'home_pts', 'visitor_pts']].itertuples(index=False):
             g0[h] += 1; g0[a] += 1; w0[h if hpt > vpt else a] += 1
         W = np.tile(w0, (n_sims, 1)); G = np.tile(g0, (n_sims, 1))
         if len(rest):
             h = rest['h'].to_numpy(); a = rest['a'].to_numpy()
-            hw = (rng.random((n_sims, len(rest))) < p_home(h, a, hp)).astype(float)
+            ph = p_home(h, a, hp) if E is None else ndtr(A * (R[h] - R[a] + E[:, h] - E[:, a] + hp))
+            hw = (rng.random((n_sims, len(rest))) < ph).astype(float)
             Hm = np.zeros((len(rest), T)); Hm[np.arange(len(rest)), h] = 1
             Am = np.zeros((len(rest), T)); Am[np.arange(len(rest)), a] = 1
             W += hw @ Hm + (1 - hw) @ Am
@@ -332,7 +347,8 @@ class SeasonSim:
                 else:
                     a_home = a_better if better_hosts else ~a_better
                     edge = np.where(a_home, hp, -hp)
-                    won = rng.random(n_sims) < ndtr(A * (R[a] - R[b] + edge))
+                    off = 0.0 if E is None else E[sim_ix, a] - E[sim_ix, b]
+                    won = rng.random(n_sims) < ndtr(A * (R[a] - R[b] + off + edge))
                 live = (wa < need) & (wb < need)
                 wa += won & live; wb += ~won & live
             res[mid] = np.where(wa >= need, a, b)
