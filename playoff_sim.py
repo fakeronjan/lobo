@@ -238,28 +238,41 @@ class SeasonSim:
             G += np.ones_like(hw) @ (Hm + Am)
         pct = W / np.maximum(G, 1)
         static = self._static_tiebreak(done) if rest.empty else np.zeros(T)
-        tieb = np.tile(static, (n_sims, 1)) + rng.random((n_sims, T)) * 1e-6
+        noise = rng.random((n_sims, T))   # drawn either way: keeps the RNG stream fixed
         sim_ix = np.arange(n_sims)
+        # Once the regular season is over every sim has the same final table,
+        # so seed one row and broadcast it (same change as DUNCAN, where the
+        # full-width sort was ~75% of the post-season cost).
+        S = 1 if rest.empty else n_sims
+        six = np.arange(S)
+        pct_s = pct[:S]
+        # Single sortable key per team: win% first, then the tiebreak order
+        # (static rank + coin flip), scaled below the smallest possible win%
+        # gap so it only ever splits exact ties.
+        srank = np.unique(static, return_inverse=True)[1].astype(float)  # equal until broken
+        tie_term = (srank[None, :] + noise[:S]) * 1e-8
 
-        # Rank within a team subset: returns (n_sims, k) team idx, best first.
+        # Rank within a team subset: returns (S, k) team idx, best first.
         def ranked(members):
             m = np.array(members)
-            k = len(m)
-            order = np.lexsort([(-tieb[:, m]).ravel(), (-pct[:, m]).ravel(), np.repeat(sim_ix, k)])
-            return m[order.reshape(n_sims, k) % k]
+            return m[np.argsort(-(pct_s[:, m] + tie_term[:, m]), axis=1, kind='stable')]
 
         lg_all = ranked(range(T))
         by_conf = {c: ranked(np.where(self.conf == c)[0]) for c in ('East', 'West')}
         if self.season == 1997:  # conference winners take seeds 1-2
             winners = np.stack([by_conf['East'][:, 0], by_conf['West'][:, 0]], 1)
-            wp = pct[sim_ix[:, None], winners] + tieb[sim_ix[:, None], winners]
+            wp = pct_s[six[:, None], winners] + tie_term[six[:, None], winners]
             o = np.argsort(-wp, axis=1)
             top2 = np.take_along_axis(winners, o, 1)
             rest_ = np.array([[t for t in row if t not in set(tp)] for row, tp in zip(lg_all, top2)])
             lg_all = np.concatenate([top2, rest_], 1)
         # overall rank number per team (for home court + re-seeding)
-        lg_rank = np.empty((n_sims, T), dtype=int)
-        lg_rank[sim_ix[:, None], lg_all] = np.arange(T)[None, :]
+        lg_rank = np.empty((S, T), dtype=int)
+        lg_rank[six[:, None], lg_all] = np.arange(T)[None, :]
+        if S == 1:
+            by_conf = {c: np.broadcast_to(v, (n_sims, v.shape[1])) for c, v in by_conf.items()}
+            lg_all = np.broadcast_to(lg_all, (n_sims, T))
+            lg_rank = np.broadcast_to(lg_rank, (n_sims, T))
 
         ps_by_pair = {}
         for r in self.ps[self.ps['date'] <= d].itertuples(index=False):
