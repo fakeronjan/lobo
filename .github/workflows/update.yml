@@ -2,7 +2,7 @@ name: Update LOBO Ratings
 
 on:
   schedule:
-    - cron: '33 15 * * *'   # 15:33 UTC daily - staggered +20 min after DUNCAN; same basketball-reference backend (rate-limited)
+    - cron: '33 18 * * *'  # backstop, 18:33 UTC. The droplet (157.245.209.249) dispatches this at 15:33 UTC; GitHub's own cron starts hours late, see /opt/fleet-dispatch there
   workflow_dispatch:        # allow manual trigger from GitHub UI
 
 permissions:
