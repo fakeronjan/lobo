@@ -16,6 +16,11 @@ residual SD ~12 pts). Home court shrank over time, so home_pts is by era:
 Output per (snapshot, team): probability of making the playoffs, reaching
 each later round, and winning the title (the Title odds column).
 """
+import hashlib
+import multiprocessing as _mp
+import os as _os
+import pickle
+
 import numpy as np
 import pandas as pd
 from scipy.special import ndtr
@@ -389,3 +394,68 @@ def compute(games, ratings_df, rs_games_by_season, conf_of, current_season, log=
             out.append(o)
         log(f"  {season}: {len(ratings)} snapshots")
     return pd.concat(out, ignore_index=True), brackets
+
+
+# ---------------------------------------------------------------------------
+# Per-season cache. Every snapshot seeds its own RNG from its date, so a
+# season's odds depend only on the engine and that season's inputs; finished
+# seasons are reused until one of those changes. Fingerprint = this file +
+# the season's games (full sort key, so tie order can't change the hash) +
+# its ratings to 3dp + its schedule length and conferences.
+_JOB = {}
+
+
+def _fingerprint(season, games, ratings_df, rs_games_by_season, conf_of):
+    h = hashlib.sha256(open(_os.path.abspath(__file__), 'rb').read())
+    g = games[games['season'] == season]
+    h.update(g.sort_values(list(g.columns), kind='stable').to_csv(index=False).encode())
+    r = ratings_df[ratings_df['season'] == season].sort_values(['date', 'name']).copy()
+    r['rating'] = r['rating'].round(3)
+    h.update(r.to_csv(index=False).encode())
+    teams = sorted(set(g['home']) | set(g['away']))
+    h.update(repr((rs_games_by_season(season), [(t, conf_of(t, season)) for t in teams])).encode())
+    return h.hexdigest()
+
+
+def _one(season):
+    j = _JOB
+    return season, compute(j['games'][j['games']['season'] == season],
+                           j['ratings'][j['ratings']['season'] == season],
+                           j['rsg'], j['conf_of'], j['current'], log=lambda *_: None)
+
+
+def compute_cached(games, ratings_df, rs_games_by_season, conf_of, current_season,
+                   cache_dir='title_odds_cache', workers=None, log=print):
+    """compute() over every season, reusing cached seasons whose fingerprint
+    still matches and recomputing the rest in parallel."""
+    _os.makedirs(cache_dir, exist_ok=True)
+    seasons = sorted(int(s) for s in games['season'].unique()
+                     if (ratings_df['season'] == s).any())
+    results, todo, sigs = {}, [], {}
+    for s in seasons:
+        sigs[s] = _fingerprint(s, games, ratings_df, rs_games_by_season, conf_of)
+        path = _os.path.join(cache_dir, f'{s}.pkl')
+        if _os.path.exists(path):
+            try:
+                sig, payload = pickle.load(open(path, 'rb'))
+                if sig == sigs[s]:
+                    results[s] = payload
+                    continue
+            except Exception:
+                pass
+        todo.append(s)
+    log(f"  {len(results)} seasons from cache, computing {len(todo)}: {todo}")
+    if todo:
+        _JOB.update(games=games, ratings=ratings_df, rsg=rs_games_by_season,
+                    conf_of=conf_of, current=current_season)
+        ctx = _mp.get_context('fork')   # workers inherit _JOB; no re-import of the caller
+        with ctx.Pool(workers or _os.cpu_count()) as pool:
+            for s, payload in pool.imap_unordered(_one, todo):
+                results[s] = payload
+                pickle.dump((sigs[s], payload), open(_os.path.join(cache_dir, f'{s}.pkl'), 'wb'))
+                log(f"  {s} done")
+    odds = pd.concat([results[s][0] for s in seasons], ignore_index=True)
+    brackets = {}
+    for s in seasons:
+        brackets.update(results[s][1])
+    return odds, brackets

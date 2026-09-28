@@ -232,7 +232,7 @@ _sim_games = pd.concat([_sim_games, pd.DataFrame({
 
 _sim_ratings = df[['season', 'date', 'name', 'rating']].copy()
 _sim_ratings['date'] = pd.to_datetime(_sim_ratings['date'])
-_playoff_odds, _brackets = playoff_sim.compute(
+_playoff_odds, _brackets = playoff_sim.compute_cached(
     _sim_games, _sim_ratings, lambda s: REGULAR_SEASON_GAMES.get(s, 44), _conf_of, _cur_season)
 _playoff_odds['date'] = _playoff_odds['date'].dt.date
 _rid_by_date = df.drop_duplicates('date').set_index('date')['ranking_id'].to_dict()
