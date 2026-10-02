@@ -25,12 +25,7 @@ import numpy as np
 import pandas as pd
 from scipy.special import ndtr
 
-# Simulation counts (fleet standard): regular-season dates 10k; once the
-# regular season is over, 100k. 10k left a visible ~1-point day-to-day
-# wobble in the playoff grid (2025 Atlanta pre-playoffs 32.7% at 10k vs
-# 33.8% at 1M); 100k is within ~0.1 pt of 1M.
-N_SIMS = 10_000
-N_SIMS_PLAYOFFS = 100_000
+N_SIMS = 10_000            # every snapshot, playoffs included (fleet standard since 2026-10-02)
 A = 0.0654
 # Ratings aren't fixed for the rest of the season: each simulation gives
 # every team a random rating offset for the remaining games, SD =
@@ -382,8 +377,6 @@ def compute(games, ratings_df, rs_games_by_season, conf_of, current_season, log=
         sim = SeasonSim(season, g, rs_games_by_season(season), conf_of, ratings)
         for d in sorted(ratings):
             n = N_SIMS
-            if sim.rs_over(d):
-                n = N_SIMS_PLAYOFFS
             o = sim.odds_at(d, n_sims=n)
             if sim.rs_complete:
                 brackets.setdefault(season, {})[d] = (dict(sim.seeds), list(sim.matchups), n)
