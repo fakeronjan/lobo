@@ -17,6 +17,7 @@ Output per (snapshot, team): probability of making the playoffs, reaching
 each later round, and winning the title (the Title odds column).
 """
 import hashlib
+import json as _json
 import multiprocessing as _mp
 import os as _os
 import pickle
@@ -48,6 +49,15 @@ TIEBREAK_WINNERS = {
     1997: ['Charlotte Sting'],   # over Cleveland (15-13) for the 4th spot
     2003: ['Minnesota Lynx'],    # over Seattle (18-16) for West 4th
 }
+
+
+# The real playoff seeds: {season: {'East'/'West': [...]}} in conference
+# formats, {season: {'League': [...]}} in league-wide ones. Once the regular
+# season is over these ARE the seeds. From Wikipedia's playoff brackets;
+# wnba.py adds each new season.
+_SEEDS = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'wnba_playoff_seeds.json')
+REAL_SEEDS = ({int(k): v for k, v in _json.load(open(_SEEDS)).items()}
+              if _os.path.exists(_SEEDS) else {})
 
 
 def home_pts(season):
@@ -134,8 +144,10 @@ def host_pattern(season, best_of):
     if best_of == 1:
         return [True]
     if best_of == 3:
-        if season <= 2015:
+        if season <= 2009:
             return [False, True, True]   # lower seed hosted game 1
+        if season <= 2015:
+            return [True, False, True]   # 1-1-1 (from the game data: 34 of 34 series)
         if 2022 <= season <= 2024:
             return [True, True, False]
         return [True, False, True]       # 2025+: 1-1-1
@@ -281,6 +293,13 @@ class SeasonSim:
             top2 = np.take_along_axis(winners, o, 1)
             rest_ = np.array([[t for t in row if t not in set(tp)] for row, tp in zip(lg_all, top2)])
             lg_all = np.concatenate([top2, rest_], 1)
+        if rest.empty and self.season in REAL_SEEDS:
+            for c, real in REAL_SEEDS[self.season].items():
+                top = [self.idx[t] for t in real]
+                if c == 'League':
+                    lg_all = np.array([top + [t for t in lg_all[0] if t not in top]])
+                else:
+                    by_conf[c] = np.array([top + [t for t in by_conf[c][0] if t not in top]])
         # overall rank number per team (for home court + re-seeding)
         lg_rank = np.empty((S, T), dtype=int)
         lg_rank[six[:, None], lg_all] = np.arange(T)[None, :]
@@ -292,6 +311,14 @@ class SeasonSim:
         ps_by_pair = {}
         for r in self.ps[self.ps['date'] <= d].itertuples(index=False):
             ps_by_pair.setdefault(frozenset((r.home, r.away)), []).append(r.winner)
+
+        # Who had home court in each real series, from Game 1's host and the
+        # format's pattern (best-of-3 before 2016 opened at the lower seed).
+        # Set by the standings before the series, not by its result.
+        first_host = {}
+        for r in self.ps.itertuples(index=False):
+            first_host.setdefault(frozenset((r.home, r.away)), r.home)
+        self.host_miss = 0
 
         self.used_actual = 0  # validation: real PS games the bracket consumed
         # Once the regular season is over the seeds are fixed; record them and
@@ -335,6 +362,11 @@ class SeasonSim:
                 np.add.at(reach[rnd], t, 1)
             a_better = lg_rank[sim_ix, a] < lg_rank[sim_ix, b]
             fixed = np.all(a == a[0]) and np.all(b == b[0])
+            real_host = first_host.get(frozenset((self.teams[a[0]], self.teams[b[0]]))) if fixed else None
+            if real_host is not None and self.season != 2020:     # 2020: bubble, no home court
+                real_a = (real_host == self.teams[a[0]]) == host_pattern(self.season, bo)[0]
+                self.host_miss += bool(a_better[0]) != real_a
+                a_better = np.full(n_sims, real_a)
             actual = ps_by_pair.get(frozenset((self.teams[a[0]], self.teams[b[0]])), []) if fixed else []
             if fixed and self.rs_complete:
                 self.matchups.append((rnd, bo, self.teams[a[0]], self.teams[b[0]], list(actual[:bo])))
@@ -407,6 +439,7 @@ def _fingerprint(season, games, ratings_df, rs_games_by_season, conf_of):
     h.update(r.to_csv(index=False).encode())
     teams = sorted(set(g['home']) | set(g['away']))
     h.update(repr((rs_games_by_season(season), [(t, conf_of(t, season)) for t in teams])).encode())
+    h.update(repr(REAL_SEEDS.get(season)).encode())     # this season's real seeds only
     return h.hexdigest()
 
 

@@ -1,0 +1,376 @@
+{
+ "1997": {
+  "League": [
+   "Houston Comets",
+   "New York Liberty",
+   "Phoenix Mercury",
+   "Charlotte Sting"
+  ]
+ },
+ "1998": {
+  "West": [
+   "Houston Comets",
+   "Phoenix Mercury"
+  ],
+  "East": [
+   "Cleveland Rockers",
+   "Charlotte Sting"
+  ]
+ },
+ "1999": {
+  "East": [
+   "New York Liberty",
+   "Detroit Shock",
+   "Charlotte Sting"
+  ],
+  "West": [
+   "Houston Comets",
+   "Los Angeles Sparks",
+   "Sacramento Monarchs"
+  ]
+ },
+ "2000": {
+  "East": [
+   "New York Liberty",
+   "Cleveland Rockers",
+   "Orlando Miracle",
+   "Washington Mystics"
+  ],
+  "West": [
+   "Los Angeles Sparks",
+   "Houston Comets",
+   "Sacramento Monarchs",
+   "Phoenix Mercury"
+  ]
+ },
+ "2001": {
+  "East": [
+   "Cleveland Rockers",
+   "New York Liberty",
+   "Miami Sol",
+   "Charlotte Sting"
+  ],
+  "West": [
+   "Los Angeles Sparks",
+   "Sacramento Monarchs",
+   "Utah Starzz",
+   "Houston Comets"
+  ]
+ },
+ "2002": {
+  "East": [
+   "New York Liberty",
+   "Charlotte Sting",
+   "Washington Mystics",
+   "Indiana Fever"
+  ],
+  "West": [
+   "Los Angeles Sparks",
+   "Houston Comets",
+   "Utah Starzz",
+   "Seattle Storm"
+  ]
+ },
+ "2003": {
+  "East": [
+   "Detroit Shock",
+   "Charlotte Sting",
+   "Connecticut Sun",
+   "Cleveland Rockers"
+  ],
+  "West": [
+   "Los Angeles Sparks",
+   "Houston Comets",
+   "Sacramento Monarchs",
+   "Minnesota Lynx"
+  ]
+ },
+ "2004": {
+  "East": [
+   "Connecticut Sun",
+   "New York Liberty",
+   "Detroit Shock",
+   "Washington Mystics"
+  ],
+  "West": [
+   "Los Angeles Sparks",
+   "Seattle Storm",
+   "Minnesota Lynx",
+   "Sacramento Monarchs"
+  ]
+ },
+ "2005": {
+  "East": [
+   "Connecticut Sun",
+   "Indiana Fever",
+   "New York Liberty",
+   "Detroit Shock"
+  ],
+  "West": [
+   "Sacramento Monarchs",
+   "Seattle Storm",
+   "Houston Comets",
+   "Los Angeles Sparks"
+  ]
+ },
+ "2006": {
+  "East": [
+   "Connecticut Sun",
+   "Detroit Shock",
+   "Indiana Fever",
+   "Washington Mystics"
+  ],
+  "West": [
+   "Los Angeles Sparks",
+   "Sacramento Monarchs",
+   "Houston Comets",
+   "Seattle Storm"
+  ]
+ },
+ "2007": {
+  "East": [
+   "Detroit Shock",
+   "Indiana Fever",
+   "Connecticut Sun",
+   "New York Liberty"
+  ],
+  "West": [
+   "Phoenix Mercury",
+   "San Antonio Silver Stars",
+   "Sacramento Monarchs",
+   "Seattle Storm"
+  ]
+ },
+ "2008": {
+  "East": [
+   "Detroit Shock",
+   "Connecticut Sun",
+   "New York Liberty",
+   "Indiana Fever"
+  ],
+  "West": [
+   "San Antonio Silver Stars",
+   "Seattle Storm",
+   "Los Angeles Sparks",
+   "Sacramento Monarchs"
+  ]
+ },
+ "2009": {
+  "East": [
+   "Indiana Fever",
+   "Atlanta Dream",
+   "Detroit Shock",
+   "Washington Mystics"
+  ],
+  "West": [
+   "Phoenix Mercury",
+   "Seattle Storm",
+   "Los Angeles Sparks",
+   "San Antonio Silver Stars"
+  ]
+ },
+ "2010": {
+  "East": [
+   "Washington Mystics",
+   "New York Liberty",
+   "Indiana Fever",
+   "Atlanta Dream"
+  ],
+  "West": [
+   "Seattle Storm",
+   "Phoenix Mercury",
+   "San Antonio Silver Stars",
+   "Los Angeles Sparks"
+  ]
+ },
+ "2011": {
+  "East": [
+   "Indiana Fever",
+   "Connecticut Sun",
+   "Atlanta Dream",
+   "New York Liberty"
+  ],
+  "West": [
+   "Minnesota Lynx",
+   "Seattle Storm",
+   "Phoenix Mercury",
+   "San Antonio Silver Stars"
+  ]
+ },
+ "2012": {
+  "East": [
+   "Connecticut Sun",
+   "Indiana Fever",
+   "Atlanta Dream",
+   "New York Liberty"
+  ],
+  "West": [
+   "Minnesota Lynx",
+   "Los Angeles Sparks",
+   "San Antonio Silver Stars",
+   "Seattle Storm"
+  ]
+ },
+ "2013": {
+  "East": [
+   "Chicago Sky",
+   "Atlanta Dream",
+   "Washington Mystics",
+   "Indiana Fever"
+  ],
+  "West": [
+   "Minnesota Lynx",
+   "Los Angeles Sparks",
+   "Phoenix Mercury",
+   "Seattle Storm"
+  ]
+ },
+ "2014": {
+  "East": [
+   "Atlanta Dream",
+   "Indiana Fever",
+   "Washington Mystics",
+   "Chicago Sky"
+  ],
+  "West": [
+   "Phoenix Mercury",
+   "Minnesota Lynx",
+   "San Antonio Silver Stars",
+   "Los Angeles Sparks"
+  ]
+ },
+ "2015": {
+  "East": [
+   "New York Liberty",
+   "Chicago Sky",
+   "Indiana Fever",
+   "Washington Mystics"
+  ],
+  "West": [
+   "Minnesota Lynx",
+   "Phoenix Mercury",
+   "Tulsa Shock",
+   "Los Angeles Sparks"
+  ]
+ },
+ "2016": {
+  "League": [
+   "Minnesota Lynx",
+   "Los Angeles Sparks",
+   "New York Liberty",
+   "Chicago Sky",
+   "Indiana Fever",
+   "Atlanta Dream",
+   "Seattle Storm",
+   "Phoenix Mercury"
+  ]
+ },
+ "2017": {
+  "League": [
+   "Minnesota Lynx",
+   "Los Angeles Sparks",
+   "New York Liberty",
+   "Connecticut Sun",
+   "Phoenix Mercury",
+   "Washington Mystics",
+   "Dallas Wings",
+   "Seattle Storm"
+  ]
+ },
+ "2018": {
+  "League": [
+   "Seattle Storm",
+   "Atlanta Dream",
+   "Washington Mystics",
+   "Connecticut Sun",
+   "Phoenix Mercury",
+   "Los Angeles Sparks",
+   "Minnesota Lynx",
+   "Dallas Wings"
+  ]
+ },
+ "2019": {
+  "League": [
+   "Washington Mystics",
+   "Connecticut Sun",
+   "Los Angeles Sparks",
+   "Las Vegas Aces",
+   "Chicago Sky",
+   "Seattle Storm",
+   "Minnesota Lynx",
+   "Phoenix Mercury"
+  ]
+ },
+ "2020": {
+  "League": [
+   "Las Vegas Aces",
+   "Seattle Storm",
+   "Los Angeles Sparks",
+   "Minnesota Lynx",
+   "Phoenix Mercury",
+   "Chicago Sky",
+   "Connecticut Sun",
+   "Washington Mystics"
+  ]
+ },
+ "2021": {
+  "League": [
+   "Connecticut Sun",
+   "Las Vegas Aces",
+   "Minnesota Lynx",
+   "Seattle Storm",
+   "Phoenix Mercury",
+   "Chicago Sky",
+   "Dallas Wings",
+   "New York Liberty"
+  ]
+ },
+ "2022": {
+  "League": [
+   "Las Vegas Aces",
+   "Chicago Sky",
+   "Connecticut Sun",
+   "Seattle Storm",
+   "Washington Mystics",
+   "Dallas Wings",
+   "New York Liberty",
+   "Phoenix Mercury"
+  ]
+ },
+ "2023": {
+  "League": [
+   "Las Vegas Aces",
+   "New York Liberty",
+   "Connecticut Sun",
+   "Dallas Wings",
+   "Atlanta Dream",
+   "Minnesota Lynx",
+   "Washington Mystics",
+   "Chicago Sky"
+  ]
+ },
+ "2024": {
+  "League": [
+   "New York Liberty",
+   "Minnesota Lynx",
+   "Connecticut Sun",
+   "Las Vegas Aces",
+   "Seattle Storm",
+   "Indiana Fever",
+   "Phoenix Mercury",
+   "Atlanta Dream"
+  ]
+ },
+ "2025": {
+  "League": [
+   "Minnesota Lynx",
+   "Las Vegas Aces",
+   "Atlanta Dream",
+   "Phoenix Mercury",
+   "New York Liberty",
+   "Indiana Fever",
+   "Seattle Storm",
+   "Golden State Valkyries"
+  ]
+ }
+}
