@@ -39,6 +39,65 @@ A = 0.0654
 # slightly underconfident; fading it faster (**1.5) keeps the early gain
 # (champion -log p 2.19 -> 2.02 at 10%) and is neutral later.
 DRIFT_SD0, DRIFT_K = 5.05, 1.5
+# Offseason uncertainty (2026-10-17, ported from DUNCAN): ratings going into
+# a season still carry last season's games and miss roster changes. Extra
+# per-team SD of PRESEASON_SD on opening day, fading linearly to zero over
+# PRESEASON_DAYS (two weeks by Ronjan's call: LOBO's ratings window is
+# shorter than DUNCAN's, so they catch up faster), combined with the drift
+# above in quadrature.
+PRESEASON_SD, PRESEASON_DAYS = 4.0, 14
+
+# New teams (2026-10-17, ported from DUNCAN): a name the ratings engine
+# hasn't seen starts from nothing, so its first games set its rating. For a
+# team in its first season under a name, blend its rating with a starting
+# point over its first NEW_TEAM_GAMES games (DUNCAN's 30 of 82, scaled to a
+# 44-game season): the predecessor's last rating for a relocation,
+# EXPANSION_PRIOR for an expansion team (the mean first-season final rating
+# of the 13 since 1998, Shock and Mystics through Tempo and the 2026 Fire).
+RELOCATED_FROM = {
+    'San Antonio Silver Stars': 'Utah Starzz', 'Connecticut Sun': 'Orlando Miracle',
+    'Tulsa Shock': 'Detroit Shock', 'Dallas Wings': 'Tulsa Shock',
+    'Las Vegas Aces': 'San Antonio Silver Stars',
+}
+EXPANSION_PRIOR = -5.5
+NEW_TEAM_GAMES = 16
+
+
+def new_team_priors(season, ratings_df):
+    """{team: starting rating} for teams rated this season but not last.
+    ratings_df: (season, date, name, rating) covering at least last season."""
+    prev = ratings_df[ratings_df['season'] == season - 1]
+    if prev.empty:
+        return {}                                   # 1997: everyone is new
+    cur = ratings_df[ratings_df['season'] == season]
+    new = set(cur['name']) - set(prev['name'])
+    out = {}
+    for t in new:
+        src = prev[prev['name'] == RELOCATED_FROM.get(t, '')]
+        out[t] = float(src.sort_values('date')['rating'].iloc[-1]) if len(src) else EXPANSION_PRIOR
+    return out
+
+
+def new_team_weight(n_games):
+    return min(n_games / NEW_TEAM_GAMES, 1.0)
+
+
+def steady_new_teams(ratings, games, priors):
+    """ratings: {date: {team: rating}}. Blends each new team's rating toward
+    its prior by games played (games: the season's games) up to that date."""
+    if not priors:
+        return ratings
+    played = games[games['home_pts'].notna()]
+    out = {}
+    for d, day in ratings.items():
+        day = dict(day)
+        for t, prior in priors.items():
+            if t in day:
+                n = int(((played['home'] == t) | (played['away'] == t))[played['date'] <= d].sum())
+                w = new_team_weight(n)
+                day[t] = w * day[t] + (1 - w) * prior
+        out[d] = day
+    return out
 
 
 # Standings ties the WNBA broke differently from our head-to-head + point
@@ -236,7 +295,9 @@ class SeasonSim:
             score[self.idx[t]] += 1e6
         return score
 
-    def odds_at(self, d, n_sims=N_SIMS):
+    def odds_at(self, d, n_sims=N_SIMS, capture=None):
+        """capture: an optional dict filled with per-simulation results
+        (Daily Matchups); draws no extra random numbers."""
         T = len(self.teams)
         rng = np.random.default_rng(int(pd.Timestamp(d).strftime('%Y%m%d')))
         rt = self.ratings.get(d, {})
@@ -250,6 +311,10 @@ class SeasonSim:
         done, rest = self.rs[played], self.rs[~played]
         frac_left = len(rest) / max(len(self.rs), 1)
         sd = DRIFT_SD0 * frac_left ** DRIFT_K if frac_left > 0 else 0.0
+        if sd > 0 and PRESEASON_SD > 0:
+            days_in = max((pd.Timestamp(d) - self.rs['date'].min()).days, 0)
+            extra = PRESEASON_SD * max(0.0, 1 - days_in / PRESEASON_DAYS)
+            sd = (sd ** 2 + extra ** 2) ** 0.5
         E = rng.normal(0.0, sd, (n_sims, T)) if sd > 0 else None   # per-sim rating offsets
         w0 = np.zeros(T); g0 = np.zeros(T)
         for h, a, hpt, vpt in done[['h', 'a', 'home_pts', 'visitor_pts']].itertuples(index=False):
@@ -259,9 +324,15 @@ class SeasonSim:
             h = rest['h'].to_numpy(); a = rest['a'].to_numpy()
             ph = p_home(h, a, hp) if E is None else ndtr(A * (R[h] - R[a] + E[:, h] - E[:, a] + hp))
             hw = (rng.random((n_sims, len(rest))) < ph).astype(float)
+            if capture is not None:
+                capture['rest'] = rest.reset_index(drop=True)
+                capture['hw'] = hw.astype(bool)
+                capture['E'] = E
             Hm = np.zeros((len(rest), T)); Hm[np.arange(len(rest)), h] = 1
             Am = np.zeros((len(rest), T)); Am[np.arange(len(rest)), a] = 1
             W += hw @ Hm + (1 - hw) @ Am
+            if capture is not None:
+                capture['W'] = W            # final regular-season wins per sim
             G += np.ones_like(hw) @ (Hm + Am)
         # Projected record (Standings' Proj Record bar): 10th/50th/90th
         # percentile of simulated final wins while games remain. Actual
@@ -343,6 +414,8 @@ class SeasonSim:
         reach = np.zeros((self.n_rounds + 2, T))  # [0]=playoffs, [k]=reach round k, [-1]=champ
         entered = np.zeros((n_sims, T), dtype=bool)
         res = {}
+        if capture is not None:
+            capture['ps_next'] = []   # (team_a, team_b, a's result in each sim, best-of, round) for each fixed series' next game
 
         def slot(s):
             if s[0] == 'conf':
@@ -386,10 +459,16 @@ class SeasonSim:
                     edge = np.where(a_home, hp, -hp)
                     off = 0.0 if E is None else E[sim_ix, a] - E[sim_ix, b]
                     won = rng.random(n_sims) < ndtr(A * (R[a] - R[b] + off + edge))
+                    if capture is not None and fixed and gi == len(actual):
+                        capture['ps_next'].append((self.teams[a[0]], self.teams[b[0]], won, bo, rnd))
                 live = (wa < need) & (wb < need)
                 wa += won & live; wb += ~won & live
             res[mid] = np.where(wa >= need, a, b)
         np.add.at(reach[-1], res['F'], 1)
+        if capture is not None:
+            capture['teams'] = self.teams
+            capture['made'] = entered.copy()
+            capture['champ'] = res['F']
         reach /= n_sims
         cols = ['playoffs'] + [f'r{k}' for k in range(2, self.n_rounds + 1)] + ['champ']
         rows = np.vstack([reach[0]] + [reach[k] for k in range(2, self.n_rounds + 1)] + [reach[-1]])
@@ -414,6 +493,7 @@ def compute(games, ratings_df, rs_games_by_season, conf_of, current_season, log=
         ratings = {d: dict(zip(x['name'], x['rating'])) for d, x in rsub.groupby('date')}
         if not ratings:
             continue
+        ratings = steady_new_teams(ratings, g, new_team_priors(season, ratings_df))
         sim = SeasonSim(season, g, rs_games_by_season(season), conf_of, ratings)
         for d in sorted(ratings):
             n = N_SIMS
@@ -448,13 +528,14 @@ def _fingerprint(season, games, ratings_df, rs_games_by_season, conf_of):
     teams = sorted(set(g['home']) | set(g['away']))
     h.update(repr((rs_games_by_season(season), [(t, conf_of(t, season)) for t in teams])).encode())
     h.update(repr(REAL_SEEDS.get(season)).encode())     # this season's real seeds only
+    h.update(repr(sorted((t, round(v, 3)) for t, v in new_team_priors(season, ratings_df).items())).encode())
     return h.hexdigest()
 
 
 def _one(season):
     j = _JOB
     return season, compute(j['games'][j['games']['season'] == season],
-                           j['ratings'][j['ratings']['season'] == season],
+                           j['ratings'][j['ratings']['season'].isin([season - 1, season])],
                            j['rsg'], j['conf_of'], j['current'], log=lambda *_: None)
 
 

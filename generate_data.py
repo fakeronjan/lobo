@@ -820,6 +820,49 @@ with open('docs/data/playoff_odds/index.json', 'w') as f:
     json.dump({'n_sims': _po['n_sims'], 'current_season': _po['current_season'],
                'seasons': [_s['season'] for _s in _po['seasons']]}, f, separators=(',', ':'))
 
+# ── Daily Matchups tab (docs/data/daily_matchups/) ───────────────────────────
+# Every game of a day from the ratings going into it: win probability, line,
+# O/U, and each team's playoff and title odds with a win and with a loss.
+# 1997 on; finished seasons are cached (daily_matchups.py). The live season
+# previews only its next game day, including opening night before any game
+# of the season has been played (last season's final ratings).
+import daily_matchups
+
+print("Writing daily_matchups/...")
+_dm_games = _sim_games
+_unplayed = _loaded[_loaded['PTS.1'].isna()]
+_dm_live = int(_unplayed['Season'].max()) if len(_unplayed) else None
+if _dm_live is not None and _dm_live < _cur_season:
+    _dm_live = None                          # leftover postponements from an old season
+if _dm_live is not None and _dm_live > _cur_season:
+    # A new season's schedule is out but nothing has been played yet: the
+    # title-odds sim skips it, so add its schedule here.
+    _new = _unplayed[_unplayed['Season'] == _dm_live]
+    _dm_games = pd.concat([_dm_games, pd.DataFrame({
+        'season': _dm_live, 'date': pd.to_datetime(_new['Date'], format='%a, %b %d, %Y'),
+        'home': _new['Home/Neutral'], 'away': _new['Visitor/Neutral'],
+        'home_pts': np.nan, 'visitor_pts': np.nan})], ignore_index=True)
+# Commissioner's Cup finals: dropped from `games` above, back here as
+# Quality-only games.
+_dm_cup = pd.read_csv('all_wnba_games.csv')
+_dm_cup = _dm_cup[_dm_cup['is_cup_final'] == 1].rename(
+    columns={'date_game': 'date', 'home_team_name': 'home', 'visitor_team_name': 'away'})
+_dm_cup = _dm_cup[['season', 'date', 'home', 'away', 'home_pts', 'visitor_pts']].copy()
+_dm_cup['date'] = pd.to_datetime(_dm_cup['date'])
+_dm_ratings = df[['season', 'date', 'name', 'rating', 'rank', 'rating_o', 'rating_d']].copy()
+_dm_ratings['date'] = pd.to_datetime(_dm_ratings['date'])
+_dm_ratings['season'] = _dm_ratings['season'].astype(int)
+_dm_seasons = sorted(int(s) for s in _dm_games['season'].unique())
+_dm_all = daily_matchups.build_cached(
+    _dm_seasons, _dm_games, _dm_ratings, lambda s: REGULAR_SEASON_GAMES.get(s, 44), _conf_of, _dm_cup)
+daily_matchups.add_juice(_dm_all, {s for s in _dm_seasons if s != _dm_live})
+os.makedirs('docs/data/daily_matchups', exist_ok=True)
+for _s, _days in _dm_all.items():
+    with open(f'docs/data/daily_matchups/{_s}.json', 'w') as f:
+        json.dump({'season': _s, 'days': _days}, f, separators=(',', ':'))
+with open('docs/data/daily_matchups/index.json', 'w') as f:
+    json.dump({'seasons': sorted(_dm_all, reverse=True), 'live_season': _dm_live}, f, separators=(',', ':'))
+
 print(f"Done. {len(teams_index)} teams, {len(standings_data['teams'])} in current standings.")
 print(f"Wrote {len(all_seasons)} season files. Standings date: {latest_date}")
 
