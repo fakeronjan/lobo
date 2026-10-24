@@ -198,6 +198,38 @@ def bracket_for(season):
     return _league8(7)
 
 
+def drop_surplus_series_rows(games, season, rs_games_total):
+    """Drop scheduled playoff rows a series has no room for. A game moved
+    EARLIER keeps its old slot on basketball-reference as an unplayed row
+    (2026 Finals Game 3, played 10/21, still listed 10/22), so a series can
+    show more games left than best_of minus games played; the surplus is
+    the earliest unplayed rows. Round = 1 + earlier playoff opponents (no
+    byes: 2022+ formats). games: one season (date, home, away, home_pts)."""
+    g = games.sort_values('date', kind='stable')
+    counts, ps_idx = {}, []
+    for i, h, a in zip(g.index, g['home'], g['away']):
+        counts[h], counts[a] = counts.get(h, 0) + 1, counts.get(a, 0) + 1
+        if counts[h] > rs_games_total or counts[a] > rs_games_total:
+            ps_idx.append(i)
+    ps = g.loc[ps_idx]
+    bo_by_round = {r: bo for _, r, bo, *_ in bracket_for(season)}
+    opps, drop = {}, []
+    for k, x in sorted(ps.groupby(ps.apply(lambda r: frozenset((r['home'], r['away'])), axis=1)),
+                       key=lambda kx: kx[1]['date'].min()):
+        h, a = tuple(k)
+        rnd = 1 + max(len(opps.get(h, ())), len(opps.get(a, ())))
+        opps.setdefault(h, set()).add(a)
+        opps.setdefault(a, set()).add(h)
+        bo = bo_by_round.get(rnd)
+        if bo is None:
+            continue
+        open_rows = x[x['home_pts'].isna()]
+        surplus = len(open_rows) - (bo - int(x['home_pts'].notna().sum()))
+        if surplus > 0:
+            drop += list(open_rows.index[:surplus])
+    return games.drop(index=drop), drop
+
+
 def host_pattern(season, best_of):
     """Per game: True = better seed hosts."""
     if best_of == 1:

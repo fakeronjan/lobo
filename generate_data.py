@@ -244,6 +244,13 @@ _sim_games = pd.concat([_sim_games, pd.DataFrame({
     'season': _cur_season, 'date': _sched['date'],
     'home': _sched['Home/Neutral'], 'away': _sched['Visitor/Neutral'],
     'home_pts': np.nan, 'visitor_pts': np.nan})], ignore_index=True)
+_cur = _sim_games['season'] == _cur_season
+_kept, _dropped = playoff_sim.drop_surplus_series_rows(
+    _sim_games[_cur], _cur_season, REGULAR_SEASON_GAMES.get(_cur_season, 44))
+for _i in _dropped:
+    _r = _sim_games.loc[_i]
+    print(f"  Dropped stale playoff row: {_r['date'].date()} {_r['away']} @ {_r['home']}")
+_sim_games = pd.concat([_sim_games[~_cur], _kept], ignore_index=True)
 
 _sim_ratings = df[['season', 'date', 'name', 'rating']].copy()
 _sim_ratings['date'] = pd.to_datetime(_sim_ratings['date'])
